@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MI Lifestyle Official Store</title>
+<title>MI Lifestyle Official Price List</title>
 
 <style>
 :root {
@@ -39,23 +39,25 @@ header{
   box-shadow:0 4px 10px rgba(0,0,0,.08);
   display:flex;flex-direction:column;border: 1px solid #eee;
 }
-.p-card img{
-  width:100%;height:220px;object-fit:contain;border-radius:8px;margin-bottom:10px;
-}
 .p-name{font-weight:bold;font-size:14px;margin:12px 0;min-height:42px;color:#2c3e50}
 
 .btn-group{margin-top:auto;display:flex;flex-direction:column;gap:8px}
-.btn{border:none;padding:12px;border-radius:8px;font-weight:bold;cursor:pointer;font-size:13px;text-align:center;text-decoration:none}
+.btn{border:none;padding:10px;border-radius:8px;font-weight:bold;cursor:pointer;font-size:13px;text-align:center;text-decoration:none}
+.view-img-btn{background:#f1f2f6;color:#2c3e50;border:1px solid #ccc}
 .seller-btn{background:#e3f2fd;color:#0277bd;border:1px solid #0277bd}
 .cust-btn{background:#25D366;color:#fff}
 
-/* Modal */
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999}
+/* Modals */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000}
 .modal-content{
-  background:#fff;margin:12% auto;padding:30px;border-radius:15px;
-  max-width:420px;text-align:center;position:relative;box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  background:#fff;margin:10% auto;padding:25px;border-radius:15px;
+  max-width:450px;text-align:center;position:relative;box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 .close{position:absolute;right:18px;top:12px;font-size:26px;cursor:pointer;color:#888}
+
+#imageModal .modal-content{max-width:500px;background:none;box-shadow:none;padding:0}
+#imageModal img{width:100%;border-radius:15px;box-shadow: 0 5px 25px rgba(0,0,0,0.5)}
+
 .modal-wa-btn{
   background:#25D366;color:#fff;padding:12px 22px;
   border-radius:25px;text-decoration:none;display:inline-block;margin-top:15px;font-weight:bold
@@ -69,7 +71,7 @@ footer{text-align:center;padding:40px 15px;color:#777;font-size:14px}
 
 <header>
   <h1>MI Lifestyle Products</h1>
-  <p>விற்பனையாளர் - வாடிக்கையாளர் விலைப் பட்டியல் (16.11.2024)</p>
+  <p>விற்பனையாளர் மற்றும் வாடிக்கையாளர் விலைப் பட்டியல் (16.11.2024)</p>
 </header>
 
 <div class="container">
@@ -107,10 +109,18 @@ footer{text-align:center;padding:40px 15px;color:#777;font-size:14px}
 
 <div id="sellerModal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
+    <span class="close" onclick="closeModal('sellerModal')">&times;</span>
     <div style="font-size: 40px; margin-bottom: 10px;">📱</div>
     <div id="modalText" style="line-height: 1.6; color: #333; font-weight: 500;"></div>
     <a id="waLink" class="modal-wa-btn" target="_blank">WhatsApp தொடர்புக்கு</a>
+  </div>
+</div>
+
+<div id="imageModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('imageModal')" style="color:#fff; top:-35px; right:0;">&times;</span>
+    <img id="fullImg" src="">
+    <p id="imgCaption" style="color:#fff; margin-top:10px; font-weight:bold; text-align:center;"></p>
   </div>
 </div>
 
@@ -123,109 +133,116 @@ const imgBase = "https://raw.githubusercontent.com/neyakkoot/MiLifeStyle_Product
 
 const products = [
   // HEALTH CARE
-  {cat:"HC", id:"IS13956", n:"Elements Cyclova 30 Capsules", r:1650.00, m:2200.00, img:"Cyclova Capsules.jpg"},
-  {cat:"HC", id:"IS13957", n:"Elements Antilergy Liquid 200ml", r:308.00, m:385.00, img:"Antilersy.jpg"},
-  {cat:"HC", id:"IS13958", n:"Elements ThyHealth Liquid 200ml", r:594.00, m:770.00, img:"ThyHealth.jpg"},
-  {cat:"HC", id:"IS13959", n:"Elements Ayushwaas Avaleha 250gms", r:1067.00, m:1430.00, img:"Ayushwaas%20avaleha.jpg"},
-  {cat:"HC", id:"IS15192", n:"Elements- Natcium", r:935.00, m:1375.00, img:"Antilersy.jpg"},
-  {cat:"HC", id:"IS13362", n:"New On & On Diaba Life 600.85 mg", r:2200.00, m:2750.00, img:"Antilersy.jpg"},
-  {cat:"HC", id:"IS9658", n:"Elements Liv Again Liquid", r:198.00, m:264.00, img:"Blood%20Purifier.jpg"},
-  {cat:"HC", id:"IS9659", n:"Elements Cof Nil", r:154.00, m:214.00, img:"Antilersy.jpg"},
-  {cat:"HC", id:"IS9660", n:"Elements Woman Comp", r:275.00, m:374.00, img:"Antilersy.jpg"},
-  {cat:"HC", id:"IS9661", n:"Elements M.G. Blood Purifier", r:308.00, m:418.00, img:"Blood%20Purifier.jpg"},
-  {cat:"HC", id:"IS9662", n:"Elements Man Shktimn", r:1089.00, m:1375.00, img:"Antilersy.jpg"},
-  {cat:"HC", id:"IS9663", n:"Elements Well Hart", r:594.00, m:797.00, img:"Antilersy.jpg"},
-  {cat:"HC", id:"IS9664", n:"Elements Below 37", r:748.00, m:1001.00, img:"Below%2037.jpg"},
-  {cat:"HC", id:"IS15543", n:"On & On Morolife", r:2750.00, m:3300.00, img:"Antilersy.jpg"},
-  {cat:"HC", id:"IS13363", n:"Elements Uri Flush 3 Liquid", r:374.00, m:522.00, img:"Antilersy.jpg"},
-  {cat:"HC", id:"IS9651", n:"Elements No Vedna Cap", r:1012.00, m:1265.00, img:"Antilersy.jpg"},
-  {cat:"HC", id:"IS9652", n:"Elements No Vedna Gel", r:253.00, m:319.00, img:"Antilersy.jpg"},
-  {cat:"HC", id:"IS9657", n:"Elements Wnd Hlng Crm", r:143.00, m:214.00, img:"Antilersy.jpg"},
-  {cat:"HC", id:"IS15132", n:"Elements Wellness Ayuheel 50gms", r:193.00, m:242.00, img:"AyuHeel.jpg"},
-  {cat:"HC", id:"IS15133", n:"Elements Wellness Pro Nasika 20ml", r:187.00, m:242.00, img:"Antilersy.jpg"},
-  {cat:"HC", id:"IS15134", n:"Elements Wellness Eye Nergy 10ml", r:165.00, m:209.00, img:"Antilersy.jpg"},
-  {cat:"HC", id:"IS13148", n:"Elements Protein Pwdr", r:2420.00, m:3080.00, img:"Antilersy.jpg"},
-  {cat:"HC", id:"IS13359", n:"Elements Fealing Iron Capsule", r:627.00, m:852.00, img:"Antilersy.jpg"},
-  {cat:"HC", id:"IS13950", n:"Elements Uri Flush-3 Plus Tablets", r:902.00, m:1210.00, img:"Antilersy.jpg"},
-  {cat:"HC", id:"IS13360", n:"Elements Fealing Iron Syrup", r:314.00, m:418.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS CYCLOVA 30 CAPSULES", r:1650.00, m:2200.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS ANTILERGY LIQUID 200ML", r:308.00, m:385.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS THYHEALTH LIQUID 200ML", r:594.00, m:770.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS AYUSHWAAS AVALEHA 250GMS", r:1067.00, m:1430.00, img:"Ayushwaas%20avaleha.jpg"},
+  {cat:"HC", n:"ELEMENTS- NATCIUM", r:935.00, m:1375.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"NEW ON & ON DIABA LIFE 600.85 MG", r:2200.00, m:2750.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ON & ON KAVCH PRASH", r:979.00, m:1424.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS LIV AGAIN LIQUID", r:198.00, m:264.00, img:"Blood%20Purifier.jpg"},
+  {cat:"HC", n:"ELEMENTS COF NIL", r:154.00, m:214.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS WOMAN COMP", r:275.00, m:374.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS M.G. BLD PRF", r:308.00, m:418.00, img:"Blood%20Purifier.jpg"},
+  {cat:"HC", n:"ELEMENTS MAN SHKTIMN", r:1089.00, m:1375.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS WELL HART", r:594.00, m:797.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS BELOW 37", r:748.00, m:1001.00, img:"Below%2037.jpg"},
+  {cat:"HC", n:"ON & ON MOROLIFE", r:2750.00, m:3300.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS WELLNESS PROBIOTIC", r:688.00, m:825.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS URI FLUSH 3 LIQUID", r:374.00, m:522.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS NO VEDNA CAP", r:1012.00, m:1265.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS NO VEDNA GEL", r:253.00, m:319.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS PHYT STRS CP", r:825.00, m:1122.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS IMMUNO + CAP", r:825.00, m:1034.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS LIV AGAIN C", r:792.00, m:990.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS DAILY DETOX", r:792.00, m:990.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS WND HLNG CRM", r:143.00, m:214.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS WELLNESS AYUHEEL 50GMS", r:193.00, m:242.00, img:"AyuHeel.jpg"},
+  {cat:"HC", n:"ELEMENTS WELLNESS PRO NASIKA 20ML", r:187.00, m:242.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS WELLNESS EYE NERGY 10ML", r:165.00, m:209.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS PROTEIN PWDR", r:2420.00, m:3080.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS FEALING IRON CAPSULE", r:627.00, m:852.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS URI FLUSH-3 PLUS TABLETS", r:902.00, m:1210.00, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS FEALING IRON SYRUP", r:314.00, m:418.00, img:"Antilersy.jpg"},
 
   // PERSONAL CARE
-  {cat:"PC", id:"IS13064", n:"On & On Bdy Btr Crm", r:231.00, m:330.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13187", n:"Elements CC Shampoo", r:275.00, m:374.00, img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"},
-  {cat:"PC", id:"IS13188", n:"Elements A.D. Shampoo", r:275.00, m:374.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13229", n:"Elements Multi-Action Complexion Cream", r:275.00, m:374.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13282", n:"On & On Sandalwood Soap 75 Gms", r:83.00, m:108.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13283", n:"On & On Papaya Soap 75 Gms", r:83.00, m:108.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13284", n:"On & On Neem Soap 75 Gms", r:83.00, m:108.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13285", n:"On & On Turmeric Soap 75 Gms", r:83.00, m:108.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13286", n:"On & On Milk And Strawberry Soap", r:83.00, m:108.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13311", n:"Elements Radiant Glow Face Wash", r:187.00, m:258.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13375", n:"Elements Whitening Body Lotion", r:165.00, m:220.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13376", n:"Elements Cocoa Butter Body Lotion", r:193.00, m:264.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13377", n:"Elements Intense Moisturising Lotion", r:209.00, m:286.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13378", n:"Elements Emollient Body Cream", r:209.00, m:286.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13379", n:"Elements Moisturising Hand Wash", r:330.00, m:440.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13380", n:"Elements 3 In 1 Face Wash", r:149.00, m:198.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13383", n:"Elements Under Eye Gel", r:237.00, m:297.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS14004", n:"Elements Acti-Fresh Shave Gel", r:242.00, m:308.00, img:"Acti-Fresh%20Shave%20Gel.jpg"},
-  {cat:"PC", id:"IS14006", n:"Elements 8 In 1 Hair Conditioner", r:358.00, m:451.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS14377", n:"Elements Privy Wash 100ml", r:286.00, m:363.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS14951", n:"Elements Ega Day Cream 25gms", r:534.00, m:671.00, img:"12-in-1%20Day%20Protection%20Cream.jpg"},
-  {cat:"PC", id:"IS14952", n:"Elements Ega Night Cream 25gms", r:534.00, m:671.00, img:"12-in-1%20Night%20Repair%20Cream.jpg"},
-  {cat:"PC", id:"IS14452", n:"On & On Bhrngraj Oil", r:358.00, m:484.00, img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"},
-  {cat:"PC", id:"IS15010", n:"On & On Hrb. T-Pst", r:143.00, m:194.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS15245", n:"Elements Red Hrbl Tooth Paste", r:160.00, m:205.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS15246", n:"Elements F G Tooth Paste 120 Gm", r:165.00, m:226.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS15234", n:"On & On Colour Shampoo 20ml", r:83.00, m:110.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS15466", n:"On & On Herbal Rollon Inhaler", r:138.00, m:192.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS15235", n:"Neustar Nu Femme Perfume 100 ml", r:550.00, m:1100.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS15236", n:"Neustar Tyzon Perfume 100ml", r:550.00, m:1100.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS15237", n:"Neustar Nu Femme Deo 200ml", r:182.00, m:231.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS15238", n:"Neustar Tyzon Deo 200ml", r:182.00, m:231.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS15239", n:"Neustar Tooth Brush Pack Of 4", r:105.00, m:126.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13528", n:"Neustar Neem Face Wash 100ml", r:121.00, m:154.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13529", n:"Neustar Papaya Face Wash 100ml", r:121.00, m:154.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13530", n:"Neustar Wallnut Scrub 100ml", r:138.00, m:176.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13531", n:"Neustar Petroleum Jelly 50gms", r:50.00, m:66.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13532", n:"Neustar Shampoo Tube 30ml", r:24.00, m:38.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13533", n:"Neustar Amla Hair Oil 200ml", r:149.00, m:187.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS15392", n:"Neustar Tulsi & Mint Tooth Paste", r:61.00, m:75.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13515", n:"Neustar Neem & Tulsi Soap", r:39.00, m:54.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13516", n:"Neustar Lime & Aloe Vera Soap", r:39.00, m:54.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13517", n:"Neustar Rose Fragrance Soap", r:39.00, m:54.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13523", n:"Neustar Jasmine & Almond Soap", r:39.00, m:54.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13524", n:"Neustar Antibacterial Soap", r:39.00, m:54.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13525", n:"Neustar Sandalwood Soap 100gms", r:39.00, m:54.00, img:"Antilersy.jpg"},
-  {cat:"PC", id:"IS13526", n:"Neustar Talc Powder 300gms", r:154.00, m:198.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ON & ON BDY BTR CRM", r:231.00, m:330.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ELEMENTS CHAMPI CHMPN", r:429.00, m:577.00, img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"},
+  {cat:"PC", n:"ELEMENTS CC SHAMPOO", r:275.00, m:374.00, img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"},
+  {cat:"PC", n:"ELEMENTS A.D. SHAMPOO", r:275.00, m:374.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ELEMENTS MULTI-ACTION CREAM", r:275.00, m:374.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ON & ON SANDALWOOD SOAP 75 GMS", r:83.00, m:108.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ON & ON PAPAYA SOAP 75 GMS", r:83.00, m:108.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ON & ON NEEM SOAP 75 GMS", r:83.00, m:108.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ON & ON TURMERIC SOAP 75 GMS", r:83.00, m:108.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ON & ON MILK AND STRAWBERRY SOAP", r:83.00, m:108.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ELEMENTS RADIANT GLOW FACE WASH", r:187.00, m:258.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ELEMENTS WHITENING BODY LOTION", r:165.00, m:220.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ELEMENTS COCOA BUTTER BODY LOTION", r:193.00, m:264.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ELEMENTS INTENSE MOISTURISING LOTION", r:209.00, m:286.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ELEMENTS EMOLLIENT BODY CREAM", r:209.00, m:286.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ELEMENTS MOISTURISING HAND WASH", r:330.00, m:440.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ELEMENTS 3 IN 1 FACE WASH", r:149.00, m:198.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ELEMENTS UNDER EYE GEL", r:237.00, m:297.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ELEMENTS ACTI-FRESH SHAVE GEL", r:242.00, m:308.00, img:"Acti-Fresh%20Shave%20Gel.jpg"},
+  {cat:"PC", n:"ELEMENTS 8 IN 1 HAIR CONDITIONER", r:358.00, m:451.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ELEMENTS PRIVY WASH 100ML", r:286.00, m:363.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ELEMENTS EGA DAY CREAM 25GMS", r:534.00, m:671.00, img:"12-in-1%20Day%20Protection%20Cream.jpg"},
+  {cat:"PC", n:"ELEMENTS EGA NIGHT CREAM 25GMS", r:534.00, m:671.00, img:"12-in-1%20Night%20Repair%20Cream.jpg"},
+  {cat:"PC", n:"ON & ON BHRNGRAJ OIL", r:358.00, m:484.00, img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"},
+  {cat:"PC", n:"ON & ON HRB. T-PST", r:143.00, m:194.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ELEMENTS RED HRBL TOOTH PASTE", r:160.00, m:205.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ELEMENTS F G TOOTH PASTE 120 GM", r:165.00, m:226.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ON & ON COLOUR SHAMPOO 20ML", r:83.00, m:110.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ON & ON HERBAL ROLLON INHALER", r:138.00, m:192.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR NU FEMME PERFUME 100 ML", r:550.00, m:1100.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR TYZON PERFUME 100ML", r:550.00, m:1100.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR NU FEMME DEO 200ML", r:182.00, m:231.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR TYZON DEO 200ML", r:182.00, m:231.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR TOOTH BRUSH PACK OF 4", r:105.00, m:126.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR NEEM FACE WASH 100ML", r:121.00, m:154.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR PAPAYA FACE WASH 100ML", r:121.00, m:154.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR WALLNUT SCRUB 100ML", r:138.00, m:176.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR PETROLEUM JELLY 50GMS", r:50.00, m:66.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR SHAMPOO TUBE 30ML", r:24.00, m:38.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR AMLA HAIR OIL 200ML", r:149.00, m:187.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR TULSI & MINT TOOTH PASTE", r:61.00, m:75.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR NEEM & TULSI SOAP 100GMS", r:39.00, m:54.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR LIME & ALOE VERA SOAP", r:39.00, m:54.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR ROSE FRAGRANCE SOAP", r:39.00, m:54.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR JASMINE & ALMOND SOAP", r:39.00, m:54.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR ANTIBACTERIAL SOAP 100GMS", r:39.00, m:54.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR SANDALWOOD SOAP 100GMS", r:39.00, m:54.00, img:"Antilersy.jpg"},
+  {cat:"PC", n:"NEUSTAR TALC POWDER 300GMS", r:154.00, m:198.00, img:"Antilersy.jpg"},
 
   // FOOD & BEVERAGE
-  {cat:"FB", id:"IS15458", n:"On & On 9 E5 Health Drink", r:3245.00, m:4070.00, img:"Antilersy.jpg"},
-  {cat:"FB", id:"IS159807", n:"On & On Sprln Gold", r:1320.00, m:1650.00, img:"Antilersy.jpg"},
-  {cat:"FB", id:"IS15082", n:"On & On Masala Kawah Green Tea", r:165.00, m:209.00, img:"Antilersy.jpg"},
-  {cat:"FB", id:"IS15083", n:"On & On Kashmiri Kawah Tea", r:330.00, m:418.00, img:"Antilersy.jpg"},
-  {cat:"FB", id:"IS15391", n:"On & On Nu Woman Sanitary Napkins", r:275.00, m:357.00, img:"Antilersy.jpg"},
-  {cat:"FB", id:"IS15174", n:"On & On Nutrilife Chocolate", r:2090.00, m:2640.00, img:"Antilersy.jpg"},
-  {cat:"FB", id:"IS8826", n:"On & On Nutrilife", r:2090.00, m:2640.00, img:"Antilersy.jpg"},
-  {cat:"FB", id:"IS13697", n:"Aahar Tealite", r:330.00, m:420.00, img:"Antilersy.jpg"},
+  {cat:"FB", n:"ON & ON 9 E5 HEALTH DRINK", r:3245.00, m:4070.00, img:"Antilersy.jpg"},
+  {cat:"FB", n:"ON & ON SPRLN GOLD", r:1320.00, m:1650.00, img:"Antilersy.jpg"},
+  {cat:"FB", n:"ON & ON MASALA KAWAH GREEN TEA", r:165.00, m:209.00, img:"Antilersy.jpg"},
+  {cat:"FB", n:"ON & ON KASHMIRI KAWAH TEA", r:330.00, m:418.00, img:"Antilersy.jpg"},
+  {cat:"FB", n:"ON & ON NU WOMAN SANITARY NAPKINS", r:275.00, m:357.00, img:"Antilersy.jpg"},
+  {cat:"FB", n:"ON & ON NUTRILIFE CHOCOLATE 750 GMS", r:2090.00, m:2640.00, img:"Antilersy.jpg"},
+  {cat:"FB", n:"ON & ON NUTRILIFE", r:2090.00, m:2640.00, img:"Antilersy.jpg"},
+  {cat:"FB", n:"AAHAR TEALITE", r:330.00, m:420.00, img:"Antilersy.jpg"},
 
   // HOME CARE
-  {cat:"HM", id:"IS15270", n:"Anti Bacterial Dish Wash Round Bar", r:66.00, m:88.00, img:"Antilersy.jpg"},
-  {cat:"HM", id:"IS15271", n:"Kill & Shine Toilet Cleaner", r:83.00, m:110.00, img:"Antilersy.jpg"},
-  {cat:"HM", id:"IS15272", n:"Disinfectant Floor Cleaner 500 ml", r:99.00, m:132.00, img:"Antilersy.jpg"},
-  {cat:"HM", id:"IS15273", n:"Clean & Shine Dish Wash Liquid", r:127.00, m:165.00, img:"Antilersy.jpg"},
-  {cat:"HM", id:"IS15274", n:"Max Bright Laundry Detergent", r:187.00, m:242.00, img:"Antilersy.jpg"},
-  {cat:"HM", id:"IS15393", n:"Streak Free Glass Cleanr 500 ml", r:77.00, m:93.00, img:"Antilersy.jpg"},
+  {cat:"HM", n:"ANTI BACTERIAL DISH WASH BAR", r:66.00, m:88.00, img:"Antilersy.jpg"},
+  {cat:"HM", n:"KILL & SHINE TOILET CLEANER 500 ML", r:83.00, m:110.00, img:"Antilersy.jpg"},
+  {cat:"HM", n:"DISINFECTANT FLOOR CLEANER 500 ML", r:99.00, m:132.00, img:"Antilersy.jpg"},
+  {cat:"HM", n:"CLEAN & SHINE DISH WASH LIQUID", r:127.00, m:165.00, img:"Antilersy.jpg"},
+  {cat:"HM", n:"MAX BRIGHT LAUNDRY DETERGENT", r:187.00, m:242.00, img:"Antilersy.jpg"},
+  {cat:"HM", n:"STREAK FREE GLASS CLEANR 500 ML", r:77.00, m:93.00, img:"Antilersy.jpg"},
 
   // AGRO CARE
-  {cat:"AG", id:"IS15334", n:"Indiagro Mi Proud 250ml", r:1045.00, m:1320.00, img:"Antilersy.jpg"},
-  {cat:"AG", id:"IS15335", n:"Indiagro Mi Citra 250ml", r:1650.00, m:2062.00, img:"Antilersy.jpg"},
-  {cat:"AG", id:"IS15336", n:"Indiagro Mi Veer 250ml", r:2310.00, m:2915.00, img:"Antilersy.jpg"},
-  {cat:"AG", id:"IS15337", n:"Indiagro Bhuastra Super 2kg", r:1210.00, m:1512.00, img:"Antilersy.jpg"},
-  {cat:"AG", id:"IS15338", n:"Indiagro Mi Spray Plus 100ml", r:440.00, m:550.00, img:"Antilersy.jpg"},
-  {cat:"AG", id:"IS15339", n:"Indiagro Growmagic Advance", r:1419.00, m:1815.00, img:"Antilersy.jpg"},
-  {cat:"AG", id:"IS15340", n:"Indiagro Modiphy 250 ml", r:440.00, m:550.00, img:"Antilersy.jpg"},
-  {cat:"AG", id:"IS15419", n:"Indiagro Y-Ras Plus 250ml", r:825.00, m:1045.00, img:"Antilersy.jpg"},
-  {cat:"AG", id:"IS15540", n:"Indiagro Olif Super 16 500 ml", r:1210.00, m:1430.00, img:"Antilersy.jpg"},
+  {cat:"AG", n:"INDIAGRO MI PROUD 250ML", r:1045.00, m:1320.00, img:"Antilersy.jpg"},
+  {cat:"AG", n:"INDIAGRO MI CITRA 250ML", r:1650.00, m:2062.00, img:"Antilersy.jpg"},
+  {cat:"AG", n:"INDIAGRO MI VEER 250ML", r:2310.00, m:2915.00, img:"Antilersy.jpg"},
+  {cat:"AG", n:"INDIAGRO BHUASTRA SUPER 2KG", r:1210.00, m:1512.00, img:"Antilersy.jpg"},
+  {cat:"AG", n:"INDIAGRO MI SPRAY PLUS 100ML", r:440.00, m:550.00, img:"Antilersy.jpg"},
+  {cat:"AG", n:"INDIAGRO GROWMAGIC ADVANCE", r:1419.00, m:1815.00, img:"Antilersy.jpg"},
+  {cat:"AG", n:"INDIAGRO MODIPHY 250 ML", r:440.00, m:550.00, img:"Antilersy.jpg"},
+  {cat:"AG", n:"INDIAGRO Y-RAS PLUS 250ML", r:825.00, m:1045.00, img:"Antilersy.jpg"},
+  {cat:"AG", n:"INDIAGRO OLIF SUPER 16 500 ML", r:1210.00, m:1430.00, img:"Antilersy.jpg"},
 ];
 
 function showSection(id){
@@ -238,15 +255,21 @@ function showSection(id){
 function openSellerPopup(name,price){
   const text = `விற்பனையாளர் விலைக்கு (₹${price.toFixed(2)}) ${name} வேண்டுமானால், 9600370671 என்ற எண்ணிற்குத் தொடர்புகொள்ளவும். அவர் வழிகாட்டல்படி கேட்டால் தொடர்ந்து விற்பனையாளர் விலைக்கு வாங்கலாம்.`;
   document.getElementById("modalText").innerText = text;
-  document.getElementById("waLink").href =
-    "https://wa.me/919600370671?text=" +
-    encodeURIComponent(name+" விற்பனையாளர் விலையில் வேண்டும்");
+  document.getElementById("waLink").href = "https://wa.me/919600370671?text=" + encodeURIComponent(name+" விற்பனையாளர் விலையில் வேண்டும்");
   document.getElementById("sellerModal").style.display="block";
 }
 
-function closeModal(){document.getElementById("sellerModal").style.display="none";}
+function viewImage(name, url){
+  document.getElementById("fullImg").src = url;
+  document.getElementById("imgCaption").innerText = name;
+  document.getElementById("imageModal").style.display="block";
+}
 
-window.onclick = function(e) { if (e.target == document.getElementById('sellerModal')) closeModal(); }
+function closeModal(id){document.getElementById(id).style.display="none";}
+
+window.onclick = function(e) { 
+  if (e.target.classList.contains('modal')) e.target.style.display = "none"; 
+}
 
 function render(){
   const grids={
@@ -261,9 +284,11 @@ function render(){
     if(grids[p.cat]){
       grids[p.cat].innerHTML+=`
       <div class="p-card">
-        <img src="${imgBase+p.img}" onerror="this.src='https://via.placeholder.com/250?text=MI+Lifestyle'">
         <div class="p-name">${p.n}</div>
         <div class="btn-group">
+          <button class="btn view-img-btn" onclick="viewImage('${p.n}', '${imgBase+p.img}')">
+            📷 படத்தைப் பார்க்க
+          </button>
           <button class="btn seller-btn" onclick="openSellerPopup('${p.n}',${p.r})">
             விற்பனையாளர் ₹${p.r.toFixed(2)}
           </button>
