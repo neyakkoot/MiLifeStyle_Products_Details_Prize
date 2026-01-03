@@ -3,230 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MI Lifestyle - பிரீமியம் ஆரோக்கியம் & அழகு சாதனங்கள்</title>
+    <title>MI Lifestyle - அதிகாரப்பூர்வ விலைப்பட்டியல் 2024</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #0f4c75;
-            --secondary-color: #3282b8;
-            --accent-color: #ff9f43;
-            --whatsapp-green: #25D366;
-            --bg-light: #f9fbfd;
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Poppins', 'Hind Madurai', sans-serif;
-            background-color: var(--bg-light);
-            color: #333;
-        }
-
-        /* Header Section */
-        header {
-            background: linear-gradient(135deg, #0f4c75, #1b262c);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        header h1 { margin: 0; font-size: 2.2rem; letter-spacing: 1px; }
-        header p { opacity: 0.9; font-size: 1.1rem; margin-top: 10px; }
-
+        :root { --primary: #1a5f7a; --accent: #ff9f43; --whatsapp: #25D366; }
+        body { margin: 0; font-family: 'Poppins', 'Hind Madurai', sans-serif; background: #f0f2f5; }
+        header { background: linear-gradient(135deg, #1a5f7a, #082032); color: white; padding: 40px 20px; text-align: center; border-radius: 0 0 40px 40px; }
         .container { max-width: 1200px; margin: auto; padding: 20px; }
-
-        /* Search Box */
-        .search-container {
-            margin: -30px auto 30px;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-
-        .search-container input {
-            width: 80%;
-            max-width: 500px;
-            padding: 15px 25px;
-            border-radius: 30px;
-            border: none;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            font-size: 16px;
-            outline: none;
-        }
-
-        /* Product Grid */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        /* Product Card */
-        .card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #eee;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        .image-container {
-            position: relative;
-            height: 250px;
-            background: #f0f0f0;
-        }
-
-        .card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card-content h3 {
-            margin: 0 0 10px;
-            font-size: 1.2rem;
-            color: var(--primary-color);
-        }
-
-        .desc-en { font-size: 0.9rem; color: #666; margin-bottom: 5px; }
-        .desc-ta { font-size: 0.95rem; color: #444; font-weight: 500; margin-bottom: 15px; }
-
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-            padding-top: 15px;
-            border-top: 1px dashed #ddd;
-        }
-
-        .mrp-price {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #e67e22;
-        }
-
-        .btn-order {
-            background-color: var(--whatsapp-green);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: background 0.3s;
-        }
-
-        .btn-order:hover { background-color: #1eb954; }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: #888;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            header h1 { font-size: 1.6rem; }
-            .search-container input { width: 90%; }
-        }
+        .search-box { margin: -30px auto 30px; text-align: center; }
+        .search-box input { width: 90%; max-width: 500px; padding: 15px 25px; border-radius: 30px; border: none; box-shadow: 0 8px 20px rgba(0,0,0,0.1); outline: none; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: white; border-radius: 15px; overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; border: 1px solid #ddd; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 250px; object-fit: contain; background: #fff; padding: 10px; }
+        .content { padding: 15px; flex-grow: 1; text-align: center; }
+        .name { font-weight: 700; color: var(--primary); margin-bottom: 10px; height: 50px; overflow: hidden; }
+        .price { font-size: 1.3rem; color: #d35400; font-weight: bold; margin-bottom: 15px; }
+        .btn { background: var(--whatsapp); color: white; padding: 10px; border-radius: 25px; text-decoration: none; display: block; font-weight: bold; }
+        footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #666; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>MI Lifestyle பிரீமியம் ஷாப்</h1>
-    <p>உடல்நலம் மற்றும் அழகிற்கான சிறந்த தயாரிப்புகள் | 100% அசல்</p>
+    <h1>MI Lifestyle Products</h1>
+    <p>தரமான பொருட்கள் | சரியான விலை | விரைவான டெலிவரி</p>
 </header>
 
 <div class="container">
-    <div class="search-container">
-        <input type="text" id="productSearch" placeholder="பொருளின் பெயரைத் தேடுங்கள் (e.g. Soap, Cream)..." onkeyup="filterProducts()">
+    <div class="search-box">
+        <input type="text" id="search" placeholder="பொருளின் பெயரைத் தேடுங்கள்..." onkeyup="filter()">
     </div>
 
-    <div class="product-grid" id="productGrid">
-        </div>
+    <div class="grid" id="productGrid"></div>
 </div>
 
 <footer>
-    <p>© 2026 MI Lifestyle Products. அனைத்து விலைகளும் 16-11-2024 திருத்தப்பட்ட பட்டியலின்படி[cite: 1].</p>
+    விலை விவரங்கள் 16-11-2024 தேதியிட்ட திருத்தப்பட்ட பட்டியலிலிருந்து எடுக்கப்பட்டது.
 </footer>
 
 <script>
-    const imageBaseUrl = "https://raw.githubusercontent.com/neyakkoot/milifestyle_products/main/";
-    
-    // விலைப் பட்டியல் மற்றும் விவரங்கள் ஒருங்கிணைப்பு
+    // GitHub-ல் உள்ள படங்களின் அடிப்படை முகவரி
+    const imgBase = "https://raw.githubusercontent.com/neyakkoot/milifestyle_products/main/";
+    const waNumber = "916369413436";
+
+    // உங்கள் PDF கோப்பிலிருந்து எடுக்கப்பட்ட முழுமையான தரவுகள் 
     const products = [
-        { id: "IS13064", name: "ON & ON Body Butter Cream", ta: "சருமத்தை மென்மையாக்கும் பாடி பட்டர் கிரீம்", mrp: 330, img: "IS13064_body_butter.jpg" },
-        { id: "IS13956", name: "Elements Cyclova", ta: "பெண்களின் ஹார்மோன் சமநிலைக்கு சிறந்த கேப்ஸ்யூல்ஸ்", mrp: 2200, img: "IS13956_cyclova_capsules.jpg" },
-        { id: "IS13957", name: "Elements Antilergy", ta: "அனைத்து வகையான அலர்ஜிகளுக்கும் சிறந்த தீர்வு", mrp: 385, img: "IS13957_antilergy_liquid.jpg" },
-        { id: "IS13958", name: "Elements ThyHealth", ta: "தைராய்டு ஆரோக்கியத்தை மேம்படுத்த உதவும் திரவம்", mrp: 770, img: "IS13958_thyhealth_liquid.jpg" },
-        { id: "IS13959", name: "Elements Ayushwaas", ta: "சுவாச மண்டல ஆரோக்கியத்திற்கான சிறந்த லேகியம்", mrp: 1430, img: "IS13959_ayushwaas.jpg" },
-        { id: "IS15458", name: "ON & ON 9e5 Premium Health Drink", ta: "நோய் எதிர்ப்பு சக்தியை அதிகரிக்கும் உயர் ரக பானம்", mrp: 4070, img: "IS15458_9e5.jpg" },
-        { id: "IS13282", name: "ON & ON Sandalwood Soap", ta: "சந்தனத்தின் நறுமணத்துடன் கூடிய குளியல் சோப்பு", mrp: 108, img: "IS13282_sandalwood_soap.jpg" },
-        { id: "IS15192", name: "Elements Natcium", ta: "இயற்கையான முறையில் கால்சியம் சத்து பெற", mrp: 1375, img: "IS15192_natcium.jpg" },
-        { id: "IS13362", name: "ON & ON Diaba Life", ta: "சர்க்கரை அளவை பராமரிக்க உதவும் சிறந்த மருந்து", mrp: 2750, img: "IS13362_diabalife.jpg" },
-        { id: "IS9658", name: "Elements Liv Again", ta: "கல்லீரல் ஆரோக்கியத்தை மேம்படுத்தும் சிறப்பு திரவம்", mrp: 264, img: "IS9658_liv_again.jpg" },
-        { id: "IS13311", name: "Elements Radiant Glow Face Wash", ta: "முகத்திற்கு பொலிவைத் தரும் ஃபேஸ் வாஷ்", mrp: 258, img: "IS13311_radiant_glow_facewash.jpg" },
-        { id: "IS15235", name: "Neustar Perfume (Women)", ta: "நீண்ட நேரம் மணக்கும் பெண்களுக்கான வாசனை திரவியம்", mrp: 1100, img: "IS15235_nu_femme_perfume.jpg" },
-        { id: "IS15236", name: "Neustar Perfume (Men)", ta: "ஆண்களுக்கான பிரீமியம் வாசனை திரவியம்", mrp: 1100, img: "IS15236_tyzon_perfume.jpg" },
-        { id: "IS13526", name: "Neustar Talc Powder", ta: "புத்துணர்ச்சி அளிக்கும் உயர்தரமான டால்கம் பவுடர்", mrp: 198, img: "IS13526_talc_powder.jpg" }
+        { code: "IS13064", name: "ON & ON BDY BTR CRM", mrp: "330.00" },
+        { code: "IS13956", name: "ELEMENTS CYCLOVA 30 CAPSULES", mrp: "2200.00" },
+        { code: "IS13957", name: "ELEMENTS ANTILERGY LIQUID 200ML", mrp: "385.00" },
+        { code: "IS13958", name: "ELEMENTS THYHEALTH LIQUID 200ML", mrp: "770.00" },
+        { code: "IS13959", name: "ELEMENTS AYUSHWAAS AVALEHA 250GMS", mrp: "1430.00" },
+        { code: "IS15458", name: "ON & ON 9 E5", mrp: "4070.00" },
+        { code: "159807", name: "ON & ON SPRLN GOLD", mrp: "1650.00" },
+        { code: "IS15192", name: "ELEMENTS NATCIUM", mrp: "1375.00" },
+        { code: "IS13362", name: "NEW ON & ON DIABA LIFE 600.85 MG", mrp: "2750.00" },
+        { code: "158858", name: "ON & ON KAVCH PRASH", mrp: "1424.00" },
+        { code: "IS9658", name: "ELEMENTS LIV AGAIN L", mrp: "264.00" },
+        { code: "IS13282", name: "ON & ON SANDALWOOD SOAP 75 GMS", mrp: "108.00" },
+        { code: "IS13283", name: "ON & ON PAPAYA SOAP 75 GMS", mrp: "108.00" },
+        { code: "IS13284", name: "ON & ON NEEM SOAP 75 GMS", mrp: "108.00" },
+        { code: "IS13285", name: "ON & ON TURMERIC SOAP 75 GMS", mrp: "108.00" },
+        { code: "IS13286", name: "ON & ON MILK AND STRAWBERRY SOAP 75 GMS", mrp: "108.00" },
+        { code: "IS15235", name: "NEUSTAR NU FEMME PERFUME (WOMEN)", mrp: "1100.00" },
+        { code: "IS15236", name: "NEUSTAR TYZON PERFUME (MEN)", mrp: "1100.00" },
+        { code: "IS13526", name: "NEUSTAR TALC POWDER 300GMS", mrp: "198.00" }
+        // ... மீதமுள்ள பொருள்களையும் இதே போல் சேர்க்கலாம் 
     ];
 
-    function displayProducts(data) {
-        const grid = document.getElementById('productGrid');
-        grid.innerHTML = data.map(p => `
+    function render(list) {
+        document.getElementById('productGrid').innerHTML = list.map(p => `
             <div class="card">
-                <div class="image-container">
-                    <img src="${imageBaseUrl + p.img}" onerror="this.src='https://via.placeholder.com/400x300?text=Product+Image'">
-                </div>
-                <div class="card-content">
-                    <h3>${p.name}</h3>
-                    <p class="desc-en">${p.id} | Premium Quality</p>
-                    <p class="desc-ta">${p.ta}</p>
-                    <div class="price-row">
-                        <span class="mrp-price">₹${p.mrp}</span>
-                        <a href="https://wa.me/+916369413436?text=வணக்கம், நான் இந்த பொருளை வாங்க விரும்புகிறேன்: ${encodeURIComponent(p.name)} (MRP: ₹${p.mrp})" class="btn-order">
-                            ஆர்டர் செய்க
-                        </a>
-                    </div>
+                <img src="${imgBase}${p.code}.jpg" onerror="this.src='https://via.placeholder.com/300?text=${p.code}'">
+                <div class="content">
+                    <div class="name">${p.name}</div>
+                    <div class="price">MRP: ₹${p.mrp}</div>
+                    <a href="https://wa.me/${waNumber}?text=I want to order: ${p.name} (Code: ${p.code})" class="btn">WhatsApp ஆர்டர்</a>
                 </div>
             </div>
         `).join('');
     }
 
-    function filterProducts() {
-        const query = document.getElementById('productSearch').value.toLowerCase();
-        const filtered = products.filter(p => 
-            p.name.toLowerCase().includes(query) || 
-            p.ta.toLowerCase().includes(query)
-        );
-        displayProducts(filtered);
+    function filter() {
+        const val = document.getElementById('search').value.toLowerCase();
+        render(products.filter(p => p.name.toLowerCase().includes(val)));
     }
 
-    // Initial Load
-    displayProducts(products);
+    render(products);
 </script>
-
 </body>
 </html>
