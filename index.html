@@ -3,108 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MI Lifestyle Official Price List</title>
+    <title>MI Lifestyle Official Catalog</title>
     <style>
         :root {
-            --primary: #0f3443;
-            --hc: #d63031; --pc: #0984e3; --fb: #f39c12; --hm: #00cec9; --ag: #27ae60;
+            --primary: #2c3e50;
+            --hc: #27ae60; --pc: #2980b9; --fb: #8e44ad; --hm: #e67e22; --ag: #c0392b;
         }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f8f9fa; }
-        header { background: linear-gradient(to right, #0f3443, #34e89e); color: white; padding: 30px; text-align: center; }
-        .search-container { position: sticky; top: 0; z-index: 100; background: white; padding: 15px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        input { width: 80%; max-width: 500px; padding: 12px; border-radius: 25px; border: 1px solid #dfe6e9; outline: none; }
-        .section { max-width: 1200px; margin: 20px auto; padding: 0 15px; }
-        .cat-header { color: white; padding: 12px 20px; border-radius: 8px 8px 0 0; font-weight: bold; margin-top: 30px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; border: 1px solid #eee; }
-        .card img { width: 100%; height: 200px; object-fit: contain; padding: 10px; background: #fff; }
-        .info { padding: 15px; text-align: center; flex-grow: 1; }
-        .name { font-weight: bold; font-size: 14px; margin-bottom: 10px; height: 40px; color: var(--primary); overflow: hidden; }
-        .price-box { display: flex; justify-content: space-around; background: #f1f2f6; padding: 10px; border-radius: 8px; margin-bottom: 15px; }
-        .p-amt { font-size: 16px; font-weight: bold; display: block; }
-        .rsp { color: #2980b9; } .mrp { color: #c0392b; }
-        .wa-btn { background: #25D366; color: white; text-decoration: none; padding: 10px; border-radius: 5px; display: block; font-weight: bold; }
-        footer { background: #2d3436; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f4f6f9; margin: 0; padding: 0; }
+        
+        /* Header Section */
+        header { background: linear-gradient(135deg, #0f3443, #34e89e); color: white; padding: 40px 20px; text-align: center; }
+        
+        .container { max-width: 1200px; margin: auto; padding: 20px; }
+
+        /* Category Card Layout */
+        .category-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 40px; }
+        
+        .cat-card {
+            background: #ffffff; width: 220px; padding: 25px; border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;
+            text-decoration: none; display: block;
+        }
+        .cat-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .cat-card div { font-size: 45px; margin-bottom: 10px; }
+        .cat-card h3 { font-size: 16px; color: #333; margin: 10px 0; font-weight: bold; }
+        .cat-card span { color: #fff; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+
+        /* Product Section (Hidden by default) */
+        .product-section { display: none; margin-top: 30px; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .section-title { text-align: center; font-size: 1.8rem; margin-bottom: 25px; color: #333; border-bottom: 3px solid #ddd; padding-bottom: 10px; }
+        
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        
+        /* Individual Product Card */
+        .p-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); padding: 15px; text-align: center; border: 1px solid #eee; }
+        .p-card img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 10px; }
+        .p-name { font-weight: bold; font-size: 14px; color: var(--primary); height: 40px; overflow: hidden; margin-bottom: 10px; }
+        
+        .price-box { display: flex; justify-content: space-around; background: #f8f9fa; padding: 10px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #eee; }
+        .p-amt { font-weight: bold; display: block; font-size: 16px; }
+        .rsp-val { color: #2980b9; } .mrp-val { color: #c0392b; }
+        
+        .wa-btn { background: #25D366; color: white; text-decoration: none; padding: 12px; border-radius: 8px; display: block; font-weight: bold; transition: 0.3s; }
+        .wa-btn:hover { background: #1eb954; }
+
+        footer { text-align: center; padding: 30px; color: #777; font-size: 14px; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>MI Lifestyle Products</h1>
-    <p>விற்பனையாளர் - வாடிக்கையாளர் புதிய விலைப் பட்டியல் (16.11.2024)</p>
+    <p>தரமான பொருள்கள் | நேரடி விற்பனை விலை</p>
 </header>
 
-<div class="search-container">
-    <input type="text" id="searchInput" placeholder="தயாரிப்புகளைத் தேடுக..." onkeyup="filter()">
-</div>
+<div class="container">
+    <div class="category-grid">
+        <div class="cat-card" onclick="showSection('HC')" style="border-top: 5px solid var(--hc);">
+            <div>🏥</div>
+            <h3>HEALTH CARE</h3>
+            <span style="background: var(--hc);">பொருள்களைக் காட்டுக</span>
+        </div>
 
-<div id="main-catalog">
-    <div class="section"><div class="cat-header" style="background:var(--hc)">HEALTH CARE</div><div class="grid" id="grid_HC"></div></div>
-    <div class="section"><div class="cat-header" style="background:var(--pc)">PERSONAL CARE</div><div class="grid" id="grid_PC"></div></div>
-    <div class="section"><div class="cat-header" style="background:var(--fb)">FOOD & BEVERAGE</div><div class="grid" id="grid_FB"></div></div>
-    <div class="section"><div class="cat-header" style="background:var(--hm)">HOME CARE</div><div class="grid" id="grid_HM"></div></div>
-    <div class="section"><div class="cat-header" style="background:var(--ag)">AGRO CARE</div><div class="grid" id="grid_AG"></div></div>
+        <div class="cat-card" onclick="showSection('PC')" style="border-top: 5px solid var(--pc);">
+            <div>🧴</div>
+            <h3>PERSONAL CARE</h3>
+            <span style="background: var(--pc);">பொருள்களைக் காட்டுக</span>
+        </div>
+
+        <div class="cat-card" onclick="showSection('FB')" style="border-top: 5px solid var(--fb);">
+            <div>☕</div>
+            <h3>FOOD & BEVERAGE</h3>
+            <span style="background: var(--fb);">பொருள்களைக் காட்டுக</span>
+        </div>
+
+        <div class="cat-card" onclick="showSection('HM')" style="border-top: 5px solid var(--hm);">
+            <div>🏠</div>
+            <h3>HOME CARE</h3>
+            <span style="background: var(--hm);">பொருள்களைக் காட்டுக</span>
+        </div>
+
+        <div class="cat-card" onclick="showSection('AG')" style="border-top: 5px solid var(--ag);">
+            <div>🌱</div>
+            <h3>AGRO CARE</h3>
+            <span style="background: var(--ag);">பொருள்களைக் காட்டுக</span>
+        </div>
+    </div>
+
+    <div id="HC" class="product-section">
+        <h2 class="section-title">HEALTH CARE Products</h2>
+        <div class="product-grid" id="grid_HC"></div>
+    </div>
+
+    <div id="PC" class="product-section">
+        <h2 class="section-title">PERSONAL CARE Products</h2>
+        <div class="product-grid" id="grid_PC"></div>
+    </div>
+
+    <div id="FB" class="product-section">
+        <h2 class="section-title">FOOD & BEVERAGE Products</h2>
+        <div class="product-grid" id="grid_FB"></div>
+    </div>
+
+    <div id="HM" class="product-section">
+        <h2 class="section-title">HOME CARE Products</h2>
+        <div class="product-grid" id="grid_HM"></div>
+    </div>
+
+    <div id="AG" class="product-section">
+        <h2 class="section-title">AGRO CARE Products</h2>
+        <div class="product-grid" id="grid_AG"></div>
+    </div>
 </div>
 
 <footer>
-    <p>தொடர்புக்கு: <b>+91 63694 13436</b></p>
+    விலைப்பட்டியல்: 16.11.2024 முதல் நடைமுறைக்கு வந்தது. <br>
+    புலன எண்: +91 63694 13436
 </footer>
 
 <script>
-const imgBase = "https://raw.githubusercontent.com/neyakkoot/milifestyle_products/main/";
-const products = [
-    // HEALTH CARE
-    {cat:"HC", id:"IS13956", n:"ELEMENTS CYCLOVA 30 CAPSULES", r:1650, m:2200},
-    {cat:"HC", id:"IS13957", n:"ELEMENTS ANTILERGY LIQUID 200ML", r:308, m:385},
-    {cat:"HC", id:"IS13958", n:"ELEMENTS THYHEALTH LIQUID 200ML", r:594, m:770},
-    {cat:"HC", id:"IS13959", n:"ELEMENTS AYUSHWAAS AVALEHA 250GMS", r:1067, m:1430},
-    {cat:"HC", id:"IS15192", n:"ELEMENTS- NATCIUM", r:935, m:1375},
-    {cat:"HC", id:"IS13362", n:"NEW ON & ON DIABA LIFE 600.85 MG", r:2200, m:2750},
-    {cat:"HC", id:"158858", n:"ON & ON KAVCH PRASH", r:979, m:1424},
-    {cat:"HC", id:"IS9658", n:"ELEMENTS LIV AGAIN L", r:198, m:264},
-    {cat:"HC", id:"IS15132", n:"ELEMENTS AYUHEEL 50GMS", r:193, m:242},
-    {cat:"HC", id:"IS13359", n:"ELEMENTS FEALING IRON CAPSULE", r:627, m:852},
-    {cat:"HC", id:"IS13950", n:"ELEMENTS URI FLUSH-3 PLUS TABLETS", r:902, m:1210},
+    const imgBase = "https://raw.githubusercontent.com/neyakkoot/milifestyle_products/main/";
+    
+    const products = [
+        // HEALTH CARE 
+        {cat:"HC", id:"IS13956", n:"ELEMENTS CYCLOVA 30 CAPSULES", r:1650, m:2200},
+        {cat:"HC", id:"IS13957", n:"ELEMENTS ANTILERGY LIQUID 200ML", r:308, m:385},
+        {cat:"HC", id:"IS13958", n:"ELEMENTS THYHEALTH LIQUID 200ML", r:594, m:770},
+        {cat:"HC", id:"IS13959", n:"ELEMENTS AYUSHWAAS AVALEHA 250GMS", r:1067, m:1430},
+        {cat:"HC", id:"IS15192", n:"ELEMENTS- NATCIUM", r:935, m:1375},
+        {cat:"HC", id:"IS13362", n:"NEW ON & ON DIABA LIFE 600.85 MG", r:2200, m:2750},
+        {cat:"HC", id:"158858", n:"ON & ON KAVCH PRASH", r:979, m:1424},
+        {cat:"HC", id:"IS9658", n:"ELEMENTS LIV AGAIN L", r:198, m:264},
+        {cat:"HC", id:"IS13363", n:"ELEMENTS URI FLUSH 3 LIQUID", r:374, m:522},
+        {cat:"HC", id:"IS9651", n:"ELEMENTS NO VEDNA CAP", r:1012, m:1265},
+        {cat:"HC", id:"IS13950", n:"ELEMENTS URI FLUSH-3 PLUS TABLETS", r:902, m:1210},
 
-    // PERSONAL CARE 
-    {cat:"PC", id:"IS13064", n:"ON & ON BDY BTR CRM", r:231, m:330},
-    {cat:"PC", id:"IS13282", n:"ON & ON SANDALWOOD SOAP 75 GMS", r:83, m:108},
-    {cat:"PC", id:"IS13311", n:"ELEMENTS RADIANT GLOW FACE WASH", r:187, m:258},
-    {cat:"PC", id:"IS14452", n:"ON & ON BHRNGRAJ OIL", r:358, m:484},
-    {cat:"PC", id:"IS13515", n:"NEUSTAR NEEM & TULSI SOAP 100GMS", r:39, m:54},
-    {cat:"PC", id:"IS15235", n:"NEUSTAR NU FEMME PERFUME 100 ML", r:550, m:1100},
-    {cat:"PC", id:"IS15236", n:"NEUSTAR TYZON PERFUME 100ML", r:550, m:1100},
+        // PERSONAL CARE 
+        {cat:"PC", id:"IS13064", n:"ON & ON BDY BTR CRM", r:231, m:330},
+        {cat:"PC", id:"IS13282", n:"ON & ON SANDALWOOD SOAP 75 GMS", r:83, m:108},
+        {cat:"PC", id:"IS13311", n:"ELEMENTS RADIANT GLOW FACE WASH", r:187, m:258},
+        {cat:"PC", id:"IS14452", n:"ON & ON BHRNGRAJ OIL", r:358, m:484},
+        {cat:"PC", id:"IS15235", n:"NEUSTAR NU FEMME PERFUME 100 ML", r:550, m:1100},
+        {cat:"PC", id:"IS13526", n:"NEUSTAR TALC POWDER 300GMS", r:154, m:198},
+        {cat:"PC", id:"IS13525", n:"NEUSTAR SANDALWOOD SOAP 100GMS", r:39, m:54},
 
-    // FOOD & BEVERAGE
-    {cat:"FB", id:"IS15458", n:"ON & ON 9 E5 HEALTH DRINK", r:3245, m:4070},
-    {cat:"FB", id:"IS15174", n:"ON & ON NUTRILIFE CHOCOLATE 750 GMS", r:2090, m:2640},
-    {cat:"FB", id:"IS15082", n:"ON & ON MASALA KAWAH GREEN TEA", r:165, m:209},
+        // FOOD & BEVERAGE [cite: 1, 3]
+        {cat:"FB", id:"IS15458", n:"ON & ON 9 E5 HEALTH DRINK", r:3245, m:4070},
+        {cat:"FB", id:"159807", n:"ON & ON SPRLN GOLD", r:1320, m:1650},
+        {cat:"FB", id:"IS15174", n:"NUTRILIFE CHOCOLATE 750 GMS", r:2090, m:2640},
+        {cat:"FB", id:"IS13697", n:"AAHAR TEALITE", r:330, m:420},
 
-    // HOME CARE 
-    {cat:"HM", id:"IS15270", n:"DISH WASH ROUND BAR 500GMS", r:66, m:88},
-    {cat:"HM", id:"IS15271", n:"KILL & SHINE TOILET CLEANER 500 ML", r:83, m:110},
-    {cat:"HM", id:"IS15272", n:"DISINFECTANT FLOOR CLEANER 500 ML", r:99, m:132},
+        // HOME CARE [cite: 2, 3]
+        {cat:"HM", id:"IS15270", n:"DISH WASH ROUND BAR 500GMS", r:66, m:88},
+        {cat:"HM", id:"IS15271", n:"KILL & SHINE TOILET CLEANER 500 ML", r:83, m:110},
+        {cat:"HM", id:"IS15273", n:"CLEAN & SHINE DISH WASH LIQUID 500 ML", r:127, m:165},
 
-    // AGRO CARE 
-    {cat:"AG", id:"IS15334", n:"INDIAGRO MI PROUD 250ML", r:1045, m:1320},
-    {cat:"AG", id:"1515337", n:"INDIAGRO BHUASTRA SUPER 2KG", r:1210, m:1512},
-    {cat:"AG", id:"IS15339", n:"INDIAGRO GROWMAGIC ADVANCE 100GMS", r:1419, m:1815}
-];
+        // AGRO CARE [cite: 2]
+        {cat:"AG", id:"IS15334", n:"INDIAGRO MI PROUD 250ML", r:1045, m:1320},
+        {cat:"AG", id:"IS15335", n:"INDIAGRO MI CITRA 250ML", r:1650, m:2062},
+        {cat:"AG", id:"IS15339", n:"INDIAGRO GROWMAGIC ADVANCE 100GMS", r:1419, m:1815}
+    ];
 
-function render(data) {
-    const grids = { HC: document.getElementById('grid_HC'), PC: document.getElementById('grid_PC'), FB: document.getElementById('grid_FB'), HM: document.getElementById('grid_HM'), AG: document.getElementById('grid_AG') };
-    Object.values(grids).forEach(g => g.innerHTML = "");
-    data.forEach(p => {
-        const html = `<div class="card"><img src="${imgBase}${p.id}.jpg" loading="lazy" onerror="this.src='https://via.placeholder.com/250?text=Product'"><div class="info"><div class="name">${p.n}</div><div class="price-box"><div><small>RSP (Seller)</small><span class="p-amt rsp">₹${p.r}</span></div><div><small>MRP (Cust)</small><span class="p-amt mrp">₹${p.m}</span></div></div><a href="https://wa.me/916369413436?text=I%20want%20to%20order%20${encodeURIComponent(p.n)}" class="wa-btn" target="_blank" rel="noopener noreferrer">ஆர்டர் செய்க</a></div></div>`;
-        if(grids[p.cat]) grids[p.cat].innerHTML += html;
-    });
-}
+    function showSection(sectionId) {
+        // Hide all sections
+        document.querySelectorAll('.product-section').forEach(section => {
+            section.style.display = 'none';
+        });
+        // Show specific section
+        const target = document.getElementById(sectionId);
+        target.style.display = 'block';
+        // Scroll to the section
+        target.scrollIntoView({ behavior: 'smooth' });
+    }
 
-function filter() {
-    const q = document.getElementById('searchInput').value.toLowerCase();
-    render(products.filter(i => i.n.toLowerCase().includes(q)));
-}
-render(products);
+    function renderProducts() {
+        const grids = {
+            HC: document.getElementById('grid_HC'),
+            PC: document.getElementById('grid_PC'),
+            FB: document.getElementById('grid_FB'),
+            HM: document.getElementById('grid_HM'),
+            AG: document.getElementById('grid_AG')
+        };
+
+        products.forEach(p => {
+            const html = `
+                <div class="p-card">
+                    <img src="${imgBase}${p.id}.jpg" loading="lazy" onerror="this.src='https://via.placeholder.com/250?text=MI+Lifestyle'">
+                    <div class="p-name">${p.n}</div>
+                    <div class="price-box">
+                        <div><small>விற்பனையாளர் விலை</small><span class="p-amt rsp-val">₹${p.r}</span></div>
+                        <div><small>வாடிக்கையாளர் விலை</small><span class="p-amt mrp-val">₹${p.m}</span></div>
+                    </div>
+                    <a href="https://wa.me/916369413436?text=நான்%20இந்த%20பொருளை%20ஆர்டர்%20செய்ய%20விரும்புகிறேன்:%20${encodeURIComponent(p.n)}" 
+                       target="_blank" class="wa-btn">WhatsApp ஆர்டர் செய்க</a>
+                </div>
+            `;
+            if (grids[p.cat]) grids[p.cat].innerHTML += html;
+        });
+    }
+
+    renderProducts();
 </script>
+
 </body>
 </html>
