@@ -1,270 +1,169 @@
 <!DOCTYPE html>
 <html lang="ta">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MI Lifestyle Official Store</title>
-    <style>
-        :root {
-            --hc: #27ae60; --pc: #2980b9; --fb: #8e44ad; --hm: #e67e22; --ag: #c0392b;
-        }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f4f6f9; margin: 0; padding: 0; }
-        header { background: linear-gradient(135deg, #0f3443, #34e89e); color: white; padding: 40px 20px; text-align: center; }
-        .container { max-width: 1200px; margin: auto; padding: 20px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MI Lifestyle Official Store</title>
 
-        /* Category Card Menu */
-        .category-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 40px; }
-        .cat-card {
-            background: #ffffff; width: 190px; padding: 25px; border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;
-            transition: 0.3s; cursor: pointer; border-top: 5px solid #ddd;
-        }
-        .cat-card:hover { transform: translateY(-10px); }
-        .cat-card div { font-size: 45px; margin-bottom: 10px; }
-        .cat-card h3 { font-size: 15px; color: #333; margin: 10px 0; font-weight: bold; }
-        
-        /* 'திறக்க' Button inside Card */
-        .open-btn { display: inline-block; padding: 6px 18px; border-radius: 20px; font-size: 12px; color: white; font-weight: bold; margin-top: 10px; }
+<style>
+:root {
+  --hc:#27ae60; --pc:#2980b9; --fb:#8e44ad; --hm:#e67e22; --ag:#c0392b;
+}
+body{margin:0;font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f9}
+header{
+  background:linear-gradient(135deg,#0f3443,#34e89e);
+  color:#fff;text-align:center;padding:35px 15px
+}
+.container{max-width:1200px;margin:auto;padding:20px}
 
-        /* Product Sections */
-        .product-section { display: none; margin-top: 30px; animation: fadeIn 0.4s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .section-title { text-align: center; font-size: 1.6rem; color: #333; margin-bottom: 25px; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        
-        /* Product Card */
-        .p-card { background: white; border-radius: 15px; padding: 20px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eee; display: flex; flex-direction: column; }
-        .p-card img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; border-radius: 8px; }
-        .p-name { font-weight: bold; font-size: 14px; min-height: 40px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: #2c3e50; }
-        
-        /* Price Buttons */
-        .btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
-        .btn { border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; text-decoration: none; transition: 0.3s; }
-        .seller-btn { background-color: #f0f9ff; color: #0288d1; border: 1px solid #0288d1; }
-        .seller-btn:hover { background-color: #0288d1; color: white; }
-        .cust-btn { background-color: #25D366; color: white; text-align: center; }
+/* Category cards */
+.category-grid{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
+.cat-card{
+  background:#fff;width:190px;padding:22px;border-radius:12px;
+  box-shadow:0 4px 15px rgba(0,0,0,.1);
+  text-align:center;cursor:pointer;transition:.3s;border-top:5px solid #ccc
+}
+.cat-card:hover{transform:translateY(-8px)}
+.cat-card div{font-size:45px}
+.cat-card h3{font-size:14px;margin:10px 0}
+.open-btn{display:inline-block;padding:6px 18px;border-radius:20px;
+  font-size:12px;color:#fff;font-weight:bold}
 
-        /* Modal */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); }
-        .modal-content { background: white; margin: 10% auto; padding: 30px; border-radius: 15px; width: 90%; max-width: 450px; text-align: center; position: relative; }
-        .close { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #999; }
-        .modal-wa-btn { background: #25D366; color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 15px; }
+/* Products */
+.product-section{display:none;margin-top:30px}
+.section-title{text-align:center;font-size:1.5rem;margin-bottom:20px}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
 
-        footer { text-align: center; padding: 50px 20px; color: #888; border-top: 1px solid #eee; margin-top: 50px; }
-    </style>
+.p-card{
+  background:#fff;border-radius:15px;padding:15px;text-align:center;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+  display:flex;flex-direction:column
+}
+.p-card img{
+  width:100%;height:200px;object-fit:contain;border-radius:8px
+}
+.p-name{font-weight:bold;font-size:14px;margin:12px 0;min-height:42px}
+
+.btn-group{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+.btn{border:none;padding:10px;border-radius:8px;font-weight:bold;cursor:pointer}
+.seller-btn{background:#e3f2fd;color:#0277bd;border:1px solid #0277bd}
+.cust-btn{background:#25D366;color:#fff;text-decoration:none}
+
+/* Modal */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999}
+.modal-content{
+  background:#fff;margin:12% auto;padding:25px;border-radius:15px;
+  max-width:420px;text-align:center;position:relative
+}
+.close{position:absolute;right:18px;top:12px;font-size:26px;cursor:pointer}
+.modal-wa-btn{
+  background:#25D366;color:#fff;padding:12px 22px;
+  border-radius:25px;text-decoration:none;display:inline-block;margin-top:15px
+}
+
+footer{text-align:center;padding:40px 15px;color:#777}
+</style>
 </head>
+
 <body>
 
 <header>
-    <h1>MI Lifestyle Products</h1>
-    <p>விற்பனையாளர் மற்றும் வாடிக்கையாளர் விலைப் பட்டியல் (16.11.2024)</p>
+  <h1>MI Lifestyle Products</h1>
+  <p>விற்பனையாளர் / வாடிக்கையாளர் விலைப் பட்டியல்</p>
 </header>
 
 <div class="container">
-    <div class="category-grid">
-        <div class="cat-card" onclick="showSection('HC')" style="border-top-color: var(--hc);">
-            <div>🏥</div><h3>HEALTH CARE</h3><span class="open-btn" style="background:var(--hc)">திறக்க</span>
-        </div>
-        <div class="cat-card" onclick="showSection('PC')" style="border-top-color: var(--pc);">
-            <div>🧴</div><h3>PERSONAL CARE</h3><span class="open-btn" style="background:var(--pc)">திறக்க</span>
-        </div>
-        <div class="cat-card" onclick="showSection('FB')" style="border-top-color: var(--fb);">
-            <div>☕</div><h3>FOOD & BEVERAGE</h3><span class="open-btn" style="background:var(--fb)">திறக்க</span>
-        </div>
-        <div class="cat-card" onclick="showSection('HM')" style="border-top-color: var(--hm);">
-            <div>🏠</div><h3>HOME CARE</h3><span class="open-btn" style="background:var(--hm)">திறக்க</span>
-        </div>
-        <div class="cat-card" onclick="showSection('AG')" style="border-top-color: var(--ag);">
-            <div>🌱</div><h3>AGRO CARE</h3><span class="open-btn" style="background:var(--ag)">திறக்க</span>
-        </div>
-    </div>
 
-    <div id="HC" class="product-section"><h2 class="section-title">🏥 HEALTH CARE</h2><div class="product-grid" id="grid_HC"></div></div>
-    <div id="PC" class="product-section"><h2 class="section-title">🧴 PERSONAL CARE</h2><div class="product-grid" id="grid_PC"></div></div>
-    <div id="FB" class="product-section"><h2 class="section-title">☕ FOOD & BEVERAGE</h2><div class="product-grid" id="grid_FB"></div></div>
-    <div id="HM" class="product-section"><h2 class="section-title">🏠 HOME CARE</h2><div class="product-grid" id="grid_HM"></div></div>
-    <div id="AG" class="product-section"><h2 class="section-title">🌱 AGRO CARE</h2><div class="product-grid" id="grid_AG"></div></div>
+<div class="category-grid">
+  <div class="cat-card" onclick="showSection('HC')" style="border-top-color:var(--hc)">
+    <div>🏥</div><h3>HEALTH CARE</h3>
+    <span class="open-btn" style="background:var(--hc)">திறக்க</span>
+  </div>
+  <div class="cat-card" onclick="showSection('PC')" style="border-top-color:var(--pc)">
+    <div>🧴</div><h3>PERSONAL CARE</h3>
+    <span class="open-btn" style="background:var(--pc)">திறக்க</span>
+  </div>
 </div>
 
+<div id="HC" class="product-section">
+  <h2 class="section-title">🏥 HEALTH CARE</h2>
+  <div class="product-grid" id="grid_HC"></div>
+</div>
+
+<div id="PC" class="product-section">
+  <h2 class="section-title">🧴 PERSONAL CARE</h2>
+  <div class="product-grid" id="grid_PC"></div>
+</div>
+
+</div>
+
+<!-- Modal -->
 <div id="sellerModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <div style="font-size: 50px;">📢</div>
-        <div id="modalText" style="margin:20px 0; line-height:1.6; color:#2c3e50;"></div>
-        <a id="waLink" href="#" target="_blank" class="modal-wa-btn">WhatsApp-ல் தொடர்புகொள்ள</a>
-    </div>
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div id="modalText"></div>
+    <a id="waLink" class="modal-wa-btn" target="_blank">WhatsApp தொடர்பு</a>
+  </div>
 </div>
 
 <footer>
-    விலைப் பட்டியல் நடைமுறை: 16-Nov-2024 | தொடர்புக்கு: +91 63694 13436
+  📞 WhatsApp: +91 63694 13436
 </footer>
 
 <script>
-    // GitHub புகைப்பட முகவரி - சரியான போல்டர் பாத்
-    const imgBase = "https://raw.githubusercontent.com/neyakkoot/MiLifeStyle_Products_Details_Prize/main/MiLifeStyle_Products_Pictures/";
+/* 🔗 GitHub RAW image base path */
+const imgBase =
+"https://raw.githubusercontent.com/neyakkoot/MiLifeStyle_Products_Details_Prize/main/MiLifeStyle_Products_Pictures/";
 
-    const products = [
-        // HEALTH CARE 
-        {cat:"HC", id:"IS13956", n:"ELEMENTS CYCLOVA 30 CAPSULES", r:1650.00, m:2200.00, img:"Antilersy.jpg"},
-        {cat:"HC", id:"IS13957", n:"ELEMENTS ANTILERGY LIQUID 200ML", r:308.00, m:385.00, img:"Antilersy.jpg"},
-        {cat:"HC", id:"IS13958", n:"ELEMENTS THYHEALTH LIQUID 200ML", r:594.00, m:770.00, img:"Antilersy.jpg"},
-        {cat:"HC", id:"IS13959", n:"ELEMENTS AYUSHWAAS AVALEHA 250GMS", r:1067.00, m:1430.00, img:"Antilersy.jpg"},
-        {cat:"HC", id:"IS15192", n:"ELEMENTS- NATCIUM", r:935.00, m:1375.00, img:"Antilersy.jpg"},
-        {cat:"HC", id:"IS13362", n:"NEW ON & ON DIABA LIFE 600.85 MG", r:2200.00, m:2750.00},
-        {cat:"HC", id:"158858", n:"ON & ON KAVCH PRASH", r:979.00, m:1424.00},
-        {cat:"HC", id:"IS9658", n:"ELEMENTS LIV AGAIN L", r:198.00, m:264.00},
-        {cat:"HC", id:"IS9659", n:"ELEMENTS COF NIL", r:154.00, m:214.00},
-        {cat:"HC", id:"159660", n:"ELEMENTS WOMAN COMP", r:275.00, m:374.00},
-        {cat:"HC", id:"IS9661", n:"ELEMENTS M.G. BLD PRF", r:308.00, m:418.00},
-        {cat:"HC", id:"IS9662", n:"ELEMENTS MAN SHKTIMN", r:1089.00, m:1375.00},
-        {cat:"HC", id:"IS9663", n:"ELEMENTS WELL HART", r:594.00, m:797.00},
-        {cat:"HC", id:"IS9664", n:"ELEMENTS BELOW 37", r:748.00, m:1001.00},
-        {cat:"HC", id:"IS15543", n:"ON & ON MOROLIFE", r:2750.00, m:3300.00},
-        {cat:"HC", id:"IS15199", n:"ELEMENTS WELLNESS PROBIOTIC", r:688.00, m:825.00},
-        {cat:"HC", id:"IS13363", n:"ELEMENTS URI FLUSH 3 LIQUID", r:374.00, m:522.00},
-        {cat:"HC", id:"IS9651", n:"ELEMENTS NO VEDNA CAP", r:1012.00, m:1265.00},
-        {cat:"HC", id:"IS9652", n:"ELEMENTS NO VEDNA GEL", r:253.00, m:319.00},
-        {cat:"HC", id:"159653", n:"ELEMENTS PHYT STRS CP", r:825.00, m:1122.00},
-        {cat:"HC", id:"IS9654", n:"ELEMENTS IMMUNO + CAP", r:825.00, m:1034.00},
-        {cat:"HC", id:"159655", n:"ELEMENTS LIV AGAIN C", r:792.00, m:990.00},
-        {cat:"HC", id:"159656", n:"ELEMENTS DAILY DETOX", r:792.00, m:990.00},
-        {cat:"HC", id:"IS9657", n:"ELEMENTS WND HLNG CRM", r:143.00, m:214.00},
-        {cat:"HC", id:"IS15132", n:"ELEMENTS WELLNESS AYUHEEL 50GMS", r:193.00, m:242.00},
-        {cat:"HC", id:"IS15133", n:"ELEMENTS WELLNESS PRO NASIKA 20ML", r:187.00, m:242.00},
-        {cat:"HC", id:"IS15134", n:"ELEMENTS WELLNESS EYE NERGY 10ML", r:165.00, m:209.00},
-        {cat:"HC", id:"IS13148", n:"ELEMENTS PROTEIN PWDR", r:2420.00, m:3080.00},
-        {cat:"HC", id:"IS13359", n:"ELEMENTS FEALING IRON CAPSULE", r:627.00, m:852.00},
-        {cat:"HC", id:"IS13950", n:"ELEMENTS URI FLUSH-3 PLUS TABLETS", r:902.00, m:1210.00},
-        {cat:"HC", id:"IS13360", n:"ELEMENTS FEALING IRON SYRUP", r:314.00, m:418.00},
+/* ✅ Image filename explicitly mapped */
+const products = [
+  {cat:"HC", n:"ELEMENTS CYCLOVA 30 CAPSULES", r:1650, m:2200, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS ANTILERGY LIQUID 200ML", r:308, m:385, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS THYHEALTH LIQUID 200ML", r:594, m:770, img:"Antilersy.jpg"},
 
-        // PERSONAL CARE 
-        {cat:"PC", id:"IS13064", n:"ON & ON BDY BTR CRM", r:231.00, m:330.00},
-        {cat:"PC", id:"159665", n:"ELEMENTS CHAMPI CHMPN", r:429.00, m:577.00},
-        {cat:"PC", id:"IS13187", n:"ELEMENTS CC SHAMPOO", r:275.00, m:374.00},
-        {cat:"PC", id:"IS13188", n:"ELEMENTS A.D. SHAMPOO", r:275.00, m:374.00},
-        {cat:"PC", id:"IS13229", n:"ELEMENTS MULTI-ACTION COMPLEXION CREAM", r:275.00, m:374.00},
-        {cat:"PC", id:"IS13282", n:"ON & ON SANDALWOOD SOAP 75 GMS", r:83.00, m:108.00},
-        {cat:"PC", id:"IS13283", n:"ON & ON PAPAYA SOAP 75 GMS", r:83.00, m:108.00},
-        {cat:"PC", id:"IS13284", n:"ON & ON NEEM SOAP 75 GMS", r:83.00, m:108.00},
-        {cat:"PC", id:"IS13285", n:"ON & ON TURMERIC SOAP 75 GMS", r:83.00, m:108.00},
-        {cat:"PC", id:"IS13286", n:"ON & ON MILK AND STRAWBERRY SOAP 75 GMS", r:83.00, m:108.00},
-        {cat:"PC", id:"IS13311", n:"ELEMENTS RADIANT GLOW FACE WASH", r:187.00, m:258.00},
-        {cat:"PC", id:"IS13375", n:"ELEMENTS WHITENING BODY LOTION", r:165.00, m:220.00},
-        {cat:"PC", id:"IS13376", n:"ELEMENTS COCOA BUTTER BODY LOTION", r:193.00, m:264.00},
-        {cat:"PC", id:"IS13377", n:"ELEMENTS INTENSE MOISTURISING BODY LOTION", r:209.00, m:286.00},
-        {cat:"PC", id:"IS13378", n:"ELEMENTS EMOLLIENT BODY CREAM", r:209.00, m:286.00},
-        {cat:"PC", id:"IS13379", n:"ELEMENTS MOISTURISING HAND WASH", r:330.00, m:440.00},
-        {cat:"PC", id:"IS13380", n:"ELEMENTS 3 IN 1 FACE WASH", r:149.00, m:198.00},
-        {cat:"PC", id:"1513383", n:"ELEMENTS UNDER EYE GEL", r:237.00, m:297.00},
-        {cat:"PC", id:"IS14004", n:"ELEMENTS ACTI-FRESH SHAVE GEL", r:242.00, m:308.00},
-        {cat:"PC", id:"IS14006", n:"ELEMENTS 8 IN 1 HAIR CONDITIONER", r:358.00, m:451.00},
-        {cat:"PC", id:"IS14377", n:"ELEMENTS PRIVY WASH 100ML", r:286.00, m:363.00},
-        {cat:"PC", id:"IS14951", n:"ELEMENTS EGA DAY CREAM 25GMS", r:534.00, m:671.00},
-        {cat:"PC", id:"IS14952", n:"ELEMENTS EGA NIGHT CREAM 25GMS", r:534.00, m:671.00},
-        {cat:"PC", id:"IS14452", n:"ON & ON BHRNGRAJ OIL", r:358.00, m:484.00},
-        {cat:"PC", id:"IS15010", n:"ON & ON HRB. T-PST", r:143.00, m:194.00},
-        {cat:"PC", id:"IS15245", n:"ELEMENTS RED HRBL TOOTH PASTE", r:160.00, m:205.00},
-        {cat:"PC", id:"IS15246", n:"ELEMENTS F G TOOTH PASTE", r:165.00, m:226.00},
-        {cat:"PC", id:"IS15234", n:"ON & ON COLOUR SHAMPOO 20ML", r:83.00, m:110.00},
-        {cat:"PC", id:"IS15466", n:"ON & ON HERBAL ROLLON INHALER", r:138.00, m:192.00},
-        {cat:"PC", id:"IS15235", n:"NU FEMME PERFUME 100 ML", r:550.00, m:1100.00},
-        {cat:"PC", id:"IS15236", n:"TYZON PERFUME 100ML", r:550.00, m:1100.00},
-        {cat:"PC", id:"IS15237", n:"NU FEMME DEO 200ML", r:182.00, m:231.00},
-        {cat:"PC", id:"IS15238", n:"TYZON DEO 200ML", r:182.00, m:231.00},
-        {cat:"PC", id:"IS15239", n:"NEUSTAR TOOTH BRUSH PACK OF 4", r:105.00, m:126.00},
-        {cat:"PC", id:"IS13528", n:"NEUSTAR NEEM FACE WASH 100ML", r:121.00, m:154.00},
-        {cat:"PC", id:"IS13529", n:"NEUSTAR PAPAYA FACE WASH 100ML", r:121.00, m:154.00},
-        {cat:"PC", id:"IS13530", n:"NEUSTAR WALLNUT SCRUB 100ML", r:138.00, m:176.00},
-        {cat:"PC", id:"IS13531", n:"NEUSTAR PETROLEUM JELLY 50GMS", r:50.00, m:66.00},
-        {cat:"PC", id:"IS13532", n:"NEUSTAR SHAMPOO TUBE 30ML", r:24.00, m:38.00},
-        {cat:"PC", id:"IS13533", n:"NEUSTAR AMLA HAIR OIL 200ML", r:149.00, m:187.00},
-        {cat:"PC", id:"IS15392", n:"NEUSTAR TULSI & MINT TOOTH PASTE", r:61.00, m:75.00},
-        {cat:"PC", id:"IS13515", n:"NEUSTAR NEEM & TULSI SOAP 100GMS", r:39.00, m:54.00},
-        {cat:"PC", id:"IS13516", n:"NEUSTAR LIME & ALOE VERA SOAP", r:39.00, m:54.00},
-        {cat:"PC", id:"IS13517", n:"NEUSTAR ROSE FRAGRANCE SOAP", r:39.00, m:54.00},
-        {cat:"PC", id:"IS13523", n:"NEUSTAR JASMINE & ALMOND SOAP", r:39.00, m:54.00},
-        {cat:"PC", id:"IS13524", n:"NEUSTAR ANTIBACTERIAL SOAP", r:39.00, m:54.00},
-        {cat:"PC", id:"IS13525", n:"NEUSTAR SANDALWOOD SOAP 100GMS", r:39.00, m:54.00},
-        {cat:"PC", id:"IS13526", n:"NEUSTAR TALC POWDER 300GMS", r:154.00, m:198.00},
+  {cat:"PC", n:"ELEMENTS CHAMPI CHAMPION", r:429, m:577, img:"Antilersy.jpg"},
+  {cat:"PC", n:"ELEMENTS CC SHAMPOO", r:275, m:374, img:"Antilersy.jpg"},
+];
 
-        // FOOD & BEVERAGE 
-        {cat:"FB", id:"IS15458", n:"ON & ON 9 E5 HEALTH DRINK", r:3245.00, m:4070.00},
-        {cat:"FB", id:"159807", n:"ON & ON SPRLN GOLD", r:1320.00, m:1650.00},
-        {cat:"FB", id:"IS15082", n:"ON & ON MASALA KAWAH GREEN TEA", r:165.00, m:209.00},
-        {cat:"FB", id:"IS15083", n:"ON & ON KASHMIRI KAWAH GREEN TEA", r:330.00, m:418.00},
-        {cat:"FB", id:"IS15391", n:"ON & ON NU WOMAN SANITARY NAPKINS", r:275.00, m:357.00},
-        {cat:"FB", id:"IS15174", n:"ON & ON NUTRILIFE CHOCOLATE 750 GMS", r:2090.00, m:2640.00},
-        {cat:"FB", id:"IS8826", n:"ON & ON NUTRILIFE", r:2090.00, m:2640.00},
-        {cat:"FB", id:"IS13697", n:"AAHAR TEALITE", r:330.00, m:420.00},
+function showSection(id){
+  document.querySelectorAll(".product-section").forEach(s=>s.style.display="none");
+  document.getElementById(id).style.display="block";
+}
 
-        // HOME CARE 
-        {cat:"HM", id:"IS15270", n:"ANTI BACTERIAL DISH WASH ROUND BAR", r:66.00, m:88.00},
-        {cat:"HM", id:"IS15271", n:"KILL & SHINE TOILET CLEANER", r:83.00, m:110.00},
-        {cat:"HM", id:"IS15272", n:"DISINFECTANT FLOOR CLEANER 500 ML", r:99.00, m:132.00},
-        {cat:"HM", id:"IS15273", n:"CLEAN & SHINE DISH WASH LIQUID", r:127.00, m:165.00},
-        {cat:"HM", id:"IS15274", n:"MAX BRIGHT LAUNDRY DETERGENT", r:187.00, m:242.00},
-        {cat:"HM", id:"IS15393", n:"STREAK FREE GLASS CLEANR 500 ML", r:77.00, m:93.00},
+function openSellerPopup(name,price){
+  document.getElementById("modalText").innerText =
+    `விற்பனையாளர் விலை ₹${price} – ${name}`;
+  document.getElementById("waLink").href =
+    "https://wa.me/916369413436?text=" +
+    encodeURIComponent(name+" விற்பனையாளர் விலையில் வேண்டும்");
+  document.getElementById("sellerModal").style.display="block";
+}
+function closeModal(){document.getElementById("sellerModal").style.display="none";}
 
-        // AGRO CARE 
-        {cat:"AG", id:"IS15334", n:"INDIAGRO MI PROUD 250ML", r:1045.00, m:1320.00},
-        {cat:"AG", id:"IS15335", n:"INDIAGRO MI CITRA 250ML", r:1650.00, m:2062.00},
-        {cat:"AG", id:"IS15336", n:"INDIAGRO MI VEER 250ML", r:2310.00, m:2915.00},
-        {cat:"AG", id:"1515337", n:"INDIAGRO BHUASTRA SUPER 2KG", r:1210.00, m:1512.00},
-        {cat:"AG", id:"IS15338", n:"INDIAGRO MI SPRAY PLUS 100ML", r:440.00, m:550.00},
-        {cat:"AG", id:"IS15339", n:"INDIAGRO GROWMAGIC ADVANCE", r:1419.00, m:1815.00},
-        {cat:"AG", id:"IS15340", n:"INDIAGRO MODIPHY 250 ML", r:440.00, m:550.00},
-        {cat:"AG", id:"IS15419", n:"INDIAGRO Y-RAS PLUS 250ML", r:825.00, m:1045.00},
-        {cat:"AG", id:"IS15540", n:"INDIAGRO OLIF SUPER 16 500 ML", r:1210.00, m:1430.00},
-    ];
-
-    function showSection(id) {
-        document.querySelectorAll('.product-section').forEach(s => s.style.display = 'none');
-        const target = document.getElementById(id);
-        target.style.display = 'block';
-        target.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function openSellerPopup(name, rsp) {
-        const text = `விற்பனையாளர் விலைக்கு (₹${rsp}) ${name} வேண்டும் என்றால், 9600370671 என்ற புலன எண்ணிற்குத் தொடர்புகொள்க. அவர் வழிகாட்டல்படி கேட்டால் விற்பனையாளர் விலைக்குத் தொடர்ந்து வாங்கலாம்.`;
-        document.getElementById('modalText').innerText = text;
-        const msg = encodeURIComponent("வணக்கம், எனக்கு விற்பனையாளர் விலையில் (₹" + rsp + ") " + name + " வேண்டும்.");
-        document.getElementById('waLink').href = `https://wa.me/919600370671?text=${msg}`;
-        document.getElementById('sellerModal').style.display = "block";
-    }
-
-    function closeModal() { document.getElementById('sellerModal').style.display = "none"; }
-
-    window.onclick = function(e) { if (e.target == document.getElementById('sellerModal')) closeModal(); }
-
-    function render() {
-        const grids = { 
-            HC: document.getElementById('grid_HC'), 
-            PC: document.getElementById('grid_PC'), 
-            FB: document.getElementById('grid_FB'), 
-            HM: document.getElementById('grid_HM'), 
-            AG: document.getElementById('grid_AG') 
-        };
-        
-        products.forEach(p => {
-            const html = `
-                <div class="p-card">
-                    <img src="${imgBase}${p.id}.jpg" loading="lazy" onerror="this.src='https://via.placeholder.com/250?text=${p.n}'">
-                    <div class="p-name">${p.n}</div>
-                    <div class="btn-group">
-                        <button class="btn seller-btn" onclick="openSellerPopup('${p.n}', '${p.r.toFixed(2)}')">
-                            விற்பனையாளர் விலை: ₹${p.r.toFixed(2)}
-                        </button>
-                        <a href="https://wa.me/916369413436?text=நான்%20ஆர்டர்%20செய்யும்%20பொருள்:%20${encodeURIComponent(p.n)}" 
-                           target="_blank" class="btn cust-btn">
-                            வாடிக்கையாளர் விலை: ₹${p.m.toFixed(2)}
-                        </a>
-                    </div>
-                </div>`;
-            if (grids[p.cat]) grids[p.cat].innerHTML += html;
-        });
-    }
-
-    render();
+function render(){
+  const grids={HC:grid_HC,PC:grid_PC};
+  products.forEach(p=>{
+    grids[p.cat].innerHTML+=`
+    <div class="p-card">
+      <img src="${imgBase+p.img}"
+           onerror="this.src='https://via.placeholder.com/250?text=No+Image'">
+      <div class="p-name">${p.n}</div>
+      <div class="btn-group">
+        <button class="btn seller-btn"
+          onclick="openSellerPopup('${p.n}',${p.r})">
+          விற்பனையாளர் ₹${p.r}
+        </button>
+        <a class="btn cust-btn"
+          href="https://wa.me/916369413436"
+          target="_blank">
+          வாடிக்கையாளர் ₹${p.m}
+        </a>
+      </div>
+    </div>`;
+  });
+}
+render();
 </script>
+
 </body>
 </html>
