@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MI Lifestyle Official Price List</title>
+    <title>MI Lifestyle Official Store</title>
     <style>
         :root {
             --primary: #0f3443;
@@ -28,8 +28,8 @@
         .price-box { display: flex; justify-content: space-around; background: #f1f2f6; padding: 10px; border-radius: 8px; margin-bottom: 15px; }
         .p-label { font-size: 11px; color: #636e72; display: block; }
         .p-amt { font-size: 16px; font-weight: bold; }
-        .rsp { color: #2980b9; } /* Seller Price */
-        .mrp { color: #c0392b; } /* Customer Price */
+        .rsp { color: #2980b9; } 
+        .mrp { color: #c0392b; } 
         
         .wa-btn { background: #25D366; color: white; text-decoration: none; padding: 10px; border-radius: 5px; display: block; font-weight: bold; transition: 0.3s; }
         .wa-btn:hover { background: #1eb954; }
@@ -41,154 +41,139 @@
 
 <header>
     <h1>MI Lifestyle Products</h1>
-    <p>விற்பனையாளர் மற்றும் வாடிக்கையாளர் விலைப் பட்டியல் (16.11.2024)</p>
+    <p>விற்பனையாளர் மற்றும் வாடிக்கையாளர் புதிய விலைப் பட்டியல் </p>
 </header>
 
 <div class="search-container">
-    <input type="text" id="searchInput" placeholder="தயாரிப்புகளைத் தேடுக..." onkeyup="filter()">
+    <input type="text" id="searchInput" placeholder="தேவையான பொருளைத் தேடுக..." onkeyup="filter()">
 </div>
 
 <div id="main-catalog">
-    <div class="section">
-        <div class="cat-header" style="background:var(--hc)">HEALTH CARE (ஆரோக்கிய பராமரிப்பு)</div>
-        <div class="grid" id="grid_HC"></div>
-    </div>
-    <div class="section">
-        <div class="cat-header" style="background:var(--pc)">PERSONAL CARE (தனிநபர் பராமரிப்பு)</div>
-        <div class="grid" id="grid_PC"></div>
-    </div>
-    <div class="section">
-        <div class="cat-header" style="background:var(--fb)">FOOD & BEVERAGE (உணவு & பானங்கள்)</div>
-        <div class="grid" id="grid_FB"></div>
-    </div>
-    <div class="section">
-        <div class="cat-header" style="background:var(--hm)">HOME CARE (வீட்டு பராமரிப்பு)</div>
-        <div class="grid" id="grid_HM"></div>
-    </div>
-    <div class="section">
-        <div class="cat-header" style="background:var(--ag)">AGRO CARE (விவசாயம்)</div>
-        <div class="grid" id="grid_AG"></div>
-    </div>
+    <div class="section"><div class="cat-header" style="background:var(--hc)">HEALTH CARE</div><div class="grid" id="grid_HC"></div></div>
+    <div class="section"><div class="cat-header" style="background:var(--pc)">PERSONAL CARE</div><div class="grid" id="grid_PC"></div></div>
+    <div class="section"><div class="cat-header" style="background:var(--fb)">FOOD & BEVERAGE</div><div class="grid" id="grid_FB"></div></div>
+    <div class="section"><div class="cat-header" style="background:var(--hm)">HOME CARE</div><div class="grid" id="grid_HM"></div></div>
+    <div class="section"><div class="cat-header" style="background:var(--ag)">AGRO CARE</div><div class="grid" id="grid_AG"></div></div>
 </div>
 
 <footer>
     <p>ஆர்டர் செய்ய அல்லது விவரங்களுக்கு: <b>+91 63694 13436</b></p>
+    <p>விலைகள் 16.11.24 முதல் நடைமுறைக்கு வந்தது [cite: 1]</p>
 </footer>
 
 <script>
 const imgBase = "https://raw.githubusercontent.com/neyakkoot/milifestyle_products/main/";
-// Data mapping based on the provided PDF content
 const products = [
-    // HEALTH CARE 
-    {cat:"HC", id:"IS13956", n:"ELEMENTS CYCLOVA 30 CAPSULES", r:1650, m:2200},
-    {cat:"HC", id:"IS13957", n:"ELEMENTS ANTILERGY LIQUID 200ML", r:308, m:385},
-    {cat:"HC", id:"IS13958", n:"ELEMENTS THYHEALTH LIQUID 200ML", r:594, m:770},
-    {cat:"HC", id:"IS13959", n:"ELEMENTS AYUSHWAAS AVALEHA 250G", r:1067, m:1430},
-    {cat:"HC", id:"IS15192", n:"ELEMENTS- NATCIUM", r:935, m:1375},
-    {cat:"HC", id:"IS13362", n:"ON & ON DIABA LIFE 600.85 MG", r:2200, m:2750},
-    {cat:"HC", id:"158858", n:"ON & ON KAVCH PRASH", r:979, m:1424},
-    {cat:"HC", id:"IS9658", n:"ELEMENTS LIV AGAIN L", r:198, m:264},
-    {cat:"HC", id:"IS9659", n:"ELEMENTS COF NIL", r:154, m:214},
-    {cat:"HC", id:"159660", n:"ELEMENTS WOMAN COMP", r:275, m:374},
-    {cat:"HC", id:"IS9661", n:"ELEMENTS M.G. BLD PRF", r:308, m:418},
-    {cat:"HC", id:"IS9662", n:"ELEMENTS MAN SHKTIMN", r:1089, m:1375},
-    {cat:"HC", id:"IS9663", n:"ELEMENTS WELL HART", r:594, m:797},
-    {cat:"HC", id:"IS9664", n:"ELEMENTS BELOW 37", r:748, m:1001},
-    {cat:"HC", id:"IS15543", n:"ON & ON MOROLIFE", r:2750, m:3300},
-    {cat:"HC", id:"IS15199", n:"ELEMENTS WELLNESS PROBIOTIC", r:688, m:825},
-    {cat:"HC", id:"IS13363", n:"ELEMENTS URI FLUSH 3 LIQUID", r:374, m:522},
-    {cat:"HC", id:"IS9651", n:"ELEMENTS NO VEDNA CAP", r:1012, m:1265},
-    {cat:"HC", id:"IS9652", n:"ELEMENTS NO VEDNA GEL", r:253, m:319},
-    {cat:"HC", id:"159653", n:"ELEMENTS PHYT STRS CP", r:825, m:1122},
-    {cat:"HC", id:"IS9654", n:"ELEMENTS IMMUNO + CAP", r:825, m:1034},
-    {cat:"HC", id:"159655", n:"ELEMENTS LIV AGAIN C", r:792, m:990},
-    {cat:"HC", id:"159656", n:"ELEMENTS DAILY DETOX", r:792, m:990},
-    {cat:"HC", id:"IS9657", n:"ELEMENTS WND HLNG CRM", r:143, m:214},
-    {cat:"HC", id:"IS15132", n:"ELEMENTS AYUHEEL 50GMS", r:193, m:242},
-    {cat:"HC", id:"IS15133", n:"ELEMENTS PRO NASIKA 20ML", r:187, m:242},
-    {cat:"HC", id:"IS15134", n:"ELEMENTS EYE NERGY 10ML", r:165, m:209},
-    {cat:"HC", id:"IS13148", n:"ELEMENTS PROTEIN PWDR", r:2420, m:3080},
-    {cat:"HC", id:"IS13359", n:"ELEMENTS FEALING IRON CAP", r:627, m:852},
-    {cat:"HC", id:"IS13950", n:"ELEMENTS URI FLUSH-3 TABLETS", r:902, m:1210},
-    {cat:"HC", id:"IS13360", n:"ELEMENTS FEALING IRON SYRUP", r:314, m:418},
+    // HEALTH CARE
+    {cat:"HC", id:"IS13956", n:"ELEMENTS CYCLOVA 30 CAPSULES", r:"1650.00", m:"2200.00"}, [cite: 2]
+    {cat:"HC", id:"IS13957", n:"ELEMENTS ANTILERGY LIQUID 200ML", r:"308.00", m:"385.00"}, [cite: 1]
+    {cat:"HC", id:"IS13958", n:"ELEMENTS THYHEALTH LIQUID 200ML", r:"594.00", m:"770.00"}, [cite: 1]
+    {cat:"HC", id:"IS13959", n:"ELEMENTS AYUSHWAAS AVALEHA 250GMS", r:"1067.00", m:"1430.00"}, [cite: 1]
+    {cat:"HC", id:"IS15192", n:"ELEMENTS- NATCIUM", r:"935.00", m:"1375.00"}, [cite: 1]
+    {cat:"HC", id:"IS13362", n:"NEW ON & ON DIABA LIFE 600.85 MG", r:"2200.00", m:"2750.00"}, [cite: 1]
+    {cat:"HC", id:"158858", n:"ON & ON KAVCH PRASH", r:"979.00", m:"1424.00"}, [cite: 1]
+    {cat:"HC", id:"IS9658", n:"ELEMENTS LIV AGAIN L", r:"198.00", m:"264.00"}, [cite: 1]
+    {cat:"HC", id:"IS9659", n:"ELEMENTS COF NIL", r:"154.00", m:"214.00"}, [cite: 1]
+    {cat:"HC", id:"159660", n:"ELEMENTS WOMAN COMP", r:"275.00", m:"374.00"}, [cite: 1]
+    {cat:"HC", id:"IS9661", n:"ELEMENTS M.G. BLD PRF", r:"308.00", m:"418.00"}, [cite: 1]
+    {cat:"HC", id:"IS9662", n:"ELEMENTS MAN SHKTIMN", r:"1089.00", m:"1375.00"}, [cite: 1]
+    {cat:"HC", id:"IS9663", n:"ELEMENTS WELL HART", r:"594.00", m:"797.00"}, [cite: 1]
+    {cat:"HC", id:"IS9664", n:"ELEMENTS BELOW 37", r:"748.00", m:"1001.00"}, [cite: 1]
+    {cat:"HC", id:"IS15543", n:"ON & ON MOROLIFE", r:"2750.00", m:"3300.00"}, [cite: 1]
+    {cat:"HC", id:"IS15199", n:"ELEMENTS WELLNESS PROBIOTIC", r:"688.00", m:"825.00"}, [cite: 2]
+    {cat:"HC", id:"IS13363", n:"ELEMENTS URI FLUSH 3 LIQUID", r:"374.00", m:"522.00"}, [cite: 2]
+    {cat:"HC", id:"IS9651", n:"ELEMENTS NO VEDNA CAP", r:"1012.00", m:"1265.00"}, [cite: 2]
+    {cat:"HC", id:"IS9652", n:"ELEMENTS NO VEDNA GEL", r:"253.00", m:"319.00"}, [cite: 2]
+    {cat:"HC", id:"159653", n:"ELEMENTS PHYT STRS CP", r:"825.00", m:"1122.00"}, [cite: 2]
+    {cat:"HC", id:"IS9654", n:"ELEMENTS IMMUNO + CAP", r:"825.00", m:"1034.00"}, [cite: 2]
+    {cat:"HC", id:"159655", n:"ELEMENTS LIV AGAIN C", r:"792.00", m:"990.00"}, [cite: 2]
+    {cat:"HC", id:"159656", n:"ELEMENTS DAILY DETOX", r:"792.00", m:"990.00"}, [cite: 2]
+    {cat:"HC", id:"IS9657", n:"ELEMENTS WND HLNG CRM", r:"143.00", m:"214.00"}, [cite: 2]
+    {cat:"HC", id:"IS15132", n:"ELEMENTS AYUHEEL 50GMS", r:"193.00", m:"242.00"}, [cite: 2]
+    {cat:"HC", id:"IS15133", n:"ELEMENTS PRO NASIKA 20ML", r:"187.00", m:"242.00"}, [cite: 2]
+    {cat:"HC", id:"IS15134", n:"ELEMENTS EYE NERGY 10ML", r:"165.00", m:"209.00"}, [cite: 2]
+    {cat:"HC", id:"IS13148", n:"ELEMENTS PROTEIN PWDR", r:"2420.00", m:"3080.00"}, [cite: 2]
+    {cat:"HC", id:"IS13359", n:"ELEMENTS FEALING IRON CAPSULE", r:"627.00", m:"852.00"}, [cite: 2]
+    {cat:"HC", id:"IS13950", n:"ELEMENTS URI FLUSH-3 PLUS TABLETS", r:"902.00", m:"1210.00"}, [cite: 2]
+    {cat:"HC", id:"IS13360", n:"ELEMENTS FEALING IRON SYRUP", r:"314.00", m:"418.00"}, [cite: 2]
 
-    // PERSONAL CARE 
-    {cat:"PC", id:"IS13064", n:"ON & ON BDY BTR CRM", r:231, m:330},
-    {cat:"PC", id:"159665", n:"ELEMENTS CHAMPI CHMPN", r:429, m:577},
-    {cat:"PC", id:"IS13187", n:"ELEMENTS CC SHAMPOO", r:275, m:374},
-    {cat:"PC", id:"IS13188", n:"ELEMENTS A.D. SHAMPOO", r:275, m:374},
-    {cat:"PC", id:"IS13229", n:"ELEMENTS COMPLEXION CREAM", r:275, m:374},
-    {cat:"PC", id:"IS13282", n:"ON & ON SANDALWOOD SOAP", r:83, m:108},
-    {cat:"PC", id:"IS13283", n:"ON & ON PAPAYA SOAP", r:83, m:108},
-    {cat:"PC", id:"IS13284", n:"ON & ON NEEM SOAP", r:83, m:108},
-    {cat:"PC", id:"IS13285", n:"ON & ON TURMERIC SOAP", r:83, m:108},
-    {cat:"PC", id:"IS13286", n:"ON & ON MILK STRAWBERRY SOAP", r:83, m:108},
-    {cat:"PC", id:"IS13311", n:"ELEMENTS RADIANT GLOW FACE WASH", r:187, m:258},
-    {cat:"PC", id:"IS13375", n:"ELEMENTS WHITENING BODY LOTION", r:165, m:220},
-    {cat:"PC", id:"IS13376", n:"ELEMENTS COCOA BUTTER LOTION", r:193, m:264},
-    {cat:"PC", id:"IS13377", n:"ELEMENTS ALOVERA BODY LOTION", r:209, m:286},
-    {cat:"PC", id:"IS13378", n:"ELEMENTS EMOLLIENT BODY CREAM", r:209, m:286},
-    {cat:"PC", id:"IS13379", n:"ELEMENTS ROSE HAND WASH", r:330, m:440},
-    {cat:"PC", id:"IS13380", n:"ELEMENTS 3 IN 1 FACE WASH", r:149, m:198},
-    {cat:"PC", id:"1513383", n:"ELEMENTS UNDER EYE GEL", r:237, m:297},
-    {cat:"PC", id:"IS14004", n:"ELEMENTS ACTI-FRESH SHAVE GEL", r:242, m:308},
-    {cat:"PC", id:"IS14006", n:"ELEMENTS 8 IN 1 CONDITIONER", r:358, m:451},
-    {cat:"PC", id:"IS14377", n:"ELEMENTS PRIVY WASH 100ML", r:286, m:363},
-    {cat:"PC", id:"IS14951", n:"ELEMENTS EGA DAY CREAM", r:534, m:671},
-    {cat:"PC", id:"IS14952", n:"ELEMENTS EGA NIGHT CREAM", r:534, m:671},
-    {cat:"PC", id:"IS14452", n:"ON & ON BHRNGRAJ OIL", r:358, m:484},
-    {cat:"PC", id:"IS15010", n:"ON & ON HRB. TOOTH PASTE", r:143, m:194},
-    {cat:"PC", id:"IS15245", n:"ELEMENTS RED HRBL PASTE", r:160, m:205},
-    {cat:"PC", id:"IS15246", n:"ELEMENTS F G TOOTH PASTE", r:165, m:226},
-    {cat:"PC", id:"IS15234", n:"ON & ON COLOUR SHAMPOO", r:83, m:110},
-    {cat:"PC", id:"IS15466", n:"ON & ON ROLLON INHALER", r:138, m:192},
-    {cat:"PC", id:"IS15235", n:"NU FEMME PERFUME 100 ML", r:550, m:1100},
-    {cat:"PC", id:"IS15236", n:"TYZON PERFUME 100ML", r:550, m:1100},
-    {cat:"PC", id:"IS15237", n:"NU FEMME DEO 200ML", r:182, m:231},
-    {cat:"PC", id:"IS15238", n:"TYZON DEO 200ML", r:182, m:231},
-    {cat:"PC", id:"IS15239", n:"NEUSTAR TOOTH BRUSH P-4", r:105, m:126},
-    {cat:"PC", id:"IS13528", n:"NEUSTAR NEEM FACE WASH", r:121, m:154},
-    {cat:"PC", id:"IS13529", n:"NEUSTAR PAPAYA FACE WASH", r:121, m:154},
-    {cat:"PC", id:"IS13530", n:"NEUSTAR WALLNUT SCRUB", r:138, m:176},
-    {cat:"PC", id:"IS13531", n:"NEUSTAR PETROLEUM JELLY", r:50, m:66},
-    {cat:"PC", id:"IS13532", n:"NEUSTAR SHAMPOO TUBE 30ML", r:24, m:38},
-    {cat:"PC", id:"IS13533", n:"NEUSTAR AMLA HAIR OIL", r:149, m:187},
-    {cat:"PC", id:"IS15392", n:"NEUSTAR TULSI TOOTH PASTE", r:61, m:75},
-    {cat:"PC", id:"IS13515", n:"NEUSTAR NEEM & TULSI SOAP", r:39, m:54},
-    {cat:"PC", id:"IS13516", n:"NEUSTAR LIME & ALOE SOAP", r:39, m:54},
-    {cat:"PC", id:"IS13517", n:"NEUSTAR ROSE SOAP", r:39, m:54},
-    {cat:"PC", id:"IS13523", n:"NEUSTAR JASMINE SOAP", r:39, m:54},
-    {cat:"PC", id:"IS13524", n:"NEUSTAR ANTIBACTERIAL SOAP", r:39, m:54},
-    {cat:"PC", id:"IS13525", n:"NEUSTAR SANDALWOOD SOAP", r:39, m:54},
-    {cat:"PC", id:"IS13526", n:"NEUSTAR TALC POWDER 300G", r:154, m:198},
+    // PERSONAL CARE
+    {cat:"PC", id:"IS13064", n:"ON & ON BDY BTR CRM", r:"231.00", m:"330.00"}, [cite: 1]
+    {cat:"PC", id:"159665", n:"ELEMENTS CHAMPI CHMPN", r:"429.00", m:"577.00"}, [cite: 1]
+    {cat:"PC", id:"IS13187", n:"ELEMENTS CC SHAMPOO", r:"275.00", m:"374.00"}, [cite: 1]
+    {cat:"PC", id:"IS13188", n:"ELEMENTS A.D. SHAMPOO", r:"275.00", m:"374.00"}, [cite: 1]
+    {cat:"PC", id:"IS13229", n:"ELEMENTS MULTI-ACTION COMPLEXION CREAM", r:"275.00", m:"374.00"}, [cite: 1]
+    {cat:"PC", id:"IS13282", n:"ON & ON SANDALWOOD SOAP 75 GMS", r:"83.00", m:"108.00"}, [cite: 1]
+    {cat:"PC", id:"IS13283", n:"ON & ON PAPAYA SOAP 75 GMS", r:"83.00", m:"108.00"}, [cite: 1]
+    {cat:"PC", id:"IS13284", n:"ON & ON NEEM SOAP 75 GMS", r:"83.00", m:"108.00"}, [cite: 1]
+    {cat:"PC", id:"IS13285", n:"ON & ON TURMERIC SOAP 75 GMS", r:"83.00", m:"108.00"}, [cite: 1]
+    {cat:"PC", id:"IS13286", n:"ON & ON MILK AND STRAWBERRY SOAP 75 GMS", r:"83.00", m:"108.00"}, [cite: 1]
+    {cat:"PC", id:"IS13311", n:"ELEMENTS RADIANT GLOW FACE WASH", r:"187.00", m:"258.00"}, [cite: 1]
+    {cat:"PC", id:"IS13375", n:"ELEMENTS WHITENING BODY LOTION", r:"165.00", m:"220.00"}, [cite: 1]
+    {cat:"PC", id:"IS13376", n:"ELEMENTS COCOA BUTTER BODY LOTION", r:"193.00", m:"264.00"}, [cite: 1]
+    {cat:"PC", id:"IS13377", n:"ELEMENTS ALOVERA BODY LOTION", r:"209.00", m:"286.00"}, [cite: 1]
+    {cat:"PC", id:"IS13378", n:"ELEMENTS EMOLLIENT BODY CREAM", r:"209.00", m:"286.00"}, [cite: 1]
+    {cat:"PC", id:"IS13379", n:"ELEMENTS ROSE HAND WASH", r:"330.00", m:"440.00"}, [cite: 1]
+    {cat:"PC", id:"IS13380", n:"ELEMENTS 3 IN 1 FACE WASH", r:"149.00", m:"198.00"}, [cite: 1]
+    {cat:"PC", id:"1513383", n:"ELEMENTS UNDER EYE GEL", r:"237.00", m:"297.00"}, [cite: 1]
+    {cat:"PC", id:"IS14004", n:"ELEMENTS ACTI-FRESH SHAVE GEL", r:"242.00", m:"308.00"}, [cite: 1]
+    {cat:"PC", id:"IS14006", n:"ELEMENTS 8 IN 1 HAIR CONDITIONER", r:"358.00", m:"451.00"}, [cite: 1]
+    {cat:"PC", id:"IS14377", n:"ELEMENTS PRIVY WASH 100ML", r:"286.00", m:"363.00"}, [cite: 1]
+    {cat:"PC", id:"IS14951", n:"ELEMENTS EGA DAY CREAM 25GMS", r:"534.00", m:"671.00"}, [cite: 1]
+    {cat:"PC", id:"IS14952", n:"ELEMENTS EGA NIGHT CREAM 25GMS", r:"534.00", m:"671.00"}, [cite: 1]
+    {cat:"PC", id:"IS14452", n:"ON & ON BHRNGRAJ OIL", r:"358.00", m:"484.00"}, [cite: 2]
+    {cat:"PC", id:"IS15010", n:"ON & ON HRB. T-PST", r:"143.00", m:"194.00"}, [cite: 2]
+    {cat:"PC", id:"IS15245", n:"ELEMENTS RED HRBL TOOTH PASTE", r:"160.00", m:"205.00"}, [cite: 2]
+    {cat:"PC", id:"IS15246", n:"ELEMENTS F G TOOTH PASTE", r:"165.00", m:"226.00"}, [cite: 2]
+    {cat:"PC", id:"IS15234", n:"ON & ON COLOUR SHAMPOO 20ML", r:"83.00", m:"110.00"}, [cite: 2]
+    {cat:"PC", id:"IS15466", n:"ON & ON HERBAL ROLLON INHALER", r:"138.00", m:"192.00"}, [cite: 2]
+    {cat:"PC", id:"IS15235", n:"NU FEMME PERFUME 100 ML", r:"550.00", m:"1100.00"}, [cite: 2]
+    {cat:"PC", id:"IS15236", n:"TYZON PERFUME 100ML", r:"550.00", m:"1100.00"}, [cite: 2]
+    {cat:"PC", id:"IS15237", n:"NU FEMME DEO 200ML", r:"182.00", m:"231.00"}, [cite: 2]
+    {cat:"PC", id:"IS15238", n:"TYZON DEO 200ML", r:"182.00", m:"231.00"}, [cite: 2]
+    {cat:"PC", id:"IS15239", n:"NEUSTAR TOOTH BRUSH P-4", r:"105.00", m:"126.00"}, [cite: 2]
+    {cat:"PC", id:"IS13528", n:"NEUSTAR NEEM FACE WASH 100ML", r:"121.00", m:"154.00"}, [cite: 2]
+    {cat:"PC", id:"IS13529", n:"NEUSTAR PAPAYA FACE WASH 100ML", r:"121.00", m:"154.00"}, [cite: 2]
+    {cat:"PC", id:"IS13530", n:"NEUSTAR WALLNUT SCRUB 100ML", r:"138.00", m:"176.00"}, [cite: 3]
+    {cat:"PC", id:"IS13531", n:"NEUSTAR PETROLEUM JELLY 50GMS", r:"50.00", m:"66.00"}, [cite: 3]
+    {cat:"PC", id:"IS13532", n:"NEUSTAR SHAMPOO TUBE 30ML", r:"24.00", m:"38.00"}, [cite: 3]
+    {cat:"PC", id:"IS13533", n:"NEUSTAR AMLA HAIR OIL 200ML", r:"149.00", m:"187.00"}, [cite: 3]
+    {cat:"PC", id:"IS15392", n:"NEUSTAR TULSI TOOTH PASTE", r:"61.00", m:"75.00"}, [cite: 3]
+    {cat:"PC", id:"IS13515", n:"NEUSTAR NEEM & TULSI SOAP", r:"39.00", m:"54.00"}, [cite: 3]
+    {cat:"PC", id:"IS13516", n:"NEUSTAR LIME & ALOE SOAP", r:"39.00", m:"54.00"}, [cite: 3]
+    {cat:"PC", id:"IS13517", n:"NEUSTAR ROSE SOAP", r:"39.00", m:"54.00"}, [cite: 3]
+    {cat:"PC", id:"IS13523", n:"NEUSTAR JASMINE SOAP", r:"39.00", m:"54.00"}, [cite: 3]
+    {cat:"PC", id:"IS13524", n:"NEUSTAR ANTIBACTERIAL SOAP", r:"39.00", m:"54.00"}, [cite: 3]
+    {cat:"PC", id:"IS13525", n:"NEUSTAR SANDALWOOD SOAP", r:"39.00", m:"54.00"}, [cite: 3]
+    {cat:"PC", id:"IS13526", n:"NEUSTAR TALC POWDER 300GMS", r:"154.00", m:"198.00"}, [cite: 3]
 
-    // FOOD & BEVERAGE 
-    {cat:"FB", id:"IS15458", n:"ON & ON 9 E5 HEALTH DRINK", r:3245, m:4070},
-    {cat:"FB", id:"159807", n:"ON & ON SPRLN GOLD", r:1320, m:1650},
-    {cat:"FB", id:"IS15082", n:"ON & ON MASALA KAWAH TEA", r:165, m:209},
-    {cat:"FB", id:"IS15083", n:"ON & ON KASHMIRI KAWAH TEA", r:330, m:418},
-    {cat:"FB", id:"IS15174", n:"NUTRILIFE CHOCOLATE 750 GMS", r:2090, m:2640},
-    {cat:"FB", id:"IS8826", n:"ON & ON NUTRILIFE", r:2090, m:2640},
-    {cat:"FB", id:"IS13697", n:"AAHAR TEALITE", r:330, m:420},
+    // FOOD & BEVERAGE
+    {cat:"FB", id:"IS15458", n:"ON & ON 9 E5 HEALTH DRINK", r:"3245.00", m:"4070.00"}, [cite: 1]
+    {cat:"FB", id:"159807", n:"ON & ON SPRLN GOLD", r:"1320.00", m:"1650.00"}, [cite: 1]
+    {cat:"FB", id:"IS15082", n:"ON & ON MASALA KAWAH TEA", r:"165.00", m:"209.00"}, [cite: 1]
+    {cat:"FB", id:"IS15083", n:"ON & ON KASHMIRI KAWAH TEA", r:"330.00", m:"418.00"}, [cite: 1]
+    {cat:"FB", id:"IS15174", n:"NUTRILIFE CHOCOLATE 750 GMS", r:"2090.00", m:"2640.00"}, [cite: 2]
+    {cat:"FB", id:"IS8826", n:"ON & ON NUTRILIFE", r:"2090.00", m:"2640.00"}, [cite: 2]
+    {cat:"FB", id:"IS13697", n:"AAHAR TEALITE", r:"330.00", m:"420.00"}, [cite: 3]
 
-    // HOME CARE 
-    {cat:"HM", id:"IS15270", n:"DISH WASH ROUND BAR 500G", r:66, m:88},
-    {cat:"HM", id:"IS15271", n:"TOILET CLEANER 500 ML", r:83, m:110},
-    {cat:"HM", id:"IS15272", n:"FLOOR CLEANER 500 ML", r:99, m:132},
-    {cat:"HM", id:"IS15273", n:"DISH WASH LIQUID 500 ML", r:127, m:165},
-    {cat:"HM", id:"IS15274", n:"LAUNDRY DETERGENT 500ML", r:187, m:242},
-    {cat:"HM", id:"IS15393", n:"GLASS CLEANR 500 ML", r:77, m:93},
+    // HOME CARE
+    {cat:"HM", id:"IS15270", n:"DISH WASH ROUND BAR 500GMS", r:"66.00", m:"88.00"}, [cite: 2]
+    {cat:"HM", id:"IS15271", n:"TOILET CLEANER 500 ML", r:"83.00", m:"110.00"}, [cite: 2]
+    {cat:"HM", id:"IS15272", n:"FLOOR CLEANER 500 ML", r:"99.00", m:"132.00"}, [cite: 2]
+    {cat:"HM", id:"IS15273", n:"DISH WASH LIQUID 500 ML", r:"127.00", m:"165.00"}, [cite: 3]
+    {cat:"HM", id:"IS15274", n:"LAUNDRY DETERGENT 500ML", r:"187.00", m:"242.00"}, [cite: 3]
+    {cat:"HM", id:"IS15393", n:"GLASS CLEANR 500 ML", r:"77.00", m:"93.00"}, [cite: 3]
 
-    // AGRO CARE 
-    {cat:"AG", id:"IS15334", n:"INDIAGRO MI PROUD 250ML", r:1045, m:1320},
-    {cat:"AG", id:"IS15335", n:"INDIAGRO MI CITRA 250ML", r:1650, m:2062},
-    {cat:"AG", id:"IS15336", n:"INDIAGRO MI VEER 250ML", r:2310, m:2915},
-    {cat:"AG", id:"1515337", n:"INDIAGRO BHUASTRA SUPER", r:1210, m:1512},
-    {cat:"AG", id:"IS15338", n:"INDIAGRO MI SPRAY PLUS", r:440, m:550},
-    {cat:"AG", id:"IS15339", n:"INDIAGRO GROWMAGIC ADVANCE", r:1419, m:1815},
-    {cat:"AG", id:"IS15340", n:"INDIAGRO MODIPHY 250 ML", r:440, m:550},
-    {cat:"AG", id:"IS15419", n:"INDIAGRO Y-RAS PLUS 250ML", r:825, m:1045},
-    {cat:"AG", id:"IS15540", n:"INDIAGRO OLIF SUPER 16", r:1210, m:1430},
+    // AGRO CARE
+    {cat:"AG", id:"IS15334", n:"INDIAGRO MI PROUD 250ML", r:"1045.00", m:"1320.00"}, [cite: 2]
+    {cat:"AG", id:"IS15335", n:"INDIAGRO MI CITRA 250ML", r:"1650.00", m:"2062.00"}, [cite: 2]
+    {cat:"AG", id:"IS15336", n:"INDIAGRO MI VEER 250ML", r:"2310.00", m:"2915.00"}, [cite: 2]
+    {cat:"AG", id:"1515337", n:"INDIAGRO BHUASTRA SUPER 2KG", r:"1210.00", m:"1512.00"}, [cite: 2]
+    {cat:"AG", id:"IS15338", n:"INDIAGRO MI SPRAY PLUS 100ML", r:"440.00", m:"550.00"}, [cite: 2]
+    {cat:"AG", id:"IS15339", n:"INDIAGRO GROWMAGIC ADVANCE", r:"1419.00", m:"1815.00"}, [cite: 2]
+    {cat:"AG", id:"IS15340", n:"INDIAGRO MODIPHY 250 ML", r:"440.00", m:"550.00"}, [cite: 2]
+    {cat:"AG", id:"IS15419", n:"INDIAGRO Y-RAS PLUS 250ML", r:"825.00", m:"1045.00"}, [cite: 2]
+    {cat:"AG", id:"IS15540", n:"INDIAGRO OLIF SUPER 16 500 ML", r:"1210.00", m:"1430.00"}, [cite: 2]
 ];
 
 function render(data) {
@@ -211,7 +196,8 @@ function render(data) {
                         <div><span class="p-label">விற்பனையாளர் (RSP)</span><span class="p-amt rsp">₹${p.r}</span></div>
                         <div><span class="p-label">வாடிக்கையாளர் (MRP)</span><span class="p-amt mrp">₹${p.m}</span></div>
                     </div>
-                    <a href="https://wa.me/916369413436?text=நான்%20இதைப்%20பற்றி%20அறிய%20விரும்புகிறேன்:%20${encodeURIComponent(p.n)}" class="wa-btn">ஆர்டர் செய்க</a>
+                    <a href="https://wa.me/916369413436?text=I%20want%20to%20order%20${encodeURIComponent(p.n)}" 
+                       class="wa-btn" target="_blank" rel="noopener noreferrer">ஆர்டர் செய்க</a>
                 </div>
             </div>`;
         if(grids[p.cat]) grids[p.cat].innerHTML += html;
