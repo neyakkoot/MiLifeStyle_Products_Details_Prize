@@ -3,174 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MI Lifestyle - ஆன்லைன் ஸ்டோர்</title>
+    <title>MI Lifestyle Catalog - 2024</title>
     <style>
         :root {
-            --primary: #0a3d62;
-            --secondary: #3c6382;
-            --price: #b33939;
-            --wa-green: #2ecc71;
+            --primary: #1e3799;
+            --secondary: #4a69bd;
+            --hc: #eb4d4b; /* Health */
+            --pc: #686de0; /* Personal */
+            --fb: #f0932b; /* Food */
+            --hm: #22a6b3; /* Home */
+            --ag: #6ab04c; /* Agro */
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: #f1f2f6; color: #2f3542; }
-        header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 30px 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .search-area { position: sticky; top: 0; z-index: 1000; background: white; padding: 15px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        input { width: 90%; max-width: 500px; padding: 15px; border: 2px solid #dfe4ea; border-radius: 30px; outline: none; transition: 0.3s; font-size: 16px; }
-        input:focus { border-color: var(--secondary); box-shadow: 0 0 10px rgba(60, 99, 130, 0.2); }
-        .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: auto; }
-        .card { background: white; border-radius: 15px; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #f1f2f6; }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 12px 20px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; }
-        .name { font-weight: bold; font-size: 16px; color: var(--primary); margin-bottom: 8px; min-height: 40px; display: flex; align-items: center; justify-content: center; }
-        .mrp { font-size: 20px; font-weight: 800; color: var(--price); margin-bottom: 15px; }
-        .buy-btn { background: var(--wa-green); color: white; text-decoration: none; padding: 12px; border-radius: 8px; display: block; font-weight: bold; font-size: 14px; transition: 0.3s; }
-        .buy-btn:hover { background: #27ae60; filter: brightness(1.1); }
-        footer { text-align: center; padding: 30px; background: #2f3542; color: #ced6e0; margin-top: 20px; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f4f7f6; }
+        header { background: linear-gradient(135deg, var(--primary), #0c2461); color: white; padding: 30px; text-align: center; }
+        .search-container { position: sticky; top: 0; z-index: 100; background: white; padding: 15px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        input { width: 85%; max-width: 500px; padding: 12px 20px; border-radius: 25px; border: 1px solid #ddd; outline: none; }
+        
+        .category-title { padding: 15px; margin-top: 20px; color: white; font-weight: bold; border-radius: 5px; margin-bottom: 15px; }
+        .hc-bg { background: var(--hc); } .pc-bg { background: var(--pc); } 
+        .fb-bg { background: var(--fb); } .hm-bg { background: var(--hm); } .ag-bg { background: var(--ag); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; padding: 0 15px; }
+        .card { background: white; border-radius: 12px; padding: 15px; text-align: center; box-shadow: 0 3px 6px rgba(0,0,0,0.05); }
+        .card img { width: 100%; height: 180px; object-fit: contain; }
+        .name { font-size: 14px; font-weight: bold; margin: 10px 0; height: 40px; overflow: hidden; }
+        .mrp { color: #d63031; font-size: 18px; font-weight: 800; margin-bottom: 15px; }
+        .btn { background: #25D366; color: white; text-decoration: none; padding: 10px; border-radius: 5px; display: block; font-weight: bold; }
+        
+        .section { max-width: 1200px; margin: auto; padding-bottom: 40px; }
+        footer { background: #2f3542; color: white; text-align: center; padding: 20px; margin-top: 30px; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1 style="margin:0;">MI Lifestyle Products</h1>
-    <p style="margin:10px 0 0; opacity: 0.9;">ஆரோக்கியம் மற்றும் அழகிற்கான சிறந்த தேடல் - புதிய விலைப்பட்டியல் 2024</p>
+    <h1>MI Lifestyle பிரீமியம் ஸ்டோர்</h1>
+    <p>அனைத்து தயாரிப்புகளும் புதிய MRP விலையில் (16-11-2024)</p>
 </header>
 
-<div class="search-area">
-    <input type="text" id="searchInput" placeholder="தேவையான பொருளைத் தேடுக (எ.கா: Soap, Cream)..." onkeyup="search()">
+<div class="search-container">
+    <input type="text" id="searchInput" placeholder="தேவையான பொருளைத் தேடுக..." onkeyup="filter()">
 </div>
 
-<div class="container" id="productGrid"></div>
+<div id="catalog">
+    <div class="section" id="HEALTH_CARE">
+        <div class="category-title hc-bg">HEALTH CARE (ஆரோக்கிய பராமரிப்பு)</div>
+        <div class="grid" id="grid_HC"></div>
+    </div>
+
+    <div class="section" id="PERSONAL_CARE">
+        <div class="category-title pc-bg">PERSONAL CARE (தனிநபர் பராமரிப்பு)</div>
+        <div class="grid" id="grid_PC"></div>
+    </div>
+
+    <div class="section" id="FOOD_BEVERAGE">
+        <div class="category-title fb-bg">FOOD AND BEVERAGE (உணவு மற்றும் பானங்கள்)</div>
+        <div class="grid" id="grid_FB"></div>
+    </div>
+
+    <div class="section" id="HOME_CARE">
+        <div class="category-title hm-bg">HOME CARE (வீட்டு பராமரிப்பு)</div>
+        <div class="grid" id="grid_HM"></div>
+    </div>
+
+    <div class="section" id="AGRO_CARE">
+        <div class="category-title ag-bg">AGRO CARE (விவசாய பராமரிப்பு)</div>
+        <div class="grid" id="grid_AG"></div>
+    </div>
+</div>
 
 <footer>
-    <p>விலைகள் அனைத்தும் 16-11-2024 முதல் நடைமுறைக்கு வந்த அதிகாரப்பூர்வ MRP ஆகும்.</p>
-    <p>புலன எண்: +91 63694 13436</p>
+    புலன எண் (WhatsApp): +91 63694 13436
 </footer>
 
 <script>
 const imgBase = "https://raw.githubusercontent.com/neyakkoot/milifestyle_products/main/";
-const items = [
-    {id:"IS13064", n:"ON & ON BDY BTR CRM", m:330},
-    {id:"IS13956", n:"ELEMENTS CYCLOVA 30 CAPSULES", m:2200},
-    {id:"IS13957", n:"ELEMENTS ANTILERGY LIQUID 200ML", m:385},
-    {id:"IS13958", n:"ELEMENTS THYHEALTH LIQUID 200ML", m:770},
-    {id:"IS13959", n:"ELEMENTS AYUSHWAAS AVALEHA 250GMS", m:1430},
-    {id:"IS15458", n:"ON & ON 9 E5", m:4070},
-    {id:"159807", n:"ON & ON SPRLN GOLD", m:1650},
-    {id:"IS15082", n:"ON & ON MASALA KAWAH GREEN TEA", m:209},
-    {id:"IS15083", n:"ON & ON KASHMIRI KAWAH GREEN TEA", m:418},
-    {id:"IS15391", n:"ON & ON NU WOMAN SANITARY NAPKINS", m:357},
-    {id:"IS15192", n:"ELEMENTS- NATCIUM", m:1375},
-    {id:"IS13362", n:"NEW ON & ON DIABA LIFE 600.85 MG", m:2750},
-    {id:"158858", n:"ON & ON KAVCH PRASH", m:1424},
-    {id:"IS9658", n:"ELEMENTS LIV AGAIN L", m:264},
-    {id:"IS9659", n:"ELEMENTS COF NIL", m:214},
-    {id:"159660", n:"ELEMENTS WOMAN COMP", m:374},
-    {id:"IS9661", n:"ELEMENTS M.G. BLD PRF", m:418},
-    {id:"IS9662", n:"ELEMENTS MAN SHKTIMN", m:1375},
-    {id:"IS9663", n:"ELEMENTS WELL HART", m:797},
-    {id:"IS9664", n:"ELEMENTS BELOW 37", m:1001},
-    {id:"159665", n:"ELEMENTS CHAMPI CHMPN", m:577},
-    {id:"IS15543", n:"ON & ON MOROLIFE", m:3300},
-    {id:"IS13187", n:"ELEMENTS CC SHAMPOO", m:374},
-    {id:"IS13188", n:"ELEMENTS A.D. SHAMPOO", m:374},
-    {id:"IS13229", n:"ELEMENTS MULTI-ACTION COMPLEXION CREAM", m:374},
-    {id:"IS13282", n:"ON & ON SANDALWOOD SOAP 75 GMS", m:108},
-    {id:"IS13283", n:"ON & ON PAPAYA SOAP 75 GMS", m:108},
-    {id:"IS13284", n:"ON & ON NEEM SOAP 75 GMS", m:108},
-    {id:"IS13285", n:"ON & ON TURMERIC SOAP 75 GMS", m:108},
-    {id:"IS13286", n:"ON & ON MILK AND STRAWBERRY SOAP 75 GMS", m:108},
-    {id:"IS13311", n:"ELEMENTS RADIANT GLOW FACE WASH", m:258},
-    {id:"IS13375", n:"ELEMENTS WHITENING BODY LOTION", m:220},
-    {id:"IS13376", n:"ELEMENTS COCOA BUTTER BODY LOTION", m:264},
-    {id:"IS13377", n:"ELEMENTS INTENSE MOISTURISING BODY LOTION", m:286},
-    {id:"IS13378", n:"ELEMENTS EMOLLIENT BODY CREAM", m:286},
-    {id:"IS13379", n:"ELEMENTS MOISTURISING HAND WASH", m:440},
-    {id:"IS13380", n:"ELEMENTS 3 IN 1 FACE WASH", m:198},
-    {id:"1513383", n:"ELEMENTS UNDER EYE GEL", m:297},
-    {id:"IS14004", n:"ELEMENTS ACTI-FRESH SHAVE GEL", m:308},
-    {id:"IS14006", n:"ELEMENTS 8 IN 1 HAIR CONDITIONER", m:451},
-    {id:"IS14377", n:"ELEMENTS PRIVY WASH 100ML", m:363},
-    {id:"IS14951", n:"ELEMENTS EGA DAY CREAM 25GMS", m:671},
-    {id:"IS14952", n:"ELEMENTS EGA NIGHT CREAM 25GMS", m:671},
-    {id:"IS15199", n:"ELEMENTS WELLNESS PROBIOTIC", m:825},
-    {id:"IS14452", n:"ON & ON BHRNGRAJ OIL", m:484},
-    {id:"IS15010", n:"ON & ON HRB. T-PST", m:194},
-    {id:"IS15245", n:"ELEMENTS RED HRBL TOOTH PASTE", m:205},
-    {id:"IS15246", n:"ELEMENTS F G TOOTH PASTE", m:226},
-    {id:"IS15234", n:"ON & ON COLOUR SHAMPOO 20ML", m:110},
-    {id:"IS15466", n:"ON & ON HERBAL ROLLON INHALER", m:192},
-    {id:"IS13363", n:"ELEMENTS URI FLUSH 3 LIQUID", m:522},
-    {id:"IS9651", n:"ELEMENTS NO VEDNA CAP", m:1265},
-    {id:"IS9652", n:"ELEMENTS NO VEDNA GEL", m:319},
-    {id:"159653", n:"ELEMENTS PHYT STRS CP", m:1122},
-    {id:"IS9654", n:"ELEMENTS IMMUNO + CAP", m:1034},
-    {id:"159655", n:"ELEMENTS LIV AGAIN C", m:990},
-    {id:"159656", n:"ELEMENTS DAILY DETOX", m:990},
-    {id:"IS9657", n:"ELEMENTS WND HLNG CRM", m:214},
-    {id:"IS15132", n:"ELEMENTS WELLNESS AYUHEEL 50GMS", m:242},
-    {id:"IS15133", n:"ELEMENTS WELLNESS PRO NASIKA 20ML", m:242},
-    {id:"IS15134", n:"ELEMENTS WELLNESS EYE NERGY 10ML", m:209},
-    {id:"IS15174", n:"ON & ON NUTRILIFE CHOCOLATE 750 GMS", m:2640},
-    {id:"IS15334", n:"INDIAGRO MI PROUD 250ML", m:1320},
-    {id:"IS15335", n:"INDIAGRO MI CITRA 250ML", m:2062},
-    {id:"IS15336", n:"INDIAGRO MI VEER 250ML", m:2915},
-    {id:"1515337", n:"INDIAGRO BHUASTRA SUPER 2KG", m:1512},
-    {id:"IS15338", n:"INDIAGRO MI SPRAY PLUS 100ML", m:550},
-    {id:"IS15339", n:"INDIAGRO GROWMAGIC ADVANCE 100GMS", m:1815},
-    {id:"IS15340", n:"INDIAGRO MODIPHY 250 ML", m:550},
-    {id:"IS15419", n:"INDIAGRO Y-RAS PLUS 250ML", m:1045},
-    {id:"IS15540", n:"INDIAGRO OLIF SUPER 16 500 ML", m:1430},
-    {id:"IS13148", n:"ELEMENTS PROTEIN PWDR", m:3080},
-    {id:"IS13359", n:"ELEMENTS FEALING IRON CAPSULE", m:852},
-    {id:"IS13950", n:"ELEMENTS URI FLUSH-3 PLUS TABLETS", m:1210},
-    {id:"IS8826", n:"ON & ON NUTRILIFE", m:2640},
-    {id:"IS13360", n:"ELEMENTS FEALING IRON SYRUP", m:418},
-    {id:"IS15235", n:"NEUSTAR NU FEMME PERFUME 100 ML", m:1100},
-    {id:"IS15236", n:"NEUSTAR TYZON PERFUME 100ML", m:1100},
-    {id:"IS15237", n:"NEUSTAR NU FEMME DEO 200ML", m:231},
-    {id:"IS15238", n:"NEUSTAR TYZON DEO 200ML", m:231},
-    {id:"IS15270", n:"ANTI BACTERIAL DISH WASH BAR 500GMS", m:88},
-    {id:"IS15239", n:"NEUSTAR TOOTH BRUSH PACK OF 4", m:126},
-    {id:"IS15271", n:"KILL & SHINE TOILET CLEANER 500 ML", m:110},
-    {id:"IS15272", n:"DISINFECTANT FLOOR CLEANER 500 ML", m:132},
-    {id:"IS13528", n:"NEUSTAR NEEM FACE WASH 100ML", m:154},
-    {id:"IS13529", n:"NEUSTAR PAPAYA FACE WASH 100ML", m:154},
-    {id:"IS13530", n:"NEUSTAR WALLNUT SCRUB 100ML", m:176},
-    {id:"IS13531", n:"NEUSTAR PETROLEUM JELLY 50GMS", m:66},
-    {id:"IS13532", n:"NEUSTAR SHAMPOO TUBE 30ML", m:38},
-    {id:"IS13533", n:"NEUSTAR AMLA HAIR OIL 200ML", m:187},
-    {id:"IS15392", n:"NEUSTAR TULSI & MINT TOOTH PASTE", m:75},
-    {id:"IS15273", n:"DISH WASH LIQUID 500 ML", m:165},
-    {id:"IS15274", n:"LAUNDRY DETERGENT 500ML", m:242},
-    {id:"IS15393", n:"STREAK FREE GLASS CLEANR 500 ML", m:93},
-    {id:"IS13515", n:"NEUSTAR NEEM & TULSI SOAP 100GMS", m:54},
-    {id:"IS13516", n:"NEUSTAR LIME & ALOE VERA SOAP 100GMS", m:54},
-    {id:"IS13517", n:"NEUSTAR ROSE FRAGRANCE SOAP 100GMS", m:54},
-    {id:"IS13523", n:"NEUSTAR JASMINE & ALMOND SOAP 100GMS", m:54},
-    {id:"IS13524", n:"NEUSTAR ANTIBACTERIAL SOAP 100GMS", m:54},
-    {id:"IS13525", n:"NEUSTAR SANDALWOOD SOAP 100GMS", m:54},
-    {id:"IS13526", n:"NEUSTAR TALC POWDER 300GMS", m:198},
-    {id:"IS13697", n:"AAHAR TEALITE", m:420}
+
+const products = [
+    // HEALTH CARE
+    {cat:"HC", id:"IS13956", n:"ELEMENTS CYCLOVA 30 CAPSULES", m:2200},
+    {cat:"HC", id:"IS13957", n:"ELEMENTS ANTILERGY LIQUID 200ML", m:385},
+    {cat:"HC", id:"IS13958", n:"ELEMENTS THYHEALTH LIQUID 200ML", m:770},
+    {cat:"HC", id:"IS13959", n:"ELEMENTS AYUSHWAAS AVALEHA 250GMS", m:1430},
+    {cat:"HC", id:"IS15192", n:"ELEMENTS- NATCIUM", m:1375},
+    {cat:"HC", id:"IS13362", n:"NEW ON & ON DIABA LIFE", m:2750},
+    {cat:"HC", id:"158858", n:"ON & ON KAVCH PRASH", m:1424},
+    {cat:"HC", id:"IS9658", n:"ELEMENTS LIV AGAIN L", m:264},
+    {cat:"HC", id:"IS9659", n:"ELEMENTS COF NIL", m:214},
+    {cat:"HC", id:"159660", n:"ELEMENTS WOMAN COMP", m:374},
+    {cat:"HC", id:"IS9661", n:"ELEMENTS M.G. BLD PRF", m:418},
+    {cat:"HC", id:"IS9662", n:"ELEMENTS MAN SHKTIMN", m:1375},
+    {cat:"HC", id:"IS9663", n:"ELEMENTS WELL HART", m:797},
+    {cat:"HC", id:"IS9664", n:"ELEMENTS BELOW 37", m:1001},
+    {cat:"HC", id:"IS15543", n:"ON & ON MOROLIFE", m:3300},
+    {cat:"HC", id:"IS15199", n:"ELEMENTS WELLNESS PROBIOTIC", m:825},
+    {cat:"HC", id:"IS13363", n:"ELEMENTS URI FLUSH 3 LIQUID", m:522},
+    {cat:"HC", id:"IS9651", n:"ELEMENTS NO VEDNA CAP", m:1265},
+    {cat:"HC", id:"IS9652", n:"ELEMENTS NO VEDNA GEL", m:319},
+    {cat:"HC", id:"159653", n:"ELEMENTS PHYT STRS CP", m:1122},
+    {cat:"HC", id:"IS9654", n:"ELEMENTS IMMUNO + CAP", m:1034},
+    {cat:"HC", id:"159655", n:"ELEMENTS LIV AGAIN C", m:990},
+    {cat:"HC", id:"159656", n:"ELEMENTS DAILY DETOX", m:990},
+    {cat:"HC", id:"IS9657", n:"ELEMENTS WND HLNG CRM", m:214},
+    {cat:"HC", id:"IS15132", n:"ELEMENTS AYUHEEL 50GMS", m:242},
+    {cat:"HC", id:"IS15133", n:"ELEMENTS PRO NASIKA 20ML", m:242},
+    {cat:"HC", id:"IS15134", n:"ELEMENTS EYE NERGY 10ML", m:209},
+    {cat:"HC", id:"IS13148", n:"ELEMENTS PROTEIN PWDR", m:3080},
+    {cat:"HC", id:"IS13359", n:"ELEMENTS FEALING IRON CAP", m:852},
+    {cat:"HC", id:"IS13950", n:"ELEMENTS URI FLUSH-3 TABLETS", m:1210},
+    {cat:"HC", id:"IS13360", n:"ELEMENTS FEALING IRON SYRUP", m:418},
+
+    // PERSONAL CARE
+    {cat:"PC", id:"IS13064", n:"ON & ON BDY BTR CRM", m:330},
+    {cat:"PC", id:"IS15391", n:"ON & ON SANITARY NAPKINS", m:357},
+    {cat:"PC", id:"159665", n:"ELEMENTS CHAMPI CHMPN", m:577},
+    {cat:"PC", id:"IS13187", n:"ELEMENTS CC SHAMPOO", m:374},
+    {cat:"PC", id:"IS13188", n:"ELEMENTS A.D. SHAMPOO", m:374},
+    {cat:"PC", id:"IS13229", n:"ELEMENTS COMPLEXION CREAM", m:374},
+    {cat:"PC", id:"IS13282", n:"ON & ON SANDALWOOD SOAP", m:108},
+    {cat:"PC", id:"IS13283", n:"ON & ON PAPAYA SOAP", m:108},
+    {cat:"PC", id:"IS13284", n:"ON & ON NEEM SOAP", m:108},
+    {cat:"PC", id:"IS13285", n:"ON & ON TURMERIC SOAP", m:108},
+    {cat:"PC", id:"IS13286", n:"ON & ON MILK STRAWBERRY SOAP", m:108},
+    {cat:"PC", id:"IS13311", n:"ELEMENTS RADIANT GLOW FACE WASH", m:258},
+    {cat:"PC", id:"IS13375", n:"ELEMENTS WHITENING BODY LOTION", m:220},
+    {cat:"PC", id:"IS13376", n:"ELEMENTS COCOA BUTTER LOTION", m:264},
+    {cat:"PC", id:"IS13377", n:"ELEMENTS ALOVERA BODY LOTION", m:286},
+    {cat:"PC", id:"IS13378", n:"ELEMENTS EMOLLIENT BODY CREAM", m:286},
+    {cat:"PC", id:"IS13379", n:"ELEMENTS ROSE HAND WASH", m:440},
+    {cat:"PC", id:"IS13380", n:"ELEMENTS 3 IN 1 FACE WASH", m:198},
+    {cat:"PC", id:"1513383", n:"ELEMENTS UNDER EYE GEL", m:297},
+    {cat:"PC", id:"IS14004", n:"ELEMENTS ACTI-FRESH SHAVE GEL", m:308},
+    {cat:"PC", id:"IS14006", n:"ELEMENTS 8 IN 1 CONDITIONER", m:451},
+    {cat:"PC", id:"IS14377", n:"ELEMENTS PRIVY WASH 100ML", m:363},
+    {cat:"PC", id:"IS14951", n:"ELEMENTS EGA DAY CREAM", m:671},
+    {cat:"PC", id:"IS14952", n:"ELEMENTS EGA NIGHT CREAM", m:671},
+    {cat:"PC", id:"IS14452", n:"ON & ON BHRNGRAJ OIL", m:484},
+    {cat:"PC", id:"IS15010", n:"ON & ON HRB. TOOTH PASTE", m:194},
+    {cat:"PC", id:"IS15245", n:"ELEMENTS RED HRBL PASTE", m:205},
+    {cat:"PC", id:"IS15246", n:"ELEMENTS F G TOOTH PASTE", m:226},
+    {cat:"PC", id:"IS15234", n:"ON & ON COLOUR SHAMPOO", m:110},
+    {cat:"PC", id:"IS15466", n:"ON & ON ROLLON INHALER", m:192},
+    {cat:"PC", id:"IS15235", n:"NU FEMME PERFUME 100 ML", m:1100},
+    {cat:"PC", id:"IS15236", n:"TYZON PERFUME 100ML", m:1100},
+    {cat:"PC", id:"IS15237", n:"NU FEMME DEO 200ML", m:231},
+    {cat:"PC", id:"IS15238", n:"TYZON DEO 200ML", m:231},
+    {cat:"PC", id:"IS15239", n:"NEUSTAR TOOTH BRUSH P-4", m:126},
+    {cat:"PC", id:"IS13528", n:"NEUSTAR NEEM FACE WASH", m:154},
+    {cat:"PC", id:"IS13529", n:"NEUSTAR PAPAYA FACE WASH", m:154},
+    {cat:"PC", id:"IS13530", n:"NEUSTAR WALLNUT SCRUB", m:176},
+    {cat:"PC", id:"IS13531", n:"NEUSTAR PETROLEUM JELLY", m:66},
+    {cat:"PC", id:"IS13532", n:"NEUSTAR SHAMPOO TUBE 30ML", m:38},
+    {cat:"PC", id:"IS13533", n:"NEUSTAR AMLA HAIR OIL", m:187},
+    {cat:"PC", id:"IS15392", n:"NEUSTAR TULSI TOOTH PASTE", m:75},
+    {cat:"PC", id:"IS13515", n:"NEUSTAR NEEM & TULSI SOAP", m:54},
+    {cat:"PC", id:"IS13516", n:"NEUSTAR LIME & ALOE SOAP", m:54},
+    {cat:"PC", id:"IS13517", n:"NEUSTAR ROSE SOAP", m:54},
+    {cat:"PC", id:"IS13523", n:"NEUSTAR JASMINE SOAP", m:54},
+    {cat:"PC", id:"IS13524", n:"NEUSTAR ANTIBACTERIAL SOAP", m:54},
+    {cat:"PC", id:"IS13525", n:"NEUSTAR SANDALWOOD SOAP", m:54},
+    {cat:"PC", id:"IS13526", n:"NEUSTAR TALC POWDER 300G", m:198},
+
+    // FOOD & BEVERAGE
+    {cat:"FB", id:"IS15458", n:"ON & ON 9 E5 HEALTH DRINK", m:4070},
+    {cat:"FB", id:"159807", n:"ON & ON SPRLN GOLD", m:1650},
+    {cat:"FB", id:"IS15082", n:"ON & ON MASALA KAWAH TEA", m:209},
+    {cat:"FB", id:"IS15083", n:"ON & ON KASHMIRI KAWAH TEA", m:418},
+    {cat:"FB", id:"IS15174", n:"NUTRILIFE CHOCOLATE 750 GMS", m:2640},
+    {cat:"FB", id:"IS8826", n:"ON & ON NUTRILIFE", m:2640},
+    {cat:"FB", id:"IS13697", n:"AAHAR TEALITE", m:420},
+
+    // HOME CARE
+    {cat:"HM", id:"IS15270", n:"DISH WASH ROUND BAR 500GMS", m:88},
+    {cat:"HM", id:"IS15271", n:"TOILET CLEANER 500 ML", m:110},
+    {cat:"HM", id:"IS15272", n:"FLOOR CLEANER 500 ML", m:132},
+    {cat:"HM", id:"IS15273", n:"DISH WASH LIQUID 500 ML", m:165},
+    {cat:"HM", id:"IS15274", n:"LAUNDRY DETERGENT 500ML", m:242},
+    {cat:"HM", id:"IS15393", n:"GLASS CLEANR 500 ML", m:93},
+
+    // AGRO CARE
+    {cat:"AG", id:"IS15334", n:"INDIAGRO MI PROUD 250ML", m:1320},
+    {cat:"AG", id:"IS15335", n:"INDIAGRO MI CITRA 250ML", m:2062},
+    {cat:"AG", id:"IS15336", n:"INDIAGRO MI VEER 250ML", m:2915},
+    {cat:"AG", id:"1515337", n:"INDIAGRO BHUASTRA SUPER", m:1512},
+    {cat:"AG", id:"IS15338", n:"INDIAGRO MI SPRAY PLUS", m:550},
+    {cat:"AG", id:"IS15339", n:"INDIAGRO GROWMAGIC ADVANCE", m:1815},
+    {cat:"AG", id:"IS15340", n:"INDIAGRO MODIPHY 250 ML", m:550},
+    {cat:"AG", id:"IS15419", n:"INDIAGRO Y-RAS PLUS 250ML", m:1045},
+    {cat:"AG", id:"IS15540", n:"INDIAGRO OLIF SUPER 16", m:1430},
 ];
 
 function render(data) {
-    const grid = document.getElementById('productGrid');
-    grid.innerHTML = data.map(item => `
-        <div class="card">
-            <img src="${imgBase}${item.id}.jpg" loading="lazy" onerror="this.src='https://via.placeholder.com/250?text=MI+Lifestyle'">
-            <div class="name">${item.n}</div>
-            <div class="mrp">₹${item.m}</div>
-            <a href="https://wa.me/916369413436?text=வணக்கம், நான் இந்த பொருளை வாங்க விரும்புகிறேன்: ${encodeURIComponent(item.n)} (MRP: ₹${item.m})" class="buy-btn">வாட்ஸ்அப்பில் ஆர்டர் செய்க</a>
-        </div>
-    `).join('');
+    const grids = {
+        HC: document.getElementById('grid_HC'),
+        PC: document.getElementById('grid_PC'),
+        FB: document.getElementById('grid_FB'),
+        HM: document.getElementById('grid_HM'),
+        AG: document.getElementById('grid_AG')
+    };
+    
+    // Clear grids
+    Object.values(grids).forEach(g => g.innerHTML = "");
+
+    data.forEach(item => {
+        const html = `
+            <div class="card">
+                <img src="${imgBase}${item.id}.jpg" loading="lazy" onerror="this.src='https://via.placeholder.com/200?text=MI+Lifestyle'">
+                <div class="name">${item.n}</div>
+                <div class="mrp">₹${item.m}</div>
+                <a href="https://wa.me/916369413436?text=I%20want%20to%20order%20${encodeURIComponent(item.n)}" class="btn">ஆர்டர் செய்க</a>
+            </div>
+        `;
+        if(grids[item.cat]) grids[item.cat].innerHTML += html;
+    });
 }
 
-function search() {
-    const query = document.getElementById('searchInput').value.toLowerCase();
-    const filtered = items.filter(i => i.n.toLowerCase().includes(query));
+function filter() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    const filtered = products.filter(i => i.n.toLowerCase().includes(q));
     render(filtered);
 }
 
-render(items);
+render(products);
 </script>
 </body>
 </html>
