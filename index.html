@@ -31,37 +31,37 @@ header{
 
 /* Products */
 .product-section{display:none;margin-top:30px}
-.section-title{text-align:center;font-size:1.5rem;margin-bottom:20px}
+.section-title{text-align:center;font-size:1.5rem;margin-bottom:20px;color:#333}
 .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
 
 .p-card{
   background:#fff;border-radius:15px;padding:15px;text-align:center;
   box-shadow:0 4px 10px rgba(0,0,0,.08);
-  display:flex;flex-direction:column
+  display:flex;flex-direction:column;border: 1px solid #eee;
 }
 .p-card img{
-  width:100%;height:200px;object-fit:contain;border-radius:8px
+  width:100%;height:220px;object-fit:contain;border-radius:8px;margin-bottom:10px;
 }
-.p-name{font-weight:bold;font-size:14px;margin:12px 0;min-height:42px}
+.p-name{font-weight:bold;font-size:14px;margin:12px 0;min-height:42px;color:#2c3e50}
 
 .btn-group{margin-top:auto;display:flex;flex-direction:column;gap:8px}
-.btn{border:none;padding:10px;border-radius:8px;font-weight:bold;cursor:pointer}
+.btn{border:none;padding:12px;border-radius:8px;font-weight:bold;cursor:pointer;font-size:13px;text-align:center;text-decoration:none}
 .seller-btn{background:#e3f2fd;color:#0277bd;border:1px solid #0277bd}
-.cust-btn{background:#25D366;color:#fff;text-decoration:none}
+.cust-btn{background:#25D366;color:#fff}
 
 /* Modal */
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999}
 .modal-content{
-  background:#fff;margin:12% auto;padding:25px;border-radius:15px;
-  max-width:420px;text-align:center;position:relative
+  background:#fff;margin:12% auto;padding:30px;border-radius:15px;
+  max-width:420px;text-align:center;position:relative;box-shadow: 0 5px 20px rgba(0,0,0,0.3);
 }
-.close{position:absolute;right:18px;top:12px;font-size:26px;cursor:pointer}
+.close{position:absolute;right:18px;top:12px;font-size:26px;cursor:pointer;color:#888}
 .modal-wa-btn{
   background:#25D366;color:#fff;padding:12px 22px;
-  border-radius:25px;text-decoration:none;display:inline-block;margin-top:15px
+  border-radius:25px;text-decoration:none;display:inline-block;margin-top:15px;font-weight:bold
 }
 
-footer{text-align:center;padding:40px 15px;color:#777}
+footer{text-align:center;padding:40px 15px;color:#777;font-size:14px}
 </style>
 </head>
 
@@ -69,7 +69,7 @@ footer{text-align:center;padding:40px 15px;color:#777}
 
 <header>
   <h1>MI Lifestyle Products</h1>
-  <p>விற்பனையாளர் / வாடிக்கையாளர் விலைப் பட்டியல்</p>
+  <p>விற்பனையாளர் மற்றும் வாடிக்கையாளர் விலைப் பட்டியல் (16.11.2024)</p>
 </header>
 
 <div class="container">
@@ -83,83 +83,123 @@ footer{text-align:center;padding:40px 15px;color:#777}
     <div>🧴</div><h3>PERSONAL CARE</h3>
     <span class="open-btn" style="background:var(--pc)">திறக்க</span>
   </div>
+  <div class="cat-card" onclick="showSection('FB')" style="border-top-color:var(--fb)">
+    <div>☕</div><h3>FOOD & BEVERAGE</h3>
+    <span class="open-btn" style="background:var(--fb)">திறக்க</span>
+  </div>
+  <div class="cat-card" onclick="showSection('HM')" style="border-top-color:var(--hm)">
+    <div>🏠</div><h3>HOME CARE</h3>
+    <span class="open-btn" style="background:var(--hm)">திறக்க</span>
+  </div>
+  <div class="cat-card" onclick="showSection('AG')" style="border-top-color:var(--ag)">
+    <div>🌱</div><h3>AGRO CARE</h3>
+    <span class="open-btn" style="background:var(--ag)">திறக்க</span>
+  </div>
 </div>
 
-<div id="HC" class="product-section">
-  <h2 class="section-title">🏥 HEALTH CARE</h2>
-  <div class="product-grid" id="grid_HC"></div>
-</div>
-
-<div id="PC" class="product-section">
-  <h2 class="section-title">🧴 PERSONAL CARE</h2>
-  <div class="product-grid" id="grid_PC"></div>
-</div>
+<div id="HC" class="product-section"><h2 class="section-title">🏥 HEALTH CARE</h2><div class="product-grid" id="grid_HC"></div></div>
+<div id="PC" class="product-section"><h2 class="section-title">🧴 PERSONAL CARE</h2><div class="product-grid" id="grid_PC"></div></div>
+<div id="FB" class="product-section"><h2 class="section-title">☕ FOOD & BEVERAGE</h2><div class="product-grid" id="grid_FB"></div></div>
+<div id="HM" class="product-section"><h2 class="section-title">🏠 HOME CARE</h2><div class="product-grid" id="grid_HM"></div></div>
+<div id="AG" class="product-section"><h2 class="section-title">🌱 AGRO CARE</h2><div class="product-grid" id="grid_AG"></div></div>
 
 </div>
 
-<!-- Modal -->
 <div id="sellerModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
-    <div id="modalText"></div>
-    <a id="waLink" class="modal-wa-btn" target="_blank">WhatsApp தொடர்பு</a>
+    <div style="font-size: 40px; margin-bottom: 10px;">📱</div>
+    <div id="modalText" style="line-height: 1.6; color: #333; font-weight: 500;"></div>
+    <a id="waLink" class="modal-wa-btn" target="_blank">WhatsApp தொடர்புக்கு</a>
   </div>
 </div>
 
 <footer>
-  📞 WhatsApp: +91 63694 13436
+  📞 WhatsApp Order: +91 63694 13436 | விலைகள் 16.11.2024 முதல் நடைமுறை
 </footer>
 
 <script>
-/* 🔗 GitHub RAW image base path */
-const imgBase =
-"https://raw.githubusercontent.com/neyakkoot/MiLifeStyle_Products_Details_Prize/main/MiLifeStyle_Products_Pictures/";
+const imgBase = "https://raw.githubusercontent.com/neyakkoot/MiLifeStyle_Products_Details_Prize/main/MiLifeStyle_Products_Pictures/";
 
-/* ✅ Image filename explicitly mapped */
 const products = [
-  {cat:"HC", n:"ELEMENTS CYCLOVA 30 CAPSULES", r:1650, m:2200, img:"Antilersy.jpg"},
-  {cat:"HC", n:"ELEMENTS ANTILERGY LIQUID 200ML", r:308, m:385, img:"Antilersy.jpg"},
-  {cat:"HC", n:"ELEMENTS THYHEALTH LIQUID 200ML", r:594, m:770, img:"Antilersy.jpg"},
+  // HEALTH CARE
+  {cat:"HC", n:"Elements Antilergy Liquid 200ml", r:308, m:385, img:"Antilersy.jpg"},
+  {cat:"HC", n:"Elements Ayushwaas Avaleha 250g", r:1067, m:1430, img:"Ayushwaas%20avaleha.jpg"},
+  {cat:"HC", n:"Elements AyuVir Drops 30ml", r:150, m:200, img:"AyuVir.jpg"},
+  {cat:"HC", n:"Elements Below 37", r:748, m:1001, img:"Below%2037.jpg"},
+  {cat:"HC", n:"Elements Wellness AyuHeel", r:193, m:242, img:"AyuHeel.jpg"},
+  {cat:"HC", n:"Elements Multi-Gard Blood Purifier", r:308, m:418, img:"Blood%20Purifier.jpg"},
+  {cat:"HC", n:"Elements Cyclova 30 Capsules", r:1650, m:2200, img:"Antilersy.jpg"},
+  {cat:"HC", n:"Elements ThyHealth Liquid 200ml", r:594, m:770, img:"Antilersy.jpg"},
+  {cat:"HC", n:"Elements- Natcium", r:935, m:1375, img:"Antilersy.jpg"},
+  {cat:"HC", n:"New On & On Diaba Life", r:2200, m:2750, img:"Antilersy.jpg"},
 
-  {cat:"PC", n:"ELEMENTS CHAMPI CHAMPION", r:429, m:577, img:"Antilersy.jpg"},
-  {cat:"PC", n:"ELEMENTS CC SHAMPOO", r:275, m:374, img:"Antilersy.jpg"},
+  // PERSONAL CARE
+  {cat:"PC", n:"On & On Maha Bhringraj Hair Oil", r:358, m:484, img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"},
+  {cat:"PC", n:"Elements Acti-Fresh Shave Gel", r:242, m:308, img:"Acti-Fresh%20Shave%20Gel.jpg"},
+  {cat:"PC", n:"Elements 12-in-1 Night Repair Cream", r:534, m:671, img:"12-in-1%20Night%20Repair%20Cream.jpg"},
+  {cat:"PC", n:"Elements 12-in-1 Day Protection Cream", r:534, m:671, img:"12-in-1%20Day%20Protection%20Cream.jpg"},
+  {cat:"PC", n:"On & On Body Butter Cream", r:231, m:330, img:"Antilersy.jpg"},
+  {cat:"PC", n:"On & On Sandalwood Soap 75g", r:83, m:108, img:"Antilersy.jpg"},
+
+  // FOOD & BEVERAGE
+  {cat:"FB", n:"On & On 9 E5 Health Drink", r:3245, m:4070, img:"Antilersy.jpg"},
+  {cat:"FB", n:"On & On Spirulina Gold", r:1320, m:1650, img:"Antilersy.jpg"},
+
+  // HOME CARE
+  {cat:"HM", n:"Dish Wash Round Bar 500g", r:66, m:88, img:"Antilersy.jpg"},
+  {cat:"HM", n:"Kill & Shine Toilet Cleaner", r:83, m:110, img:"Antilersy.jpg"},
+
+  // AGRO CARE
+  {cat:"AG", n:"Indiagro Mi Proud 250ml", r:1045, m:1320, img:"Antilersy.jpg"},
+  {cat:"AG", n:"Indiagro Bhuastra Super 2kg", r:1210, m:1512, img:"Antilersy.jpg"}
 ];
 
 function showSection(id){
   document.querySelectorAll(".product-section").forEach(s=>s.style.display="none");
-  document.getElementById(id).style.display="block";
+  const target = document.getElementById(id);
+  target.style.display="block";
+  target.scrollIntoView({ behavior: 'smooth' });
 }
 
 function openSellerPopup(name,price){
-  document.getElementById("modalText").innerText =
-    `விற்பனையாளர் விலை ₹${price} – ${name}`;
+  const text = `விற்பனையாளர் விலைக்கு (₹${price.toFixed(2)}) ${name} வேண்டுமானால், 9600370671 என்ற எண்ணிற்குத் தொடர்புகொள்ளவும். அவர் வழிகாட்டல்படி கேட்டால் தொடர்ந்து விற்பனையாளர் விலைக்கு வாங்கலாம்.`;
+  document.getElementById("modalText").innerText = text;
   document.getElementById("waLink").href =
-    "https://wa.me/916369413436?text=" +
+    "https://wa.me/919600370671?text=" +
     encodeURIComponent(name+" விற்பனையாளர் விலையில் வேண்டும்");
   document.getElementById("sellerModal").style.display="block";
 }
+
 function closeModal(){document.getElementById("sellerModal").style.display="none";}
 
+window.onclick = function(e) { if (e.target == document.getElementById('sellerModal')) closeModal(); }
+
 function render(){
-  const grids={HC:grid_HC,PC:grid_PC};
+  const grids={
+    HC:document.getElementById("grid_HC"),
+    PC:document.getElementById("grid_PC"),
+    FB:document.getElementById("grid_FB"),
+    HM:document.getElementById("grid_HM"),
+    AG:document.getElementById("grid_AG")
+  };
+  
   products.forEach(p=>{
-    grids[p.cat].innerHTML+=`
-    <div class="p-card">
-      <img src="${imgBase+p.img}"
-           onerror="this.src='https://via.placeholder.com/250?text=No+Image'">
-      <div class="p-name">${p.n}</div>
-      <div class="btn-group">
-        <button class="btn seller-btn"
-          onclick="openSellerPopup('${p.n}',${p.r})">
-          விற்பனையாளர் ₹${p.r}
-        </button>
-        <a class="btn cust-btn"
-          href="https://wa.me/916369413436"
-          target="_blank">
-          வாடிக்கையாளர் ₹${p.m}
-        </a>
-      </div>
-    </div>`;
+    if(grids[p.cat]){
+      grids[p.cat].innerHTML+=`
+      <div class="p-card">
+        <img src="${imgBase+p.img}" onerror="this.src='https://via.placeholder.com/250?text=MI+Lifestyle'">
+        <div class="p-name">${p.n}</div>
+        <div class="btn-group">
+          <button class="btn seller-btn" onclick="openSellerPopup('${p.n}',${p.r})">
+            விற்பனையாளர் ₹${p.r.toFixed(2)}
+          </button>
+          <a class="btn cust-btn" href="https://wa.me/916369413436?text=${encodeURIComponent('I want to order '+p.n)}" target="_blank">
+            வாடிக்கையாளர் ₹${p.m.toFixed(2)}
+          </a>
+        </div>
+      </div>`;
+    }
   });
 }
 render();
