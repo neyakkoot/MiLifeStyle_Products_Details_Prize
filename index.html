@@ -24,9 +24,13 @@ header{background:linear-gradient(135deg,#0f3443,#34e89e);color:#fff;text-align:
 .cat-card h3{font-size:14px;margin:10px 0}
 .open-btn{display:inline-block;padding:6px 18px;border-radius:20px;font-size:12px;color:#fff;font-weight:bold}
 
-/* Products */
-.product-section{display:none;margin-top:30px}
-.section-title{text-align:center;font-size:1.5rem;margin-bottom:20px;color:#333}
+/* Product Sections */
+.product-section{display:none;margin-top:30px; animation: slideDown 0.4s ease-out;}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section-title{text-align:center;font-size:1.5rem;margin-bottom:20px;color:#333; border-bottom: 2px solid #ddd; padding-bottom: 10px;}
 .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
 
 .p-card{background:#fff;border-radius:15px;padding:15px;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,.08);display:flex;flex-direction:column;border: 1px solid #eee}
@@ -39,27 +43,30 @@ header{background:linear-gradient(135deg,#0f3443,#34e89e);color:#fff;text-align:
 .cust-btn{background:#25D366;color:#fff}
 
 /* Modals */
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:1000;overflow:hidden}
-.modal-content{margin:auto;position:relative;top:50%;transform:translateY(-50%);text-align:center}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:1000; overflow-y: auto;}
+.modal-content{margin:auto;position:relative;top: 50%; transform: translateY(-50%); text-align:center; padding: 10px;}
 
-/* Zoom Logic */
+/* Zoom Logic - முழுப்படம் தெரியும்படி */
 .img-zoom-container {
   max-width: 90%;
   max-height: 80vh;
   margin: auto;
-  overflow: hidden; /* ஜூம் செய்யும்போது வெளியே வராது */
+  overflow: hidden;
   border-radius: 15px;
   background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #fullImg {
-  width: 100%;
+  max-width: 100%;
   max-height: 75vh;
   object-fit: contain;
-  transition: transform 0.4s ease; /* மென்மையான ஜூம் */
+  transition: transform 0.4s ease;
   cursor: zoom-in;
 }
 #fullImg:hover {
-  transform: scale(1.8); /* 1.8 மடங்கு பெரிதாக்கும் */
+  transform: scale(2.0); /* 2 மடங்கு பெரிதாக்கும் */
 }
 
 .close{position:absolute;right:20px;top:-50px;font-size:45px;color:#fff;cursor:pointer;font-weight:bold}
@@ -73,7 +80,7 @@ footer{text-align:center;padding:40px 15px;color:#777;font-size:14px}
 
 <header>
   <h1>MI Lifestyle Products</h1>
-  <p>விற்பனையாளர் மற்றும் வாடிக்கையாளர் விலைப் பட்டியல் (16.11.2024) [cite: 1]</p>
+  <p>விற்பனையாளர் மற்றும் வாடிக்கையாளர் விலைப் பட்டியல் (16.11.2024)</p>
 </header>
 
 <div class="container">
@@ -93,7 +100,7 @@ footer{text-align:center;padding:40px 15px;color:#777;font-size:14px}
 </div>
 
 <div id="sellerModal" class="modal">
-  <div class="modal-content" style="background:#fff; padding:30px; border-radius:15px; max-width:420px;">
+  <div class="modal-content" style="background:#fff; padding:30px; border-radius:15px; max-width:420px; top: 50%;">
     <span class="close" onclick="closeModal('sellerModal')" style="color:#333; top:10px; right:15px;">&times;</span>
     <div id="modalText" style="line-height:1.6; color:#333; font-weight:500;"></div>
     <a id="waLink" class="modal-wa-btn" target="_blank">WhatsApp தொடர்புக்கு</a>
@@ -107,53 +114,141 @@ footer{text-align:center;padding:40px 15px;color:#777;font-size:14px}
       <img id="fullImg" src="" alt="">
     </div>
     <p id="imgCaption" style="color:#fff; margin-top:10px; font-weight:bold;"></p>
-    <p style="color:#ccc; font-size:12px;">(பெரிதாக்கிப் பார்க்க படத்தின் மேல் மவுஸை வைக்கவும்)</p>
+    <p style="color:#ccc; font-size:12px;">(பெரிதாக்கிப் பார்க்க படத்தின் மேல் மவுஸை நகர்த்தவும்)</p>
   </div>
 </div>
 
-<footer>📞 Order: +91 63694 13436 </footer>
+[cite_start]<footer>📞 WhatsApp: +91 63694 13436 | விலைகள்: 16.11.2024 [cite: 1]</footer>
 
 <script>
-const WA_CUST = "916369413436"; [cite: 2]
+const WA_CUST = "916369413436";
 const WA_SELLER = "919600370671";
 const imgBase = "https://raw.githubusercontent.com/neyakkoot/MiLifeStyle_Products_Details_Prize/main/MiLifeStyle_Products_Pictures/";
 
+// முழுமையான 102 தயாரிப்புகள் பட்டியல்
 const products = [
-  /* HEALTH CARE [cite: 1] */
-  {cat:"HC", n:"ELEMENTS CYCLOVA 30 CAPSULES", r:1650, m:2200, img:"Antilersy.jpg"},
-  {cat:"HC", n:"ELEMENTS ANTILERGY LIQUID 200ML", r:308, m:385, img:"Antilersy.jpg"},
-  {cat:"HC", n:"ELEMENTS THYHEALTH LIQUID 200ML", r:594, m:770, img:"Antilersy.jpg"},
-  {cat:"HC", n:"ELEMENTS AYUSHWAAS AVALEHA 250GMS", r:1067, m:1430, img:"Ayushwaas%20avaleha.jpg"},
-  {cat:"HC", n:"ELEMENTS NATCIUM", r:935, m:1375, img:"Antilersy.jpg"},
-  {cat:"HC", n:"ON & ON DIABA LIFE 600.85 MG", r:2200, m:2750, img:"Antilersy.jpg"},
-  {cat:"HC", n:"ELEMENTS LIV AGAIN LIQUID", r:198, m:264, img:"Blood%20Purifier.jpg"},
-  {cat:"HC", n:"ELEMENTS BELOW 37", r:748, m:1001, img:"Below%2037.jpg"},
-  {cat:"HC", n:"ELEMENTS WELLNESS AYUHEEL 50GMS", r:193, m:242, img:"AyuHeel.jpg"},
-  
-  /* PERSONAL CARE [cite: 1] */
-  {cat:"PC", n:"ELEMENTS CHAMPI CHMPN", r:429, m:577, img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"},
-  {cat:"PC", n:"ELEMENTS ACTI-FRESH SHAVE GEL", r:242, m:308, img:"Acti-Fresh%20Shave%20Gel.jpg"},
-  {cat:"PC", n:"ELEMENTS EGA DAY CREAM 25GMS", r:534, m:671, img:"12-in-1%20Day%20Protection%20Cream.jpg"},
-  {cat:"PC", n:"ELEMENTS EGA NIGHT CREAM 25GMS", r:534, m:671, img:"12-in-1%20Night%20Repair%20Cream.jpg"},
-  
-  /* FOOD [cite: 1] */
-  {cat:"FB", n:"ON & ON 9 E 5 HEALTH DRINK", r:3245, m:4070, img:"Antilersy.jpg"},
-  
-  /* HOME [cite: 1] */
-  {cat:"HM", n:"ANTI BACTERIAL DISH WASH BAR", r:66, m:88, img:"Antilersy.jpg"},
-  
-  /* AGRO [cite: 1] */
-  {cat:"AG", n:"INDIAGRO MI PROUD 250ML", r:1045, m:1320, img:"Antilersy.jpg"}
+[cite_start]/* HEALTH CARE [cite: 1] */
+{cat:"HC",name:"ELEMENTS CYCLOVA 30 CAPSULES",r:1650,m:2200,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS ANTILERGY LIQUID 200ML",r:308,m:385,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS THYHEALTH LIQUID 200ML",r:594,m:770,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS AYUSHWAAS AVALEHA 250GMS",r:1067,m:1430,img:"Ayushwaas%20avaleha.jpg"},
+{cat:"HC",name:"ELEMENTS NATCIUM",r:935,m:1375,img:"Antilersy.jpg"},
+{cat:"HC",name:"ON & ON DIABA LIFE 600.85 MG",r:2200,m:2750,img:"Antilersy.jpg"},
+{cat:"HC",name:"ON & ON KAVCH PRASH",r:979,m:1424,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS LIV AGAIN LIQUID",r:198,m:264,img:"Blood%20Purifier.jpg"},
+{cat:"HC",name:"ELEMENTS COF NIL",r:154,m:214,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS WOMAN COMP",r:275,m:374,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS M.G. BLD PRF",r:308,m:418,img:"Blood%20Purifier.jpg"},
+{cat:"HC",name:"ELEMENTS MAN SHKTIMN",r:1089,m:1375,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS WELL HART",r:594,m:797,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS BELOW 37",r:748,m:1001,img:"Below%2037.jpg"},
+{cat:"HC",name:"ON & ON MOROLIFE",r:2750,m:3300,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS WELLNESS PROBIOTIC",r:688,m:825,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS URI FLUSH 3 LIQUID",r:374,m:522,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS NO VEDNA CAP",r:1012,m:1265,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS NO VEDNA GEL",r:253,m:319,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS PHYT STRS CP",r:825,m:1122,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS IMMUNO + CAP",r:825,m:1034,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS LIV AGAIN C",r:792,m:990,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS DAILY DETOX",r:792,m:990,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS WND HLNG CRM",r:143,m:214,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS WELLNESS AYUHEEL 50GMS",r:193,m:242,img:"AyuHeel.jpg"},
+{cat:"HC",name:"ELEMENTS WELLNESS PRO NASIKA 20ML",r:187,m:242,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS WELLNESS EYE NERGY 10ML",r:165,m:209,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS PROTEIN PWDR",r:2420,m:3080,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS FEALING IRON CAPSULE",r:627,m:852,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS URI FLUSH-3 PLUS TABLETS",r:902,m:1210,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS FEALING IRON SYRUP",r:314,m:418,img:"Antilersy.jpg"},
+
+[cite_start]/* PERSONAL CARE [cite: 1] */
+{cat:"PC",name:"ON & ON BDY BTR CRM",r:231,m:330,img:"Antilersy.jpg"},
+{cat:"PC",name:"ELEMENTS CHAMPI CHMPN",r:429,m:577,img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"},
+{cat:"PC",name:"ELEMENTS CC SHAMPOO",r:275,m:374,img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"},
+{cat:"PC",name:"ELEMENTS A.D. SHAMPOO",r:275,m:374,img:"Antilersy.jpg"},
+{cat:"PC",name:"ELEMENTS MULTI-ACTION CREAM",r:275,m:374,img:"Antilersy.jpg"},
+{cat:"PC",name:"ON & ON SANDALWOOD SOAP 75G",r:83,m:108,img:"Antilersy.jpg"},
+{cat:"PC",name:"ON & ON PAPAYA SOAP 75G",r:83,m:108,img:"Antilersy.jpg"},
+{cat:"PC",name:"ON & ON NEEM SOAP 75G",r:83,m:108,img:"Antilersy.jpg"},
+{cat:"PC",name:"ON & ON TURMERIC SOAP 75G",r:83,m:108,img:"Antilersy.jpg"},
+{cat:"PC",name:"ON & ON MILK & STRAWBERRY SOAP",r:83,m:108,img:"Antilersy.jpg"},
+{cat:"PC",name:"ELEMENTS RADIANT GLOW FACE WASH",r:187,m:258,img:"Antilersy.jpg"},
+{cat:"PC",name:"ELEMENTS WHITENING BODY LOTION",r:165,m:220,img:"Antilersy.jpg"},
+{cat:"PC",name:"ELEMENTS COCOA BUTTER LOTION",r:193,m:264,img:"Antilersy.jpg"},
+{cat:"PC",name:"ELEMENTS ALOE VERA LOTION",r:209,m:286,img:"Antilersy.jpg"},
+{cat:"PC",name:"ELEMENTS EMOLLIENT BODY CREAM",r:209,m:286,img:"Antilersy.jpg"},
+{cat:"PC",name:"ELEMENTS ROSE HAND WASH",r:330,m:440,img:"Antilersy.jpg"},
+{cat:"PC",name:"ELEMENTS 3 IN 1 FACE WASH",r:149,m:198,img:"Antilersy.jpg"},
+{cat:"PC",name:"ELEMENTS UNDER EYE GEL",r:237,m:297,img:"Antilersy.jpg"},
+{cat:"PC",name:"ELEMENTS ACTI-FRESH SHAVE GEL",r:242,m:308,img:"Acti-Fresh%20Shave%20Gel.jpg"},
+{cat:"PC",name:"ELEMENTS 8 IN 1 HAIR CONDITIONER",r:358,m:451,img:"Antilersy.jpg"},
+{cat:"PC",name:"ELEMENTS PRIVY WASH 100ML",r:286,m:363,img:"Antilersy.jpg"},
+{cat:"PC",name:"ELEMENTS EGA DAY CREAM",r:534,m:671,img:"12-in-1%20Day%20Protection%20Cream.jpg"},
+{cat:"PC",name:"ELEMENTS EGA NIGHT CREAM",r:534,m:671,img:"12-in-1%20Night%20Repair%20Cream.jpg"},
+{cat:"PC",name:"ON & ON BHRNGRAJ OIL",r:358,m:484,img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"},
+{cat:"PC",name:"ON & ON HRB. T-PST",r:143,m:194,img:"Antilersy.jpg"},
+{cat:"PC",name:"ELEMENTS RED HRBL TOOTH PASTE",r:160,m:205,img:"Antilersy.jpg"},
+{cat:"PC",name:"ELEMENTS F G TOOTH PASTE",r:165,m:226,img:"Antilersy.jpg"},
+{cat:"PC",name:"ON & ON COLOUR SHAMPOO",r:83,m:110,img:"Antilersy.jpg"},
+{cat:"PC",name:"ON & ON HERBAL ROLLON INHALER",r:138,m:192,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR NU FEMME PERFUME",r:550,m:1100,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR TYZON PERFUME",r:550,m:1100,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR NU FEMME DEO",r:182,m:231,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR TYZON DEO",r:182,m:231,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR TOOTH BRUSH PACK OF 4",r:105,m:126,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR NEEM FACE WASH",r:121,m:154,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR PAPAYA FACE WASH",r:121,m:154,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR WALLNUT SCRUB",r:138,m:176,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR PETROLEUM JELLY",r:50,m:66,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR SHAMPOO TUBE",r:24,m:38,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR AMLA HAIR OIL",r:149,m:187,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR TULSI & MINT PASTE",r:61,m:75,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR NEEM & TULSI SOAP",r:39,m:54,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR LIME & ALOE SOAP",r:39,m:54,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR ROSE FRAGRANCE SOAP",r:39,m:54,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR JASMINE SOAP",r:39,m:54,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR ANTIBACTERIAL SOAP",r:39,m:54,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR SANDALWOOD SOAP",r:39,m:54,img:"Antilersy.jpg"},
+{cat:"PC",name:"NEUSTAR TALC POWDER",r:154,m:198,img:"Antilersy.jpg"},
+
+[cite_start]/* FOOD [cite: 1] */
+{cat:"FB",name:"ON & ON 9 E 5 HEALTH DRINK",r:3245,m:4070,img:"Antilersy.jpg"},
+{cat:"FB",name:"ON & ON SPRLN GOLD",r:1320,m:1650,img:"Antilersy.jpg"},
+{cat:"FB",name:"ON & ON MASALA KAWAH TEA",r:165,m:209,img:"Antilersy.jpg"},
+{cat:"FB",name:"ON & ON KASHMIRI KAWAH TEA",r:330,m:418,img:"Antilersy.jpg"},
+{cat:"FB",name:"ON & ON NU WOMAN NAPKINS",r:275,m:357,img:"Antilersy.jpg"},
+{cat:"FB",name:"ON & ON NUTRILIFE CHOCOLATE",r:2090,m:2640,img:"Antilersy.jpg"},
+{cat:"FB",name:"AAHAR TEALITE",r:330,m:420,img:"Antilersy.jpg"},
+
+[cite_start]/* HOME [cite: 1] */
+{cat:"HM",name:"ANTI BACTERIAL DISH WASH BAR",r:66,m:88,img:"Antilersy.jpg"},
+{cat:"HM",name:"KILL & SHINE TOILET CLEANER",r:83,m:110,img:"Antilersy.jpg"},
+{cat:"HM",name:"DISINFECTANT FLOOR CLEANER",r:99,m:132,img:"Antilersy.jpg"},
+{cat:"HM",name:"CLEAN & SHINE DISH WASH LIQUID",r:127,m:165,img:"Antilersy.jpg"},
+{cat:"HM",name:"MAX BRIGHT LAUNDRY DETERGENT",r:187,m:242,img:"Antilersy.jpg"},
+{cat:"HM",name:"STREAK FREE GLASS CLEANER",r:77,m:93,img:"Antilersy.jpg"},
+
+[cite_start]/* AGRO [cite: 1] */
+{cat:"AG",name:"INDIAGRO MI PROUD 250ML",r:1045,m:1320,img:"Antilersy.jpg"},
+{cat:"AG",name:"INDIAGRO MI CITRA 250ML",r:1650,m:2062,img:"Antilersy.jpg"},
+{cat:"AG",name:"INDIAGRO MI VEER 250ML",r:2310,m:2915,img:"Antilersy.jpg"},
+{cat:"AG",name:"INDIAGRO BHUASTRA SUPER",r:1210,m:1512,img:"Antilersy.jpg"},
+{cat:"AG",name:"INDIAGRO MI SPRAY PLUS",r:440,m:550,img:"Antilersy.jpg"},
+{cat:"AG",name:"INDIAGRO GROWMAGIC ADVANCE",r:1419,m:1815,img:"Antilersy.jpg"},
+{cat:"AG",name:"INDIAGRO MODIPHY 250ML",r:440,m:550,img:"Antilersy.jpg"},
+{cat:"AG",name:"INDIAGRO Y-RAS PLUS",r:825,m:1045,img:"Antilersy.jpg"},
+{cat:"AG",name:"INDIAGRO OLIF SUPER 16",r:1210,m:1430,img:"Antilersy.jpg"},
 ];
 
 function showSection(id){
   document.querySelectorAll(".product-section").forEach(s=>s.style.display="none");
-  document.getElementById(id).style.display="block";
+  const target = document.getElementById(id);
+  target.style.display="block";
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function openSellerPopup(name, rsp){
-  document.getElementById("modalText").innerText = `விற்பனையாளர் விலைக்கு (₹${rsp}) ${name} வேண்டுமானால் 9600370671 என்ற எண்ணிற்குத் தொடர்புகொள்க. `;
-  document.getElementById("waLink").href = `https://wa.me/919600370671?text=${encodeURIComponent(name+" விற்பனையாளர் விலையில் வேண்டும்")}`;
+  [cite_start]document.getElementById("modalText").innerText = `விற்பனையாளர் விலைக்கு (₹${rsp.toFixed(2)}) ${name} வேண்டுமானால் 9600370671 என்ற எண்ணிற்குத் தொடர்புகொள்க. [cite: 1]`;
+  document.getElementById("waLink").href = `https://wa.me/${WA_SELLER}?text=${encodeURIComponent(name+" விற்பனையாளர் விலையில் வேண்டும்")}`;
   document.getElementById("sellerModal").style.display="block";
 }
 
@@ -167,14 +262,14 @@ function viewImage(name, img){
 function closeModal(id){document.getElementById(id).style.display="none";}
 
 function render(){
-  const grids={HC:grid_HC,PC:grid_PC,FB:grid_FB,HM:grid_HM,AG:grid_AG};
+  const grids={HC:document.getElementById("grid_HC"),PC:document.getElementById("grid_PC"),FB:document.getElementById("grid_FB"),HM:document.getElementById("grid_HM"),AG:document.getElementById("grid_AG")};
   products.forEach(p=>{
     if(grids[p.cat]){
-      grids[p.cat].innerHTML+=`<div class="p-card"><div class="p-name">${p.name}</div><div class="btn-group"><button class="btn view-img-btn" onclick="viewImage('${p.name}','${p.img}')">📷 படத்தைப் பார்க்க</button><button class="btn seller-btn" onclick="openSellerPopup('${p.name}',${p.rsp})">விற்பனையாளர் ₹${p.rsp}</button><a class="btn cust-btn" href="https://wa.me/${WA_CUST}?text=${encodeURIComponent('I want '+p.name)}" target="_blank">வாடிக்கையாளர் ₹${p.mrp}</a></div></div>`;
+      [cite_start]grids[p.cat].innerHTML+=`<div class="p-card"><div class="p-name">${p.name}</div><div class="btn-group"><button class="btn view-img-btn" onclick="viewImage('${p.name}','${p.img}')">📷 படத்தைப் பார்க்க</button><button class="btn seller-btn" onclick="openSellerPopup('${p.name}',${p.r})">விற்பனையாளர் ₹${p.r.toFixed(2)} [cite: 1][cite_start]</button><a class="btn cust-btn" href="https://wa.me/${WA_CUST}?text=${encodeURIComponent('I want '+p.name)}" target="_blank">வாடிக்கையாளர் ₹${p.m.toFixed(2)} [cite: 1]</a></div></div>`;
     }
   });
 }
-render();
+window.onload = render;
 </script>
 </body>
 </html>
