@@ -10,80 +10,61 @@
   --hc:#27ae60; --pc:#2980b9; --fb:#8e44ad; --hm:#e67e22; --ag:#c0392b;
 }
 body{margin:0;font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f9}
-header{
-  background:linear-gradient(135deg,#0f3443,#34e89e);
-  color:#fff;text-align:center;padding:35px 15px
-}
+header{background:linear-gradient(135deg,#0f3443,#34e89e);color:#fff;text-align:center;padding:35px 15px}
 .container{max-width:1200px;margin:auto;padding:20px}
 
 /* Category cards */
 .category-grid{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
 .cat-card{
-  background:#fff;width:190px;padding:22px;border-radius:12px;
-  box-shadow:0 4px 15px rgba(0,0,0,.1);
-  text-align:center;cursor:pointer;transition:.3s;border-top:5px solid #ccc
+  background:#fff;width:180px;padding:22px;border-radius:12px;
+  box-shadow:0 4px 15px rgba(0,0,0,.1);text-align:center;cursor:pointer;transition:.3s;border-top:5px solid #ccc
 }
 .cat-card:hover{transform:translateY(-8px)}
 .cat-card div{font-size:45px}
 .cat-card h3{font-size:14px;margin:10px 0}
-.open-btn{display:inline-block;padding:6px 18px;border-radius:20px;
-  font-size:12px;color:#fff;font-weight:bold}
+.open-btn{display:inline-block;padding:6px 18px;border-radius:20px;font-size:12px;color:#fff;font-weight:bold}
 
-/* Product Sections */
+/* Products */
 .product-section{display:none;margin-top:30px}
 .section-title{text-align:center;font-size:1.5rem;margin-bottom:20px;color:#333}
 .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
 
-.p-card{
-  background:#fff;border-radius:15px;padding:15px;text-align:center;
-  box-shadow:0 4px 10px rgba(0,0,0,.08);
-  display:flex;flex-direction:column;border: 1px solid #eee;
-}
+.p-card{background:#fff;border-radius:15px;padding:15px;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,.08);display:flex;flex-direction:column;border: 1px solid #eee}
 .p-name{font-weight:bold;font-size:14px;margin:12px 0;min-height:42px;color:#2c3e50}
 
 .btn-group{margin-top:auto;display:flex;flex-direction:column;gap:8px}
-.btn{border:none;padding:12px;border-radius:8px;font-weight:bold;cursor:pointer;font-size:13px;text-align:center;text-decoration:none}
+.btn{border:none;padding:10px;border-radius:8px;font-weight:bold;cursor:pointer;font-size:13px;text-align:center;text-decoration:none}
 .view-img-btn{background:#f1f2f6;color:#2c3e50;border:1px solid #ccc}
 .seller-btn{background:#e3f2fd;color:#0277bd;border:1px solid #0277bd}
 .cust-btn{background:#25D366;color:#fff}
 
 /* Modals */
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:1000; overflow: auto;}
-.modal-content{
-  margin:auto;padding:15px;border-radius:15px;
-  max-width:550px;text-align:center;position:relative;
-  top: 50%; transform: translateY(-50%);
-}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:1000;overflow:hidden}
+.modal-content{margin:auto;position:relative;top:50%;transform:translateY(-50%);text-align:center}
 
-/* Enhanced Zoom functionality */
-.img-wrapper {
-    overflow: hidden; /* ஜூம் செய்யும்போது படம் வெளியே வராமல் தடுக்க */
-    border-radius: 12px;
-    background: #fff;
-    cursor: zoom-in;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Zoom Logic */
+.img-zoom-container {
+  max-width: 90%;
+  max-height: 80vh;
+  margin: auto;
+  overflow: hidden; /* ஜூம் செய்யும்போது வெளியே வராது */
+  border-radius: 15px;
+  background: #fff;
 }
 #fullImg {
-    max-width: 100%;
-    max-height: 80vh; /* திரையின் உயரத்திற்குள் படம் அடங்கும் */
-    object-fit: contain;
-    transition: transform 0.4s ease;
-    transform-origin: center center;
+  width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  transition: transform 0.4s ease; /* மென்மையான ஜூம் */
+  cursor: zoom-in;
 }
-/* மவுஸை வைக்கும்போது படம் பெரிதாகும் (பெரிய திரைகளுக்கு) */
-.img-wrapper:hover #fullImg {
-    transform: scale(1.6);
-}
-
-.close{position:absolute;right:15px;top: -45px;font-size:45px;cursor:pointer;color:#fff; font-weight: bold;}
-
-.modal-wa-btn{
-  background:#25D366;color:#fff;padding:12px 22px;
-  border-radius:25px;text-decoration:none;display:inline-block;margin-top:15px;font-weight:bold
+#fullImg:hover {
+  transform: scale(1.8); /* 1.8 மடங்கு பெரிதாக்கும் */
 }
 
+.close{position:absolute;right:20px;top:-50px;font-size:45px;color:#fff;cursor:pointer;font-weight:bold}
+
+.modal-wa-btn{background:#25D366;color:#fff;padding:12px 22px;border-radius:25px;text-decoration:none;display:inline-block;margin-top:15px;font-weight:bold}
 footer{text-align:center;padding:40px 15px;color:#777;font-size:14px}
 </style>
 </head>
@@ -92,45 +73,29 @@ footer{text-align:center;padding:40px 15px;color:#777;font-size:14px}
 
 <header>
   <h1>MI Lifestyle Products</h1>
-  <p>விற்பனையாளர் மற்றும் வாடிக்கையாளர் விலைப் பட்டியல் (16.11.2024)</p>
+  <p>விற்பனையாளர் மற்றும் வாடிக்கையாளர் விலைப் பட்டியல் (16.11.2024) [cite: 1]</p>
 </header>
 
 <div class="container">
-<div class="category-grid">
-  <div class="cat-card" onclick="showSection('HC')" style="border-top-color:var(--hc)">
-    <div>🏥</div><h3>HEALTH CARE</h3>
-    <span class="open-btn" style="background:var(--hc)">திறக்க</span>
+  <div class="category-grid">
+    <div class="cat-card" onclick="showSection('HC')" style="border-top-color:var(--hc)"><div>🏥</div><h3>HEALTH CARE</h3><span class="open-btn" style="background:var(--hc)">திறக்க</span></div>
+    <div class="cat-card" onclick="showSection('PC')" style="border-top-color:var(--pc)"><div>🧴</div><h3>PERSONAL CARE</h3><span class="open-btn" style="background:var(--pc)">திறக்க</span></div>
+    <div class="cat-card" onclick="showSection('FB')" style="border-top-color:var(--fb)"><div>☕</div><h3>FOOD & BEVERAGE</h3><span class="open-btn" style="background:var(--fb)">திறக்க</span></div>
+    <div class="cat-card" onclick="showSection('HM')" style="border-top-color:var(--hm)"><div>🏠</div><h3>HOME CARE</h3><span class="open-btn" style="background:var(--hm)">திறக்க</span></div>
+    <div class="cat-card" onclick="showSection('AG')" style="border-top-color:var(--ag)"><div>🌱</div><h3>AGRO CARE</h3><span class="open-btn" style="background:var(--ag)">திறக்க</span></div>
   </div>
-  <div class="cat-card" onclick="showSection('PC')" style="border-top-color:var(--pc)">
-    <div>🧴</div><h3>PERSONAL CARE</h3>
-    <span class="open-btn" style="background:var(--pc)">திறக்க</span>
-  </div>
-  <div class="cat-card" onclick="showSection('FB')" style="border-top-color:var(--fb)">
-    <div>☕</div><h3>FOOD & BEVERAGE</h3>
-    <span class="open-btn" style="background:var(--fb)">திறக்க</span>
-  </div>
-  <div class="cat-card" onclick="showSection('HM')" style="border-top-color:var(--hm)">
-    <div>🏠</div><h3>HOME CARE</h3>
-    <span class="open-btn" style="background:var(--hm)">திறக்க</span>
-  </div>
-  <div class="cat-card" onclick="showSection('AG')" style="border-top-color:var(--ag)">
-    <div>🌱</div><h3>AGRO CARE</h3>
-    <span class="open-btn" style="background:var(--ag)">திறக்க</span>
-  </div>
-</div>
 
-<div id="HC" class="product-section"><h2 class="section-title">🏥 HEALTH CARE</h2><div class="product-grid" id="grid_HC"></div></div>
-<div id="PC" class="product-section"><h2 class="section-title">🧴 PERSONAL CARE</h2><div class="product-grid" id="grid_PC"></div></div>
-<div id="FB" class="product-section"><h2 class="section-title">☕ FOOD & BEVERAGE</h2><div class="product-grid" id="grid_FB"></div></div>
-<div id="HM" class="product-section"><h2 class="section-title">🏠 HOME CARE</h2><div class="product-grid" id="grid_HM"></div></div>
-<div id="AG" class="product-section"><h2 class="section-title">🌱 AGRO CARE</h2><div class="product-grid" id="grid_AG"></div></div>
+  <div id="HC" class="product-section"><h2 class="section-title">🏥 HEALTH CARE</h2><div class="product-grid" id="grid_HC"></div></div>
+  <div id="PC" class="product-section"><h2 class="section-title">🧴 PERSONAL CARE</h2><div class="product-grid" id="grid_PC"></div></div>
+  <div id="FB" class="product-section"><h2 class="section-title">☕ FOOD & BEVERAGE</h2><div class="product-grid" id="grid_FB"></div></div>
+  <div id="HM" class="product-section"><h2 class="section-title">🏠 HOME CARE</h2><div class="product-grid" id="grid_HM"></div></div>
+  <div id="AG" class="product-section"><h2 class="section-title">🌱 AGRO CARE</h2><div class="product-grid" id="grid_AG"></div></div>
 </div>
 
 <div id="sellerModal" class="modal">
-  <div class="modal-content" style="background:#fff;">
-    <span class="close" onclick="closeModal('sellerModal')" style="color: #333; top: 10px; right: 15px;">&times;</span>
-    <div style="font-size: 40px; margin-bottom: 10px;">📱</div>
-    <div id="modalText" style="line-height: 1.6; color: #333; font-weight: 500;"></div>
+  <div class="modal-content" style="background:#fff; padding:30px; border-radius:15px; max-width:420px;">
+    <span class="close" onclick="closeModal('sellerModal')" style="color:#333; top:10px; right:15px;">&times;</span>
+    <div id="modalText" style="line-height:1.6; color:#333; font-weight:500;"></div>
     <a id="waLink" class="modal-wa-btn" target="_blank">WhatsApp தொடர்புக்கு</a>
   </div>
 </div>
@@ -138,65 +103,57 @@ footer{text-align:center;padding:40px 15px;color:#777;font-size:14px}
 <div id="imageModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('imageModal')">&times;</span>
-    <div class="img-wrapper">
-        <img id="fullImg" src="" alt="தயாரிப்பு படம்">
+    <div class="img-zoom-container">
+      <img id="fullImg" src="" alt="">
     </div>
-    <p id="imgCaption" style="color:#fff; margin-top:15px; font-weight:bold;"></p>
-    <p style="color:#bbb; font-size: 11px;">(படத்தை தெளிவாகப் பார்க்க அதன் மேல் மவுஸை வைக்கவும்)</p>
+    <p id="imgCaption" style="color:#fff; margin-top:10px; font-weight:bold;"></p>
+    <p style="color:#ccc; font-size:12px;">(பெரிதாக்கிப் பார்க்க படத்தின் மேல் மவுஸை வைக்கவும்)</p>
   </div>
 </div>
 
-<footer>
-  📞 WhatsApp Order: +91 63694 13436 | விலைகள் 16.11.2024 முதல் நடைமுறை
-</footer>
+<footer>📞 Order: +91 63694 13436 </footer>
 
 <script>
-const WA_CUST = "916369413436";
+const WA_CUST = "916369413436"; [cite: 2]
 const WA_SELLER = "919600370671";
 const imgBase = "https://raw.githubusercontent.com/neyakkoot/MiLifeStyle_Products_Details_Prize/main/MiLifeStyle_Products_Pictures/";
 
-// முழுமையான 102 தயாரிப்புகளின் பட்டியல் 
 const products = [
-/* HEALTH CARE */
-{cat:"HC",name:"ELEMENTS CYCLOVA 30 CAPSULES",rsp:1650,mrp:2200,img:"Antilersy.jpg"},
-{cat:"HC",name:"ELEMENTS ANTILERGY LIQUID 200ML",rsp:308,mrp:385,img:"Antilersy.jpg"},
-{cat:"HC",name:"ELEMENTS THYHEALTH LIQUID 200ML",rsp:594,mrp:770,img:"Antilersy.jpg"},
-{cat:"HC",name:"ELEMENTS AYUSHWAAS AVALEHA 250GMS",rsp:1067,mrp:1430,img:"Ayushwaas%20avaleha.jpg"},
-{cat:"HC",name:"ELEMENTS NATCIUM",rsp:935,mrp:1375,img:"Antilersy.jpg"},
-{cat:"HC",name:"ON & ON DIABA LIFE 600.85 MG",rsp:2200,mrp:2750,img:"Antilersy.jpg"},
-{cat:"HC",name:"ELEMENTS LIV AGAIN LIQUID",rsp:198,mrp:264,img:"Blood%20Purifier.jpg"},
-{cat:"HC",name:"ELEMENTS BELOW 37",rsp:748,mrp:1001,img:"Below%2037.jpg"},
-{cat:"HC",name:"ELEMENTS WELLNESS AYUHEEL 50GMS",rsp:193,mrp:242,img:"AyuHeel.jpg"},
-{cat:"HC",name:"ELEMENTS M.G. BLD PRF",rsp:308,mrp:418,img:"Blood%20Purifier.jpg"},
-
-/* PERSONAL CARE */
-{cat:"PC",name:"ELEMENTS CHAMPI CHMPN",rsp:429,mrp:577,img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"},
-{cat:"PC",name:"ELEMENTS ACTI-FRESH SHAVE GEL",rsp:242,mrp:308,img:"Acti-Fresh%20Shave%20Gel.jpg"},
-{cat:"PC",name:"ELEMENTS EGA DAY CREAM 25GMS",rsp:534,mrp:671,img:"12-in-1%20Day%20Protection%20Cream.jpg"},
-{cat:"PC",name:"ELEMENTS EGA NIGHT CREAM 25GMS",rsp:534,mrp:671,img:"12-in-1%20Night%20Repair%20Cream.jpg"},
-{cat:"PC",name:"ON & ON BHRNGRAJ OIL",rsp:358,mrp:484,img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"},
-
-/* FOOD & BEVERAGE */
-{cat:"FB",name:"ON & ON 9 E 5 HEALTH DRINK",rsp:3245,mrp:4070,img:"Antilersy.jpg"},
-
-/* HOME CARE */
-{cat:"HM",name:"ANTI BACTERIAL DISH WASH BAR",rsp:66,mrp:88,img:"Antilersy.jpg"},
-
-/* AGRO CARE */
-{cat:"AG",name:"INDIAGRO MI PROUD 250ML",rsp:1045,mrp:1320,img:"Antilersy.jpg"},
+  /* HEALTH CARE [cite: 1] */
+  {cat:"HC", n:"ELEMENTS CYCLOVA 30 CAPSULES", r:1650, m:2200, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS ANTILERGY LIQUID 200ML", r:308, m:385, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS THYHEALTH LIQUID 200ML", r:594, m:770, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS AYUSHWAAS AVALEHA 250GMS", r:1067, m:1430, img:"Ayushwaas%20avaleha.jpg"},
+  {cat:"HC", n:"ELEMENTS NATCIUM", r:935, m:1375, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ON & ON DIABA LIFE 600.85 MG", r:2200, m:2750, img:"Antilersy.jpg"},
+  {cat:"HC", n:"ELEMENTS LIV AGAIN LIQUID", r:198, m:264, img:"Blood%20Purifier.jpg"},
+  {cat:"HC", n:"ELEMENTS BELOW 37", r:748, m:1001, img:"Below%2037.jpg"},
+  {cat:"HC", n:"ELEMENTS WELLNESS AYUHEEL 50GMS", r:193, m:242, img:"AyuHeel.jpg"},
+  
+  /* PERSONAL CARE [cite: 1] */
+  {cat:"PC", n:"ELEMENTS CHAMPI CHMPN", r:429, m:577, img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"},
+  {cat:"PC", n:"ELEMENTS ACTI-FRESH SHAVE GEL", r:242, m:308, img:"Acti-Fresh%20Shave%20Gel.jpg"},
+  {cat:"PC", n:"ELEMENTS EGA DAY CREAM 25GMS", r:534, m:671, img:"12-in-1%20Day%20Protection%20Cream.jpg"},
+  {cat:"PC", n:"ELEMENTS EGA NIGHT CREAM 25GMS", r:534, m:671, img:"12-in-1%20Night%20Repair%20Cream.jpg"},
+  
+  /* FOOD [cite: 1] */
+  {cat:"FB", n:"ON & ON 9 E 5 HEALTH DRINK", r:3245, m:4070, img:"Antilersy.jpg"},
+  
+  /* HOME [cite: 1] */
+  {cat:"HM", n:"ANTI BACTERIAL DISH WASH BAR", r:66, m:88, img:"Antilersy.jpg"},
+  
+  /* AGRO [cite: 1] */
+  {cat:"AG", n:"INDIAGRO MI PROUD 250ML", r:1045, m:1320, img:"Antilersy.jpg"}
 ];
 
 function showSection(id){
   document.querySelectorAll(".product-section").forEach(s=>s.style.display="none");
-  const target = document.getElementById(id);
-  target.style.display="block";
-  target.scrollIntoView({ behavior: 'smooth' });
+  document.getElementById(id).style.display="block";
 }
 
 function openSellerPopup(name, rsp){
-  const text = `விற்பனையாளர் விலைக்கு (₹${rsp}) ${name} வேண்டுமானால், ${WA_SELLER} என்ற எண்ணிற்குத் தொடர்புகொள்க. அவர் வழிகாட்டல்படி கேட்டால் தொடர்ந்து விற்பனையாளர் விலைக்கு வாங்கலாம்.`;
-  document.getElementById("modalText").innerText = text;
-  document.getElementById("waLink").href = `https://wa.me/${WA_SELLER}?text=` + encodeURIComponent(name + " விற்பனையாளர் விலையில் வேண்டும்");
+  document.getElementById("modalText").innerText = `விற்பனையாளர் விலைக்கு (₹${rsp}) ${name} வேண்டுமானால் 9600370671 என்ற எண்ணிற்குத் தொடர்புகொள்க. `;
+  document.getElementById("waLink").href = `https://wa.me/919600370671?text=${encodeURIComponent(name+" விற்பனையாளர் விலையில் வேண்டும்")}`;
   document.getElementById("sellerModal").style.display="block";
 }
 
@@ -204,44 +161,20 @@ function viewImage(name, img){
   document.getElementById("fullImg").src = imgBase + img;
   document.getElementById("imgCaption").innerText = name;
   document.getElementById("imageModal").style.display="block";
-  document.getElementById("fullImg").style.transform = "scale(1)"; // Reset zoom
+  document.getElementById("fullImg").style.transform = "scale(1)";
 }
 
 function closeModal(id){document.getElementById(id).style.display="none";}
 
-window.onclick = function(e) { if (e.target.classList.contains('modal')) e.target.style.display = "none"; }
-
 function render(){
-  const grids={
-    HC:document.getElementById("grid_HC"),
-    PC:document.getElementById("grid_PC"),
-    FB:document.getElementById("grid_FB"),
-    HM:document.getElementById("grid_HM"),
-    AG:document.getElementById("grid_AG")
-  };
-  
+  const grids={HC:grid_HC,PC:grid_PC,FB:grid_FB,HM:grid_HM,AG:grid_AG};
   products.forEach(p=>{
     if(grids[p.cat]){
-      grids[p.cat].innerHTML+=`
-      <div class="p-card">
-        <div class="p-name">${p.name}</div>
-        <div class="btn-group">
-          <button class="btn view-img-btn" onclick="viewImage('${p.name}', '${p.img}')">
-            📷 படத்தைப் பார்க்க
-          </button>
-          <button class="btn seller-btn" onclick="openSellerPopup('${p.name}', ${p.rsp})">
-            விற்பனையாளர் ₹${p.rsp}
-          </button>
-          <a class="btn cust-btn" href="https://wa.me/${WA_CUST}?text=${encodeURIComponent('I want to order ' + p.name)}" target="_blank">
-            வாடிக்கையாளர் ₹${p.mrp}
-          </a>
-        </div>
-      </div>`;
+      grids[p.cat].innerHTML+=`<div class="p-card"><div class="p-name">${p.name}</div><div class="btn-group"><button class="btn view-img-btn" onclick="viewImage('${p.name}','${p.img}')">📷 படத்தைப் பார்க்க</button><button class="btn seller-btn" onclick="openSellerPopup('${p.name}',${p.rsp})">விற்பனையாளர் ₹${p.rsp}</button><a class="btn cust-btn" href="https://wa.me/${WA_CUST}?text=${encodeURIComponent('I want '+p.name)}" target="_blank">வாடிக்கையாளர் ₹${p.mrp}</a></div></div>`;
     }
   });
 }
 render();
 </script>
-
 </body>
 </html>
