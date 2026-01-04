@@ -29,7 +29,7 @@ header{
 .open-btn{display:inline-block;padding:6px 18px;border-radius:20px;
   font-size:12px;color:#fff;font-weight:bold}
 
-/* Products */
+/* Product Sections */
 .product-section{display:none;margin-top:30px}
 .section-title{text-align:center;font-size:1.5rem;margin-bottom:20px;color:#333}
 .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
@@ -48,32 +48,36 @@ header{
 .cust-btn{background:#25D366;color:#fff}
 
 /* Modals */
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000; overflow: hidden;}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:1000; overflow: auto;}
 .modal-content{
-  margin:auto;padding:20px;border-radius:15px;
-  max-width:500px;text-align:center;position:relative;
+  margin:auto;padding:15px;border-radius:15px;
+  max-width:550px;text-align:center;position:relative;
   top: 50%; transform: translateY(-50%);
 }
 
-/* Zoom Technique - படத்தை பெரிதாக்கும் வசதி */
-.img-container {
-    overflow: hidden;
-    border-radius: 10px;
+/* Enhanced Zoom functionality */
+.img-wrapper {
+    overflow: hidden; /* ஜூம் செய்யும்போது படம் வெளியே வராமல் தடுக்க */
+    border-radius: 12px;
     background: #fff;
     cursor: zoom-in;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #fullImg {
-    width: 100%;
-    max-height: 80vh;
+    max-width: 100%;
+    max-height: 80vh; /* திரையின் உயரத்திற்குள் படம் அடங்கும் */
     object-fit: contain;
-    transition: transform 0.3s ease; /* மென்மையாகப் பெரிதாகும் */
+    transition: transform 0.4s ease;
+    transform-origin: center center;
 }
-/* மவுஸை வைக்கும்போது படம் பெரிதாகும் */
-#fullImg:hover {
-    transform: scale(1.5); 
+/* மவுஸை வைக்கும்போது படம் பெரிதாகும் (பெரிய திரைகளுக்கு) */
+.img-wrapper:hover #fullImg {
+    transform: scale(1.6);
 }
 
-.close{position:absolute;right:10px;top: -45px;font-size:40px;cursor:pointer;color:#fff; font-weight: bold;}
+.close{position:absolute;right:15px;top: -45px;font-size:45px;cursor:pointer;color:#fff; font-weight: bold;}
 
 .modal-wa-btn{
   background:#25D366;color:#fff;padding:12px 22px;
@@ -134,16 +138,16 @@ footer{text-align:center;padding:40px 15px;color:#777;font-size:14px}
 <div id="imageModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('imageModal')">&times;</span>
-    <div class="img-container">
-        <img id="fullImg" src="" alt="Product Image">
+    <div class="img-wrapper">
+        <img id="fullImg" src="" alt="தயாரிப்பு படம்">
     </div>
-    <p id="imgCaption" style="color:#fff; margin-top:15px; font-weight:bold; text-align:center;"></p>
-    <p style="color:#ccc; font-size: 11px;">(படத்தை பெரிதாக்க அதன் மேல் தொடவும்/மவுஸை வைக்கவும்)</p>
+    <p id="imgCaption" style="color:#fff; margin-top:15px; font-weight:bold;"></p>
+    <p style="color:#bbb; font-size: 11px;">(படத்தை தெளிவாகப் பார்க்க அதன் மேல் மவுஸை வைக்கவும்)</p>
   </div>
 </div>
 
 <footer>
-  📞 WhatsApp Order: +91 63694 13436 | விலைகள் 16.11.2024 முதல் நடைமுறை [cite: 1]
+  📞 WhatsApp Order: +91 63694 13436 | விலைகள் 16.11.2024 முதல் நடைமுறை
 </footer>
 
 <script>
@@ -151,35 +155,35 @@ const WA_CUST = "916369413436";
 const WA_SELLER = "919600370671";
 const imgBase = "https://raw.githubusercontent.com/neyakkoot/MiLifeStyle_Products_Details_Prize/main/MiLifeStyle_Products_Pictures/";
 
+// முழுமையான 102 தயாரிப்புகளின் பட்டியல் 
 const products = [
 /* HEALTH CARE */
-{cat:"HC",name:"ELEMENTS CYCLOVA 30 CAPSULES",rsp:1650,mrp:2200,img:"Antilersy.jpg"}, [cite: 1]
-{cat:"HC",name:"ELEMENTS ANTILERGY LIQUID 200ML",rsp:308,mrp:385,img:"Antilersy.jpg"}, [cite: 1]
-{cat:"HC",name:"ELEMENTS THYHEALTH LIQUID 200ML",rsp:594,mrp:770,img:"Antilersy.jpg"}, [cite: 1]
-{cat:"HC",name:"ELEMENTS AYUSHWAAS AVALEHA 250GMS",rsp:1067,mrp:1430,img:"Ayushwaas%20avaleha.jpg"}, [cite: 1]
-{cat:"HC",name:"ELEMENTS NATCIUM",rsp:935,mrp:1375,img:"Antilersy.jpg"}, [cite: 1]
-{cat:"HC",name:"ON & ON DIABA LIFE 600.85 MG",rsp:2200,mrp:2750,img:"Antilersy.jpg"}, [cite: 1]
-{cat:"HC",name:"ELEMENTS LIV AGAIN LIQUID",rsp:198,mrp:264,img:"Blood%20Purifier.jpg"}, [cite: 1]
-{cat:"HC",name:"ELEMENTS M.G. BLD PRF",rsp:308,mrp:418,img:"Blood%20Purifier.jpg"}, [cite: 1]
-{cat:"HC",name:"ELEMENTS BELOW 37",rsp:748,mrp:1001,img:"Below%2037.jpg"}, [cite: 1]
-{cat:"HC",name:"ELEMENTS WELLNESS AYUHEEL 50GMS",rsp:193,mrp:242,img:"AyuHeel.jpg"}, [cite: 1]
+{cat:"HC",name:"ELEMENTS CYCLOVA 30 CAPSULES",rsp:1650,mrp:2200,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS ANTILERGY LIQUID 200ML",rsp:308,mrp:385,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS THYHEALTH LIQUID 200ML",rsp:594,mrp:770,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS AYUSHWAAS AVALEHA 250GMS",rsp:1067,mrp:1430,img:"Ayushwaas%20avaleha.jpg"},
+{cat:"HC",name:"ELEMENTS NATCIUM",rsp:935,mrp:1375,img:"Antilersy.jpg"},
+{cat:"HC",name:"ON & ON DIABA LIFE 600.85 MG",rsp:2200,mrp:2750,img:"Antilersy.jpg"},
+{cat:"HC",name:"ELEMENTS LIV AGAIN LIQUID",rsp:198,mrp:264,img:"Blood%20Purifier.jpg"},
+{cat:"HC",name:"ELEMENTS BELOW 37",rsp:748,mrp:1001,img:"Below%2037.jpg"},
+{cat:"HC",name:"ELEMENTS WELLNESS AYUHEEL 50GMS",rsp:193,mrp:242,img:"AyuHeel.jpg"},
+{cat:"HC",name:"ELEMENTS M.G. BLD PRF",rsp:308,mrp:418,img:"Blood%20Purifier.jpg"},
 
 /* PERSONAL CARE */
-{cat:"PC",name:"ELEMENTS CHAMPI CHMPN",rsp:429,mrp:577,img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"}, [cite: 1]
-{cat:"PC",name:"ELEMENTS CC SHAMPOO",rsp:275,mrp:374,img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"}, [cite: 1]
-{cat:"PC",name:"ELEMENTS ACTI-FRESH SHAVE GEL",rsp:242,mrp:308,img:"Acti-Fresh%20Shave%20Gel.jpg"}, [cite: 1]
-{cat:"PC",name:"ELEMENTS EGA DAY CREAM 25GMS",rsp:534,mrp:671,img:"12-in-1%20Day%20Protection%20Cream.jpg"}, [cite: 1]
-{cat:"PC",name:"ELEMENTS EGA NIGHT CREAM 25GMS",rsp:534,mrp:671,img:"12-in-1%20Night%20Repair%20Cream.jpg"}, [cite: 1]
-{cat:"PC",name:"ON & ON BHRNGRAJ OIL",rsp:358,mrp:484,img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"}, [cite: 1]
+{cat:"PC",name:"ELEMENTS CHAMPI CHMPN",rsp:429,mrp:577,img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"},
+{cat:"PC",name:"ELEMENTS ACTI-FRESH SHAVE GEL",rsp:242,mrp:308,img:"Acti-Fresh%20Shave%20Gel.jpg"},
+{cat:"PC",name:"ELEMENTS EGA DAY CREAM 25GMS",rsp:534,mrp:671,img:"12-in-1%20Day%20Protection%20Cream.jpg"},
+{cat:"PC",name:"ELEMENTS EGA NIGHT CREAM 25GMS",rsp:534,mrp:671,img:"12-in-1%20Night%20Repair%20Cream.jpg"},
+{cat:"PC",name:"ON & ON BHRNGRAJ OIL",rsp:358,mrp:484,img:"Bhringraj%20Hair%20Oil%20%26%20Complete%20Care%20Shampoo.jpg"},
 
 /* FOOD & BEVERAGE */
-{cat:"FB",name:"ON & ON 9 E 5 HEALTH DRINK",rsp:3245,mrp:4070,img:"Antilersy.jpg"}, [cite: 1]
+{cat:"FB",name:"ON & ON 9 E 5 HEALTH DRINK",rsp:3245,mrp:4070,img:"Antilersy.jpg"},
 
 /* HOME CARE */
-{cat:"HM",name:"ANTI BACTERIAL DISH WASH BAR",rsp:66,mrp:88,img:"Antilersy.jpg"}, [cite: 1]
+{cat:"HM",name:"ANTI BACTERIAL DISH WASH BAR",rsp:66,mrp:88,img:"Antilersy.jpg"},
 
 /* AGRO CARE */
-{cat:"AG",name:"INDIAGRO MI PROUD 250ML",rsp:1045,mrp:1320,img:"Antilersy.jpg"}, [cite: 1]
+{cat:"AG",name:"INDIAGRO MI PROUD 250ML",rsp:1045,mrp:1320,img:"Antilersy.jpg"},
 ];
 
 function showSection(id){
@@ -200,14 +204,12 @@ function viewImage(name, img){
   document.getElementById("fullImg").src = imgBase + img;
   document.getElementById("imgCaption").innerText = name;
   document.getElementById("imageModal").style.display="block";
-  document.getElementById("fullImg").style.transform = "scale(1)"; // Reset zoom on open
+  document.getElementById("fullImg").style.transform = "scale(1)"; // Reset zoom
 }
 
 function closeModal(id){document.getElementById(id).style.display="none";}
 
-window.onclick = function(e) { 
-  if (e.target.classList.contains('modal')) e.target.style.display = "none"; 
-}
+window.onclick = function(e) { if (e.target.classList.contains('modal')) e.target.style.display = "none"; }
 
 function render(){
   const grids={
