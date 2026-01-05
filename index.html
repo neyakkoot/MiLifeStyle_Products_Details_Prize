@@ -4,77 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MI Lifestyle Official Price List</title>
-
-<style>
-:root {
-  --hc:#27ae60; --pc:#2980b9; --fb:#8e44ad; --hm:#e67e22; --ag:#c0392b;
-}
-body{margin:0;font-family:Segoe UI,Tahoma,sans-serif;background:#f4f6f9}
-header{background:linear-gradient(135deg,#0f3443,#34e89e);color:#fff;text-align:center;padding:35px 15px}
-.container{max-width:1200px;margin:auto;padding:20px}
-
-/* Category cards */
-.category-grid{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
-.cat-card{
-  background:#fff;width:190px;padding:22px;border-radius:12px;
-  box-shadow:0 4px 15px rgba(0,0,0,.1);text-align:center;cursor:pointer;transition:.3s;border-top:5px solid #ccc
-}
-.cat-card:hover{transform:translateY(-8px)}
-.cat-card div{font-size:45px}
-.cat-card h3{font-size:14px;margin:10px 0}
-.open-btn{display:inline-block;padding:6px 18px;border-radius:20px;font-size:12px;color:#fff;font-weight:bold}
-
-/* Product Sections */
-.product-section{display:none;margin-top:30px; animation: slideDown 0.4s ease-out;}
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.section-title{text-align:center;font-size:1.5rem;margin-bottom:20px;color:#333; border-bottom: 2px solid #ddd; padding-bottom: 10px;}
-.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
-
-.p-card{background:#fff;border-radius:15px;padding:15px;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,.08);display:flex;flex-direction:column;border: 1px solid #eee}
-.p-name{font-weight:bold;font-size:14px;margin:12px 0;min-height:42px;color:#2c3e50}
-
-.btn-group{margin-top:auto;display:flex;flex-direction:column;gap:8px}
-.btn{border:none;padding:10px;border-radius:8px;font-weight:bold;cursor:pointer;font-size:13px;text-align:center;text-decoration:none}
-.view-img-btn{background:#f1f2f6;color:#2c3e50;border:1px solid #ccc}
-.seller-btn{background:#e3f2fd;color:#0277bd;border:1px solid #0277bd}
-.cust-btn{background:#25D366;color:#fff}
-
-/* Modals */
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:1000; overflow: hidden;}
-.modal-content{margin:auto;position:relative;top: 50%; transform: translateY(-50%); text-align:center; padding: 10px;}
-
-/* Zoom Logic Enhancement */
-.img-zoom-container {
-  max-width: 90%;
-  max-height: 80vh;
-  margin: auto;
-  overflow: hidden;
-  border-radius: 15px;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#fullImg {
-  max-width: 100%;
-  max-height: 75vh;
-  object-fit: contain;
-  transition: transform 0.5s ease; /* சீரான ஜூம் அனிமேஷன் */
-  cursor: zoom-in;
-}
-/* மவுஸை நகர்த்தும்போது பெரிதாகத் தெரியும் */
-#fullImg:hover {
-  transform: scale(2.5); /* 2.5 மடங்கு ஜூம் */
-}
-
-.close{position:absolute;right:20px;top:-55px;font-size:45px;color:#fff;cursor:pointer;font-weight:bold}
-
-.modal-wa-btn{background:#25D366;color:#fff;padding:12px 22px;border-radius:25px;text-decoration:none;display:inline-block;margin-top:15px;font-weight:bold}
-footer{text-align:center;padding:40px 15px;color:#777;font-size:14px}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -115,130 +45,14 @@ footer{text-align:center;padding:40px 15px;color:#777;font-size:14px}
       <img id="fullImg" src="" alt="">
     </div>
     <p id="imgCaption" style="color:#fff; margin-top:10px; font-weight:bold;"></p>
-    <p style="color:#ccc; font-size:12px;">(பெரிதாக்கிப் பார்க்க படத்தின் மேல் சுட்டியை (மவுஸை) நகர்த்தவும் அல்லது தொட்டுப் பார்க்கவும்)</p>
+    <p style="color:#ccc; font-size:12px;">(பெரிதாக்கிப் பார்க்க படத்தின் மேல் மவுஸை நகர்த்தவும்)</p>
   </div>
 </div>
 
 <footer>📞 WhatsApp: +91 63694 13436 | விலைகள்: 16.11.2024</footer>
 
+<script src="list.js"></script>
 <script>
-const WA_CUST = "916369413436";
-const WA_SELLER = "919600370671";
-const imgBase = "https://raw.githubusercontent.com/neyakkoot/MiLifeStyle_Products_Details_Prize/main/MiLifeStyle_Products_Pictures/";
-
-const products = [
-  /* ================= HEALTH CARE (ஆரோக்கிய பராமரிப்பு) ================= */
-  {cat:"HC", name:"ELEMENTS CYCLOVA 30 CAPSULES", r:1650, m:2200, img:"Cyclova Capsules.jpg"},
-  {cat:"HC", name:"ELEMENTS ANTILERGY LIQUID 200ML", r:308, m:385, img:"Antilersy.jpg"},
-  {cat:"HC", name:"ELEMENTS THYHEALTH LIQUID 200ML", r:594, m:770, img:"ThyHealth.jpg"},
-  {cat:"HC", name:"ELEMENTS AYUSHWAAS AVALEHA 250GMS", r:1067, m:1430, img:"Ayushwaas avaleha.jpg"},
-  {cat:"HC", name:"ELEMENTS NATCIUM", r:935, m:1375, img:"Natcium.jpg"},
-  {cat:"HC", name:"ON & ON DIABA LIFE 600.85 MG", r:2200, m:2750, img:"Diabalife.jpg"}, // Diaba Life is under Wellness
-  {cat:"HC", name:"ON & ON KAVCH PRASH", r:979, m:1424, img:"Kavachprash.jpg"},
-  {cat:"HC", name:"ELEMENTS LIV AGAIN LIQUID", r:198, m:264, img:"Blood Purifier.jpg"},
-  {cat:"HC", name:"ELEMENTS COF NIL", r:154, m:214, img:"Antilersy.jpg"},
-  {cat:"HC", name:"ELEMENTS WOMAN COMP", r:275, m:374, img:"Woman Companian.jpg"},
-  {cat:"HC", name:"ELEMENTS M.G. BLD PRF", r:308, m:418, img:"Blood Purifier.jpg"},
-  {cat:"HC", name:"ELEMENTS MAN SHKTIMN", r:1089, m:1375, img:"Man Shakthi-man.jpg"},
-  {cat:"HC", name:"ELEMENTS WELL HART", r:594, m:797, img:"Well Hart.jpg"},
-  {cat:"HC", name:"ELEMENTS BELOW 37", r:748, m:1001, img:"Below 37.jpg"},
-  {cat:"HC", name:"ON & ON MOROLIFE", r:2750, m:3300, img:"Moringa & Vitamin C.jpg"},
-  {cat:"HC", name:"ELEMENTS WELLNESS PROBIOTIC", r:688, m:825, img:"Wellness.jpg"},
-  {cat:"HC", name:"ELEMENTS URI FLUSH 3 LIQUID", r:374, m:522, img:"Uri Flush - 3.jpg"},
-  {cat:"HC", name:"ELEMENTS NO VEDNA CAP", r:1012, m:1265, img:"Antilersy.jpg"},
-  {cat:"HC", name:"ELEMENTS NO VEDNA GEL", r:253, m:319, img:"Antilersy.jpg"},
-  {cat:"HC", name:"ELEMENTS PHYT STRS CP", r:825, m:1122, img:"Antilersy.jpg"},
-  {cat:"HC", name:"ELEMENTS IMMUNO + CAP", r:825, m:1034, img:"Immuno-3 Plus.jpg"},
-  {cat:"HC", name:"ELEMENTS LIV AGAIN C", r:792, m:990, img:"Blood Purifier.jpg"},
-  {cat:"HC", name:"ELEMENTS DAILY DETOX", r:792, m:990, img:"Daily Detox.jpg"},
-  {cat:"HC", name:"ELEMENTS WND HLNG CRM", r:143, m:214, img:"Wound Healing.jpg"},
-  {cat:"HC", name:"ELEMENTS WELLNESS AYUHEEL 50GMS", r:193, m:242, img:"AyuHeel.jpg"},
-  {cat:"HC", name:"ELEMENTS WELLNESS PRO NASIKA 20ML", r:187, m:242, img:"Pro Nasika Nasal Spray.jpg"},
-  {cat:"HC", name:"ELEMENTS WELLNESS EYE NERGY 10ML", r:165, m:209, img:"Eye'nergy.jpg"},
-  {cat:"HC", name:"ELEMENTS PROTEIN PWDR", r:2420, m:3080, img:"Protien Powder.jpg"},
-  {cat:"HC", name:"ELEMENTS FEALING IRON CAPSULE", r:627, m:852, img:"Fealing.jpg"},
-  {cat:"HC", name:"ELEMENTS URI FLUSH-3 PLUS TABLETS", r:902, m:1210, img:"Uri Flush - 3.jpg"},
-  {cat:"HC", name:"ELEMENTS FEALING IRON SYRUP", r:314, m:418, img:"Fealing.jpg"},
-
-  /* ================= PERSONAL CARE (தனிநபர் பராமரிப்பு) ================= */
-  {cat:"PC", name:"ON & ON BDY BTR CRM", r:231, m:330, img:"Antilersy.jpg"},
-  {cat:"PC", name:"ELEMENTS CHAMPI CHMPN", r:429, m:577, img:"Bhringraj Hair Oil & Complete Care Shampoo.jpg"},
-  {cat:"PC", name:"ELEMENTS CC SHAMPOO", r:275, m:374, img:"Bhringraj Hair Oil & Complete Care Shampoo.jpg"},
-  {cat:"PC", name:"ELEMENTS A.D. SHAMPOO", r:275, m:374, img:"Bhringraj Hair Oil & Complete Care Shampoo.jpg"},
-  {cat:"PC", name:"ELEMENTS MULTI-ACTION CREAM", r:275, m:374, img:"Complexion Cream & Radiant Glow Face Wash.jpg"},
-  {cat:"PC", name:"ON & ON SANDALWOOD SOAP 75G", r:83, m:108, img:"Soaps.jpg"},
-  {cat:"PC", name:"ON & ON PAPAYA SOAP 75G", r:83, m:108, img:"Soaps.jpg"},
-  {cat:"PC", name:"ON & ON NEEM SOAP 75G", r:83, m:108, img:"Soaps.jpg"},
-  {cat:"PC", name:"ON & ON TURMERIC SOAP 75G", r:83, m:108, img:"Soaps.jpg"},
-  {cat:"PC", name:"ON & ON MILK & STRAWBERRY SOAP", r:83, m:108, img:"Soaps.jpg"},
-  {cat:"PC", name:"ELEMENTS RADIANT GLOW FACE WASH", r:187, m:258, img:"Complexion Cream & Radiant Glow Face Wash.jpg"},
-  {cat:"PC", name:"ELEMENTS WHITENING BODY LOTION", r:165, m:220, img:"Antilersy.jpg"},
-  {cat:"PC", name:"ELEMENTS COCOA BUTTER LOTION", r:193, m:264, img:"Antilersy.jpg"},
-  {cat:"PC", name:"ELEMENTS ALOE VERA LOTION", r:209, m:286, img:"Antilersy.jpg"},
-  {cat:"PC", name:"ELEMENTS EMOLLIENT BODY CREAM", r:209, m:286, img:"Antilersy.jpg"},
-  {cat:"PC", name:"ELEMENTS ROSE HAND WASH", r:330, m:440, img:"Rose & Glycerine Moisturising Hand Wash.jpg"},
-  {cat:"PC", name:"ELEMENTS 3 IN 1 FACE WASH", r:149, m:198, img:"Complexion Cream & Radiant Glow Face Wash.jpg"},
-  {cat:"PC", name:"ELEMENTS UNDER EYE GEL", r:237, m:297, img:"Under Eye Gel.jpg"},
-  {cat:"PC", name:"ELEMENTS ACTI-FRESH SHAVE GEL", r:242, m:308, img:"Acti-Fresh Shave Gel.jpg"},
-  {cat:"PC", name:"ELEMENTS 8 IN 1 HAIR CONDITIONER", r:358, m:451, img:"Hair Conditioner.jpg"},
-  {cat:"PC", name:"ELEMENTS PRIVY WASH 100ML", r:286, m:363, img:"Privy Wash.jpg"},
-  {cat:"PC", name:"ELEMENTS EGA DAY CREAM", r:534, m:671, img:"12-in-1 Day Protection Cream.jpg"},
-  {cat:"PC", name:"ELEMENTS EGA NIGHT CREAM", r:534, m:671, img:"12-in-1 Night Repair Cream.jpg"},
-  {cat:"PC", name:"ON & ON BHRNGRAJ OIL", r:358, m:484, img:"Bhringraj Hair Oil & Complete Care Shampoo.jpg"},
-  {cat:"PC", name:"ON & ON HRB. T-PST", r:143, m:194, img:"Herbal Tooth Paste.jpg"},
-  {cat:"PC", name:"ELEMENTS RED HRBL TOOTH PASTE", r:160, m:205, img:"Herbal Tooth Paste.jpg"},
-  {cat:"PC", name:"ELEMENTS F G TOOTH PASTE", r:165, m:226, img:"Herbal Tooth Paste.jpg"},
-  {cat:"PC", name:"ON & ON COLOUR SHAMPOO", r:83, m:110, img:"Hai Colour Shampoo.jpg"},
-  {cat:"PC", name:"ON & ON HERBAL ROLLON INHALER", r:138, m:192, img:"Herbal Roll ON Inhaler.jpg"},
-  {cat:"PC", name:"NEUSTAR NU FEMME PERFUME", r:550, m:1100, img:"Antilersy.jpg"},
-  {cat:"PC", name:"NEUSTAR TYZON PERFUME", r:550, m:1100, img:"Antilersy.jpg"},
-  {cat:"PC", name:"NEUSTAR NU FEMME DEO", r:182, m:231, img:"Antilersy.jpg"},
-  {cat:"PC", name:"NEUSTAR TYZON DEO", r:182, m:231, img:"Antilersy.jpg"},
-  {cat:"PC", name:"NEUSTAR TOOTH BRUSH PACK OF 4", r:105, m:126, img:"Antilersy.jpg"},
-  {cat:"PC", name:"NEUSTAR NEEM FACE WASH", r:121, m:154, img:"Complexion Cream & Radiant Glow Face Wash.jpg"},
-  {cat:"PC", name:"NEUSTAR PAPAYA FACE WASH", r:121, m:154, img:"Complexion Cream & Radiant Glow Face Wash.jpg"},
-  {cat:"PC", name:"NEUSTAR WALLNUT SCRUB", r:138, m:176, img:"Antilersy.jpg"},
-  {cat:"PC", name:"NEUSTAR PETROLEUM JELLY", r:50, m:66, img:"Antilersy.jpg"},
-  {cat:"PC", name:"NEUSTAR SHAMPOO TUBE", r:24, m:38, img:"Antilersy.jpg"},
-  {cat:"PC", name:"NEUSTAR AMLA HAIR OIL", r:149, m:187, img:"Bhringraj Hair Oil & Complete Care Shampoo.jpg"},
-  {cat:"PC", name:"NEUSTAR TULSI & MINT PASTE", r:61, m:75, img:"Herbal Tooth Paste.jpg"},
-  {cat:"PC", name:"NEUSTAR NEEM & TULSI SOAP", r:39, m:54, img:"Soaps.jpg"},
-  {cat:"PC", name:"NEUSTAR LIME & ALOE SOAP", r:39, m:54, img:"Soaps.jpg"},
-  {cat:"PC", name:"NEUSTAR ROSE FRAGRANCE SOAP", r:39, m:54, img:"Soaps.jpg"},
-  {cat:"PC", name:"NEUSTAR JASMINE SOAP", r:39, m:54, img:"Soaps.jpg"},
-  {cat:"PC", name:"NEUSTAR ANTIBACTERIAL SOAP", r:39, m:54, img:"Soaps.jpg"},
-  {cat:"PC", name:"NEUSTAR SANDALWOOD SOAP", r:39, m:54, img:"Soaps.jpg"},
-  {cat:"PC", name:"NEUSTAR TALC POWDER", r:154, m:198, img:"Antilersy.jpg"},
-
-  /* ================= FOOD & BEVERAGE (உணவு மற்றும் பானங்கள்) ================= */
-  {cat:"FB", name:"ON & ON 9 E 5 HEALTH DRINK", r:3245, m:4070, img:"Antilersy.jpg"},
-  {cat:"FB", name:"ON & ON SPRLN GOLD", r:1320, m:1650, img:"Sprulina.jpg"},
-  {cat:"FB", name:"ON & ON MASALA KAWAH TEA", r:165, m:209, img:"Antilersy.jpg"},
-  {cat:"FB", name:"ON & ON KASHMIRI KAWAH TEA", r:330, m:418, img:"Antilersy.jpg"},
-  {cat:"FB", name:"ON & ON NU WOMAN NAPKINS", r:275, m:357, img:"Privy Wash.jpg"},
-  {cat:"FB", name:"ON & ON NUTRILIFE CHOCOLATE", r:2090, m:2640, img:"NutriLife.jpg"},
-  {cat:"FB", name:"AAHAR TEALITE", r:330, m:420, img:"Antilersy.jpg"},
-
-  /* ================= HOME CARE (வீட்டு பராமரிப்பு) ================= */
-  {cat:"HM", name:"ANTI BACTERIAL DISH WASH BAR", r:66, m:88, img:"Antilersy.jpg"},
-  {cat:"HM", name:"KILL & SHINE TOILET CLEANER", r:83, m:110, img:"Antilersy.jpg"},
-  {cat:"HM", name:"DISINFECTANT FLOOR CLEANER", r:99, m:132, img:"Antilersy.jpg"},
-  {cat:"HM", name:"CLEAN & SHINE DISH WASH LIQUID", r:127, m:165, img:"Antilersy.jpg"},
-  {cat:"HM", name:"MAX BRIGHT LAUNDRY DETERGENT", r:187, m:242, img:"Antilersy.jpg"},
-  {cat:"HM", name:"STREAK FREE GLASS CLEANER", r:77, m:93, img:"Antilersy.jpg"},
-
-  /* ================= AGRO CARE (விவசாயம்) ================= */
-  {cat:"AG", name:"INDIAGRO MI PROUD 250ML", r:1045, m:1320, img:"Mi Proud.jpg"},
-  {cat:"AG", name:"INDIAGRO MI CITRA 250ML", r:1650, m:2062, img:"Mi Citra.jpg"},
-  {cat:"AG", name:"INDIAGRO MI VEER 250ML", r:2310, m:2915, img:"Mi Veer Natural Immune Modulator.jpg"},
-  {cat:"AG", name:"INDIAGRO BHUASTRA SUPER 2KG", r:1210, m:1512, img:"Indiagro Bhuastra Super.jpg"},
-  {cat:"AG", name:"INDIAGRO MI SPRAY PLUS 100ML", r:440, m:550, img:"Mi Spray Plus.jpg"},
-  {cat:"AG", name:"INDIAGRO GROWMAGIC ADVANCE", r:1419, m:1815, img:"Grow Magic Advance.jpg"},
-  {cat:"AG", name:"INDIAGRO MODIPHY 250ML", r:440, m:550, img:"ModiPhy pH balancer.jpg"},
-  {cat:"AG", name:"INDIAGRO Y-RAS PLUS 250ML", r:825, m:1045, img:"Y-Ras Plus.jpg"},
-  {cat:"AG", name:"INDIAGRO OLIF SUPER 16 500ML", r:1210, m:1430, img:"Olif Super 16.jpg"},
-];
-  
 function showSection(id){
   document.querySelectorAll(".product-section").forEach(s=>s.style.display="none");
   const target = document.getElementById(id);
@@ -247,8 +61,7 @@ function showSection(id){
 }
 
 function openSellerPopup(name, rsp){
-  const text = `விற்பனையாளர் விலைக்கு (₹${rsp.toFixed(2)}) ${name} வேண்டுமானால் விற்பன்னர் கணக்குத் தொடங்க வேண்டும். உரிய வழிகாட்டுதலைப் பெறுவதற்கு 9600370671 என்ற எண்ணிற்குத் தொடர்புகொள்க. அவர் வழிகாட்டல்படி கேட்டால் தொடர்ந்து விற்பனையாளர் விலைக்கு வாங்கலாம்.`;
-  document.getElementById("modalText").innerText = text;
+  document.getElementById("modalText").innerText = `விற்பனையாளர் விலைக்கு (₹${rsp.toFixed(2)}) ${name} வேண்டுமானால் 9600370671 என்ற எண்ணிற்குத் தொடர்புகொள்க.`;
   document.getElementById("waLink").href = `https://wa.me/919600370671?text=${encodeURIComponent(name+" விற்பனையாளர் விலையில் வேண்டும்")}`;
   document.getElementById("sellerModal").style.display="block";
 }
@@ -266,7 +79,7 @@ function render(){
   const grids={HC:document.getElementById("grid_HC"),PC:document.getElementById("grid_PC"),FB:document.getElementById("grid_FB"),HM:document.getElementById("grid_HM"),AG:document.getElementById("grid_AG")};
   products.forEach(p=>{
     if(grids[p.cat]){
-      grids[p.cat].innerHTML+=`<div class="p-card"><div class="p-name">${p.name}</div><div class="btn-group"><button class="btn view-img-btn" onclick="viewImage('${p.name}','${p.img}')">📷 படத்தைப் பார்க்க</button><button class="btn seller-btn" onclick="openSellerPopup('${p.name}',${p.r})">விற்பனையாளர் ₹${p.r.toFixed(2)}</button><a class="btn cust-btn" href="https://wa.me/${WA_CUST}?text=${encodeURIComponent('I want '+p.name)}" target="_blank">வாடிக்கையாளர் ₹${p.m.toFixed(2)}</a></div></div>`;
+      grids[p.cat].innerHTML+=`<div class="p-card"><div class="p-name">${p.name}</div><div class="btn-group"><button class="btn view-img-btn" onclick="viewImage('${p.name}','${p.img}')">📷 படத்தைப் பார்க்க</button><button class="btn seller-btn" onclick="openSellerPopup('${p.name}',${p.r})">விற்பனையாளர் ₹${p.r.toFixed(2)}</button><a class="btn cust-btn" href="https://wa.me/916369413436?text=${encodeURIComponent('I want '+p.name)}" target="_blank">வாடிக்கையாளர் ₹${p.m.toFixed(2)}</a></div></div>`;
     }
   });
 }
